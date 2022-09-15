@@ -7,7 +7,7 @@ const router = express.Router()
 
 // register
 router.post('/register', (req, res, next) => {
-	const { username, password, store_name, address, f_name, l_name, email, promptpay_number } = req.body;
+	const { username, password, store_name, address, f_name, l_name, email, tax_id, promptpay_number } = req.body;
 	const this_user = new User({
 		username: username,
 		store_name: store_name,
@@ -15,6 +15,7 @@ router.post('/register', (req, res, next) => {
 		f_name: f_name,
 		l_name: l_name,
 		email: email,
+		tax_id: tax_id,
 		promptpay_number: promptpay_number
 	})
 	User.register(this_user, password, (err) => {
@@ -22,7 +23,7 @@ router.post('/register', (req, res, next) => {
 		if (err) {
 			res.status(400).json(err)
 		}
-		res.status(200).json({'message': 'successfully created account'})
+		res.json({'message': 'successfully created account'})
 		
 	})
 })
@@ -30,7 +31,7 @@ router.post('/register', (req, res, next) => {
 
 // login
 router.post('/login', passport.authenticate('local'), (req, res) => {
-	res.status(200).json({'message': `successfully login as (${req.user.username})`})
+	res.json({'message': `successfully login as (${req.user.username})`})
 })
 
 
@@ -39,7 +40,7 @@ router.post('/logout', (req, res) => {
 		if (err) {
 			res.status(400).json(err)
 		}
-		res.status(200).json({'message': 'successfully logged-out'})
+		res.json({'message': 'successfully logged-out'})
 	})
 })
 
@@ -56,7 +57,7 @@ function isLoggedIn (req, res, next) {
 
 // is logged in check
 router.get('/is_logged_in_check', isLoggedIn, (req, res, next) => {
-	res.status(200).json({'message': `logged-in as (${req.user.username})`})
+	res.json({'message': `logged-in as (${req.user.username})`})
 })
 
 

@@ -16,13 +16,13 @@ const User = require('./models/user')
 const Item = require('./models/item')
 const ItemType = require('./models/item_type')
 const Bill = require('./models/bill')
-const Quantity = require('./models/quantity')
 
 
 // import routes
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const itemsRouter = require('./routes/items');
+const typesRouter = require('./routes/types');
 
 
 
@@ -68,6 +68,7 @@ app.use(cors())
 app.use('/', indexRouter)
 app.use('/auth', authRouter)
 app.use('/items', itemsRouter)
+app.use('/types', typesRouter)
 
 
 // listen port http..
