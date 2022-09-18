@@ -23,6 +23,7 @@ const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const itemsRouter = require('./routes/items');
 const typesRouter = require('./routes/types');
+const billsRouter = require('./routes/bills');
 
 
 
@@ -69,6 +70,7 @@ app.use('/', indexRouter)
 app.use('/auth', authRouter)
 app.use('/items', itemsRouter)
 app.use('/types', typesRouter)
+app.use('/bills', billsRouter)
 
 
 // listen port http..
