@@ -25,16 +25,16 @@ router.post('/', (req, res, next) => {
 
 	Item.findOne({'barcode': barcode, user_id: req.user._id}, (err, result) => {
 		if (err) {
-			res.status(400).json(err)
+			return res.status(400).json(err)
 		}
 		if (result) {
-			res.status(409).json({'message': 'barcode of this item is already exists'})
+			return res.status(409).json({'message': 'barcode of this item is already exists'})
 		} else {
 			item.save((err) => {
 				if (err) {
-					res.status(400).json(err)
+					return res.status(400).json(err)
 				}
-	    		res.end()
+	    		return res.end()
 			})
 		}
 	})
@@ -45,9 +45,9 @@ router.post('/', (req, res, next) => {
 router.get('/', (req, res, next) => {
 	Item.find({'user_id': req.user._id}, (err, data) => {
 		if (err) {
-			res.status(400).json(err)
+			return res.status(400).json(err)
 		}
-		res.json(data)
+		return res.json(data)
 	})
 })
 
@@ -58,9 +58,9 @@ router.get('/:item_id', (req, res, next) => {
 
 	Item.findOne({'_id': item_id, 'user_id': req.user._id}, (err, data) => {
 		if (err) {
-			res.status(400).json(err)
+			return res.status(400).json(err)
 		}
-		res.json(data)
+		return res.json(data)
 	})
 })
 
@@ -71,9 +71,9 @@ router.get('/barcode/:barcode', (req, res, next) => {
 
 	Item.findOne({'barcode': barcode, 'user_id': req.user._id}, (err, data) => {
 		if (err) {
-			res.status(400).json(err)
+			return res.status(400).json(err)
 		}
-		res.json(data)
+		return res.json(data)
 	})
 })
 
@@ -84,9 +84,9 @@ router.delete('/:item_id', (req, res, next) => {
 
 	Item.deleteOne({'_id': item_id, 'user_id': req.user._id}, (err, data) => {
 		if (err) {
-			res.status(400).json(err)
+			return res.status(400).json(err)
 		}
-		res.json(data)
+		return res.json(data)
 	})
 })
 
@@ -105,16 +105,16 @@ router.put('/:item_id', (req, res, next) => {
 
 	Item.findOne({'barcode': req.body.barcode, user_id: req.user._id}, (err, result) => {
 		if (err) {
-			res.status(400).json(err)
+			return res.status(400).json(err)
 		}
 		if (result) {
-			res.status(409).json({'message': 'barcode of this item is already exists'})
+			return res.status(409).json({'message': 'barcode of this item is already exists'})
 		} else {
 			Item.findOneAndUpdate({'_id': item_id, 'user_id': req.user._id}, item, (err, suc) => {
 			    if (err) {
-			    	console.log(err)
+			    	return res.status(400).json(err)
 			    }
-			    res.end()
+			    return res.end()
 			})
 		}
 	})
@@ -138,13 +138,14 @@ router.post('/filter', (req, res, next) => {
 				$or:[
 					{'name': { "$regex": keyword, "$options": "i" }}, 
 					{'barcode': { "$regex": keyword, "$options": "i" }}
-				]
+				],
+				'user_id': req.user._id
 			},
 			(err, data) => {
 				if (err) {
-					res.status(400).json(err)
+					return res.status(400).json(err)
 				}
-				res.json(data)
+				return res.json(data)
 			}
 		)
 	} else {
@@ -154,13 +155,14 @@ router.post('/filter', (req, res, next) => {
 					{'name': { "$regex": keyword, "$options": "i" }}, 
 					{'barcode': { "$regex": keyword, "$options": "i" }}
 				],
+				'user_id': req.user._id,
 				'type_id': type_id	
 			},
 			(err, data) => {
 				if (err) {
-					res.status(400).json(err)
+					return res.status(400).json(err)
 				}
-				res.json(data)
+				return res.json(data)
 			}
 		)
 	}

@@ -21,9 +21,9 @@ router.post('/register', (req, res, next) => {
 	User.register(this_user, password, (err) => {
 		console.log('check!')
 		if (err) {
-			res.status(400).json(err)
+			return res.status(400).json(err)
 		}
-		res.json({'message': 'successfully created account'})
+		return res.json({'message': 'successfully created account'})
 		
 	})
 })
@@ -31,16 +31,16 @@ router.post('/register', (req, res, next) => {
 
 // login
 router.post('/login', passport.authenticate('local'), (req, res) => {
-	res.json({'message': `successfully login as (${req.user.username})`})
+	return res.json({'message': `successfully login as (${req.user.username})`})
 })
 
 
 router.post('/logout', (req, res) => {
 	req.logout((err) => {
 		if (err) {
-			res.status(400).json(err)
+			return res.status(400).json(err)
 		}
-		res.json({'message': 'successfully logged-out'})
+		return res.json({'message': 'successfully logged-out'})
 	})
 })
 
@@ -48,7 +48,7 @@ router.post('/logout', (req, res) => {
 // middleware isLoggedIn func
 function isLoggedIn (req, res, next) {
 	if (!req.isAuthenticated()) {
-		res.status(401).json({'message': 'not logged-in'})
+		return res.status(401).json({'message': 'not logged-in'})
 	} else {
 		return next()
 	}
@@ -57,19 +57,19 @@ function isLoggedIn (req, res, next) {
 
 // is logged in check
 router.get('/is_logged_in_check', isLoggedIn, (req, res, next) => {
-	res.json({'message': `logged-in as (${req.user.username})`})
+	return res.json({'message': `logged-in as (${req.user.username})`})
 })
 
 
 // get user id
 router.get('/user_id', isLoggedIn, (req, res, next) => {
-	res.json({"user_id": `${req.user._id}`})
+	return res.json({"user_id": `${req.user._id}`})
 })
 
 
 // get all user info
 router.get('/user', isLoggedIn, (req, res, next) => {
-	res.json(req.user)
+	return res.json(req.user)
 })
 
 
