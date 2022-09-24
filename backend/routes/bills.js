@@ -10,18 +10,33 @@ const Bill = require('../models/bill');
 router.post('/', async (req, res) => {
   try {
     const { payment_method, cash, quantity } = req.body;
+    let quan_bill = [];
+
+    for (let q of quantity) {
+      let data = await Item.findOne({ _id: q._id });
+      if (!data) {
+        return res.status(400).json('item not found');
+      }
+
+      quan_bill.push({
+        item_name: data.name,
+        price_each: data.price,
+        quantity: q.amount,
+        item: q._id
+      });
+    }
+
     const bill = new Bill({
       payment_method: payment_method,
       cash: cash,
-      quantity: quantity,
+      quantity: quan_bill,
       user_id: req.user._id
     });
 
     await bill.save();
-    res.json({ message: 'successfully save bill', bill_id: bill._id });
-
+    return res.json({ message: 'successfully save bill', bill_id: bill._id });
   } catch (err) {
-    res.status(400).json(err);
+    return res.status(400).json(err);
   }
 });
 
