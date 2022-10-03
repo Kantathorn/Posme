@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const isLoggedIn = require('./auth');
+const { isLoggedIn } = require('./auth');
 router.use(isLoggedIn);
 
 const Bill = require('../models/bill');
@@ -46,7 +46,7 @@ router.get('/', async (req, res) => {
     let { receipt_no, date } = req.query;
 
     if (receipt_no) {
-      const bill = await Bill.findOne({ _id: receipt_no }).populate('user_id');
+      const bill = await Bill.findOne({ 'payment_method': { "$regex": receipt_no, "$options": "i" }});
       res.json(bill);
     } else if (date) {
       date = new Date(date);
