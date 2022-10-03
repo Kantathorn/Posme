@@ -63,7 +63,7 @@ function Navhome() {
             <div className='logout'>
               ร้าน {' '}{' '}{storeData.store_name} {' '}
               <a>
-                <button onClick={submitHandler} type='button' class="btn btn-danger">
+                <button onClick={submitHandler} type='button' className="btn btn-danger">
                   logout
                 </button>{' '}
               </a>
