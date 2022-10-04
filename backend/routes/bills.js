@@ -46,6 +46,7 @@ router.get('/', async (req, res) => {
     let { receipt_no, date } = req.query;
 
     if (receipt_no) {
+      // not fix!
       const bill = await Bill.findOne({ 'payment_method': { "$regex": receipt_no, "$options": "i" }});
       res.json(bill);
     } else if (date) {
@@ -62,6 +63,29 @@ router.get('/', async (req, res) => {
 
   } catch (err) {
     res.status(400).json(err);
+  }
+});
+
+// ยอดขาย
+router.get('/topsell', async (req, res) => {
+  try {
+    const { month } = req.body;
+    const bills = await Bill.find();
+    let sum = 0;
+    const date = new Date() // current date
+    for (let i = 0; i < bills.length; i++) {
+      let { time } = bills[i];
+      if (time.getMonth()+1 === month && date.getFullYear() === time.getFullYear()) {
+        for (let j = 0; j < bills[i].quantity.length; j++) {
+          let price_each = bills[i].quantity[j].price_each;
+          let quantity = bills[i].quantity[j].quantity;
+          sum += price_each * quantity
+        }
+      }
+    }
+    return res.json({total: sum});
+  } catch (err) {
+    return res.status(400).json(err);
   }
 });
 
