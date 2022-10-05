@@ -70,7 +70,7 @@ router.get('/', async (req, res) => {
 router.get('/topsell', async (req, res) => {
   try {
     const { month } = req.body;
-    const bills = await Bill.find();
+    const bills = await Bill.find({ user_id: req.user._id });
     let sum = 0;
     const date = new Date() // current date
     for (let i = 0; i < bills.length; i++) {
