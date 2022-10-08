@@ -3,6 +3,7 @@ const router = express.Router()
 const { isLoggedIn } = require('./auth')
 
 const ItemType = require('../models/item_type')
+const Item = require('../models/item')
 
 
 router.use(isLoggedIn)
@@ -69,7 +70,12 @@ router.delete('/:type_id', (req, res, next) => {
 		if (err) {
 			res.status(400).json(err)
 		}
-		res.json(data)
+		ItemType.updateMany({'type_id': type_id}, {'type_id': null}, (err, data) => {
+			if (err) {
+				return res.status(400).json(err)
+			}
+			return res.json(data)
+		})
 	})
 })
 
