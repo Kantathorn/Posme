@@ -56,7 +56,6 @@ router.get('/', async (req, res) => {
     let { receipt_no, date } = req.query;
 
     if (receipt_no) {
-      // not fix!
       const bill = await Bill.find({ receipt_no: { "$regex": receipt_no, "$options": "i" }});
       return res.json(bill);
     } else if (date) {
