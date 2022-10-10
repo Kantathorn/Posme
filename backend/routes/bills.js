@@ -57,8 +57,8 @@ router.get('/', async (req, res) => {
 
     if (receipt_no) {
       // not fix!
-      const bill = await Bill.findOne({ 'payment_method': { "$regex": receipt_no, "$options": "i" }});
-      res.json(bill);
+      const bill = await Bill.find({ receipt_no: { "$regex": receipt_no, "$options": "i" }});
+      return res.json(bill);
     } else if (date) {
       date = new Date(date);
       const bills = await Bill.find({user_id: req.user._id}).populate('user_id');
@@ -69,7 +69,7 @@ router.get('/', async (req, res) => {
       res.json(result)
     }
     const bills = await Bill.find( {user_id: req.user._id} ).populate('user_id');
-    res.json(bills);
+    return res.json(bills);
 
   } catch (err) {
     res.status(400).json(err);
