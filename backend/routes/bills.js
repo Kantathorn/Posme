@@ -56,8 +56,16 @@ router.get('/', async (req, res) => {
     let { receipt_no, date } = req.query;
 
     if (receipt_no) {
-      const bill = await Bill.find({ receipt_no: { "$regex": receipt_no, "$options": "i" }});
-      return res.json(bill);
+      const bills = await Bill.find({ receipt_no: { "$regex": receipt_no, "$options": "i" }});
+      const newBills = [];
+      for (let bill of bills) {
+        let year = bill.time.getFullYear(), month = bill.time.getMonth()+1, date = bill.time.getDate();
+        let time_format = year + '/' + month + '/' + date;
+        let newBill = JSON.parse(JSON.stringify(bill));
+        newBill.time = time_format;
+        newBills.push(newBill);
+      }
+      return res.json(newBills);
     } else if (date) {
       date = new Date(date);
       const bills = await Bill.find({user_id: req.user._id}).populate('user_id');
