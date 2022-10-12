@@ -80,4 +80,16 @@ router.delete('/:type_id', (req, res, next) => {
 })
 
 
+router.get('/name/:type_name', (req, res, next) => {
+	const type_name = req.params['type_name'];
+
+	ItemType.findOne({'type_name': type_name, 'user_id': req.user._id}, (err, data) => {
+		if (err) {
+			res.status(400).json(err)
+		}
+		res.json(data)
+	})
+})
+
+
 module.exports = router

@@ -47,7 +47,9 @@ const sessionConfig = {
   secret: 'cattishly-hunter-exorcist-vanquish',
   saveUninitialized: false,
   resave: false,
-  cookie: { httpOnly: false }
+  cookie: { 
+    httpOnly: false,
+   }
 }
 
 app.use(session(sessionConfig));
@@ -65,8 +67,13 @@ app.use(express.json())
 app.use(cors(
   {origin: [
     'http://localhost:3000',
-    'https://posme.fun:8443'
-  ]}
+    'https://posme.fun:8443',
+    'https://posme.fun:2087',
+    'https://posme.fun:2053',
+    'https://192.168.68.112:3000',
+  ],
+  credentials: true
+}
 ))
 
 

@@ -13,6 +13,7 @@ const UserSchema = new Schema({
 	email: 				{type: String, required:true},
 	tax_id: 			{type: String, required:true},
 	promptpay_number: 	{type: String, required:true},
+	receipt_gen: 		{type: Number, default: 1}
 })
 
 

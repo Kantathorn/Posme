@@ -7,10 +7,16 @@ router.use(isLoggedIn);
 const Bill = require('../models/bill');
 const Item = require('../models/item')
 const ItemType = require('../models/item_type')
+const User = require('../models/user')
 
 
 // save bill
 router.post('/', async (req, res) => {
+  function receipt_generate(num, digit) {
+    num = num.toString();
+    while (num.length < digit) num = '0' + num;
+    return num;
+  }
     try {
       const { payment_method, cash, quantity } = req.body;
       let quan_bill = [];
@@ -29,7 +35,11 @@ router.post('/', async (req, res) => {
         });
       }
   
+      const receipt_no = receipt_generate(req.user.receipt_gen, 10);
+      await User.findOneAndUpdate({ _id: req.user._id }, { receipt_gen: req.user.receipt_gen+1 });
+
       const bill = new Bill({
+        receipt_no: receipt_no,
         payment_method: payment_method,
         cash: cash,
         quantity: quan_bill,
@@ -50,7 +60,7 @@ router.get('/', async (req, res) => {
     let { receipt_no, date } = req.query;
 
     if (receipt_no) {
-      const bill = await Bill.findOne({ _id: receipt_no }).populate('user_id');
+      const bill = await Bill.findOne({ 'receipt_no': receipt_no }).populate('user_id');
       return res.json(bill);
     } else if (date) {
       date = new Date(date);

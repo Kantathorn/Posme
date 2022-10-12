@@ -4,7 +4,8 @@ const Schema = mongoose.Schema
 
 // Bill Schema
 const BillSchema = new Schema({
-	time : 			{ type: Date, default: Date.now },
+	receipt_no: 	{type: String, required: true},
+	time: 			{ type: Date, default: Date.now },
 	payment_method: { type: String, required:true },
 	cash: 			{ type: Number, default: 0 },
 	quantity: 		[{
