@@ -60,9 +60,12 @@ router.get('/', async (req, res) => {
       const newBills = [];
       for (let bill of bills) {
         let year = bill.time.getFullYear(), month = bill.time.getMonth()+1, date = bill.time.getDate();
-        let time_format = year + '/' + month + '/' + date;
+        let hour = bill.time.getHours(), minute = bill.time.getMinutes();
+        let date_format = date + '/' + month + '/' + year;
+        let time = hour + ':' + minute;
         let newBill = JSON.parse(JSON.stringify(bill));
-        newBill.time = time_format;
+        newBill.date = date_format;
+        newBill.time = time
         newBills.push(newBill);
       }
       return res.json(newBills);
