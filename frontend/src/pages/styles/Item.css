@@ -37,8 +37,12 @@
 }
 
 .search_container {
+    background-color: #242E38;
     justify-content: center;
     align-items: center;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
 }
 
 .scanner_btn_Item {
@@ -52,7 +56,7 @@
 .select_type {
     margin-top: 13px;
     height: 30px;
-    min-width: 120px;
+    min-width: 200px;
 }
 
 .add_item_type_btn {

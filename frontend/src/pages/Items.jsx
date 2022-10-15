@@ -7,6 +7,19 @@ import ModalItem from '../components/ModalItem';
 import CamModal from '../components/scanner/CamModal';
 import Modal from '../components/Modal';
 
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+import InputBase from '@mui/material/InputBase';
+import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
+import InputLabel from '@mui/material/InputLabel';
+// import InputLabel from '@mui/material/InputLabel';
+// import MenuItem from '@mui/material/MenuItem';
+// import FormControl from '@mui/material/FormControl';
+// import Select from '@mui/material/Select';
+
 function Items() {
   const [arrayItem,setArrayItem] = useState([]);
   const [openModalType, setOpenModalType] = useState(false);
@@ -17,6 +30,11 @@ function Items() {
   const [scanBarNum,setScanBarNum] = useState("");
   const [arrayType,setArrayType] = useState([]);
   const filType = useRef();
+
+  const [selectedType, setSelectedType] = useState({});
+  const handleChangeType = (event) => {
+    setSelectedType(event.target.value);
+  };
 
   useEffect(() => {
     async function GetAllItem() {
@@ -78,15 +96,43 @@ function Items() {
       <Navbar/>
       <div className="mid">
         <div className="search_container">
-          <input className='search' ref={barnum} type="text" placeholder="Search..." onChange={handleChange}/>
+        <div style={{display:' inline-block'}}>
+          <Paper
+            component="form"
+            sx={{ p: '2px 4px', m: 2, display: 'flex', alignItems: 'center', width: 400 }}
+          >
+            <div style={{display: 'inline'}}>
+            <IconButton sx={{ p: '10px' }} aria-label="search">
+                <SearchIcon />
+            </IconButton>
+              <InputBase
+                sx={{ml: 0.5, mr: 4, flex: 1, p: 1 }}
+                placeholder="ค้นหา ชื่อ / บาร์โค้ด"
+                inputRef={barnum}
+                onChange={handleChange}
+              />
+            {/* <Divider sx={{ height: 1, m: 0.2}} orientation="vertical" /> */}
+              <IconButton color="primary" sx={{ p: '10px' }} aria-label="scan-barcode" onClick={() => {
+                      setCamModal(true);
+                    }}>
+                  <img className='scanner_btn_img' src={require('../image/barcode-scanner.png')}/>
+              </IconButton>   
+          </div>  
+          
+             
+          </Paper>
+        </div>
+
+          {/* <input className='search' ref={barnum} type="text" placeholder="Search..." onChange={handleChange}/>
           <button className='scanner_btn_Item'  
                 onClick={() => {
                   setCamModal(true);
                 }}>
                 <img className='scanner_btn_img' src={require('../image/barcode-scanner.png')}/>
-          </button>
-          <div className='item_type'>
-            <label className='filter_label'>Item Type : </label>
+          </button> */}
+          
+          <div style={{width: '100%'}}>
+            <label className='filter_label'>ประเภท : </label>
             <select className='select_type' ref={filType} onChange={handleChange}>
               <option value="0">ทั้งหมด</option>
               {arrayType.map(eachtype => 
@@ -104,15 +150,27 @@ function Items() {
           </div>
         </div>
           {arrayItem.map(eachItem => 
-              <button className='item_detail' onClick={() => {
-                window.scrollTo(0,0);
-                PassName(eachItem._id);
-                setOpenModal(true);
-              }}>
-                <p className='item_barcode'> Barcode : {eachItem.barcode} </p>
-                <h2 className='item_name'> {eachItem.name} </h2> 
-                <p className='item_price'> price : {eachItem.price.toFixed(2)} ฿</p> 
-              </button> 
+            <Card sx={{ m:0.25, minWidth: 250 }}>
+            <CardContent>
+              <div className='item_detail' onClick={() => {
+                      window.scrollTo(0,0);
+                      PassName(eachItem._id);
+                      setOpenModal(true);
+                    }}>
+                <Typography sx={{ fontSize: 20, mb: 2 }} color="text.secondary" gutterBottom>
+                  {eachItem.barcode}
+                </Typography>
+                <Typography variant="h4" component="div">
+                  {eachItem.name}
+                </Typography>
+                <Typography sx={{ fontSize: 20, mt: 2 }} color="text.secondary">
+                  {eachItem.price.toFixed(2)} บาท
+                </Typography>
+              </div> 
+
+            </CardContent>
+          </Card>
+                  
             )}
             {openModal && <ModalItem closeModal={setOpenModal} itemID={itemID} setArrayItem={setArrayItem}/>}
       </div>

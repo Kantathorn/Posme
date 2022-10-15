@@ -107,97 +107,7 @@ const Register = function (props) {
           alt="register_logo"
         ></img>
         <form action="#" onSubmit={submitHandler}>
-          <div>
-            <label className={styles.label} for="personalinfo">
-              ชื่อจริง:{" "}
-            </label>
-            <input
-              className={styles.input3}
-              id="personalinfo"
-              type="text"
-              placeholder="firstname"
-              ref={fnameref}
-            ></input>
-          </div>
-          <div>
-            <label className={styles.label} for="personalinfo">
-              นามสกุล:{" "}
-            </label>
-            <input
-              className={styles.input3}
-              id="personalinfo"
-              type="text"
-              placeholder="lastname"
-              ref={lnameref}
-            ></input>
-          </div>
-          <div>
-            <label className={styles.label} for="personalinfo">
-              ชื่อร้านค้า:{" "}
-            </label>
-            <input
-              className={styles.input3}
-              id="peronalinfo"
-              type="text"
-              placeholder="storename"
-              ref={storenameref}
-            ></input>
-          </div>
-
-          <div className={styles.box}>
-            <label className={styles.label_address} for="address">
-              ที่อยู่:
-            </label>
-            <textarea
-              className={styles.input1}
-              id="address"
-              name="address"
-              rows="4"
-              cols="50"
-              ref={addressref}
-            ></textarea>
-          </div>
-
-          <div>
-            <label className={styles.label} for="email">
-              email :{" "}
-            </label>
-            <input
-              className={styles.input2}
-              id="email"
-              type="email"
-              placeholder="email"
-              ref={emailref}
-            ></input>
-          </div>
-
-          <div>
-            <label className={styles.label} for="taxid">
-              หมายเลขประจำตัวผู้เสียภาษี:{" "}
-            </label>
-            <input
-              className={styles.input2}
-              id="taxid"
-              type="text"
-              placeholder="taxid"
-              ref={taxref}
-            ></input>
-          </div>
-
-          <div>
-            <label className={styles.label} for="promptpay">
-              เลขพร้อมเพย์:{" "}
-            </label>
-            <input
-              className={styles.input2}
-              id="promptpay"
-              type="text"
-              placeholder="promtpay number"
-              ref={ppref}
-            ></input>
-          </div>
-
-          <div>
+        <div>
             <label className={styles.label} for="username">
               ชื่อบัญชีผู้ใช้:{" "}
             </label>
@@ -206,6 +116,7 @@ const Register = function (props) {
               id="username"
               type="text"
               placeholder="username"
+              required
               ref={usernameref}
             ></input>
           </div>
@@ -220,6 +131,7 @@ const Register = function (props) {
               type="password"
               placeholder="Password อย่างน้อย 8 ตัวอักษร"
               pattern=".{8,}"
+              required
               ref={passwordref}
             ></input>
           </div>
@@ -234,6 +146,7 @@ const Register = function (props) {
               type="password"
               placeholder="Confirm Password"
               pattern=".{8,}"
+              required
               ref={cpasswordref}
               onChange={checkPasswords}
             ></input>
@@ -243,6 +156,107 @@ const Register = function (props) {
           ) : (	
             ""	
           )}
+
+          <div>
+            <label className={styles.label} for="personalinfo">
+              ชื่อจริง:{" "}
+            </label>
+            <input
+              className={styles.input3}
+              id="personalinfo"
+              type="text"
+              placeholder="firstname"
+              required
+              ref={fnameref}
+            ></input>
+          </div>
+          <div>
+            <label className={styles.label} for="personalinfo">
+              นามสกุล:{" "}
+            </label>
+            <input
+              className={styles.input3}
+              id="personalinfo"
+              type="text"
+              placeholder="lastname"
+              required
+              ref={lnameref}
+            ></input>
+          </div>
+          <div>
+            <label className={styles.label} for="personalinfo">
+              ชื่อร้านค้า:{" "}
+            </label>
+            <input
+              className={styles.input3}
+              id="peronalinfo"
+              type="text"
+              placeholder="storename"
+              required
+              ref={storenameref}
+            ></input>
+          </div>
+
+          <div className={styles.box}>
+            <label className={styles.label_address} for="address">
+              ที่อยู่:
+            </label>
+            <textarea
+              className={styles.input1}
+              id="address"
+              name="address"
+              rows="4"
+              cols="50"
+              required
+              ref={addressref}
+            ></textarea>
+          </div>
+
+          <div>
+            <label className={styles.label} for="email">
+              email :{" "}
+            </label>
+            <input
+              className={styles.input2}
+              id="email"
+              type="email"
+              placeholder="email"
+              required
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              ref={emailref}
+            ></input>
+          </div>
+
+          <div>
+            <label className={styles.label} for="taxid">
+              หมายเลขประจำตัวผู้เสียภาษี:{" "}
+            </label>
+            <input
+              className={styles.input2}
+              id="taxid"
+              type="text"
+              placeholder="taxid (13 หลัก)"
+              pattern="[0-9]{13}"
+              required
+              ref={taxref}
+            ></input>
+          </div>
+
+          <div>
+            <label className={styles.label} for="promptpay">
+              เลขพร้อมเพย์:{" "}
+            </label>
+            <input
+              className={styles.input2}
+              id="promptpay"
+              type="tel"
+              placeholder="promtpay number (10 หลัก)"
+              pattern="[0-9]{10}"
+              required
+              ref={ppref}
+            ></input>
+          </div>
+
             <button className={`${styles.block} ${styles.register_btn}`}>ลงทะเบียน</button>
         </form>
         {wrongRegister && <Backdrop close={closeOverlay} />}

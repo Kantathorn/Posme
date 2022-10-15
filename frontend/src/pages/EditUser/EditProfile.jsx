@@ -73,11 +73,11 @@ function EditProfile() {
                 </div>
                 <div className="e-info" >
                     <span className="u-text">First-name</span>
-                    <input defaultValue= {edata.f_name} className='e-fname' type = "text" pattern = "^[a-zA-Z]*$" required placeholder='ชื่อจริง (ภาษาอังกฤษ)' onChange = {e => setEFname(e.target.value)}/>
+                    <input defaultValue= {edata.f_name} className='e-fname' type = "text" required placeholder='ชื่อจริง' onChange = {e => setEFname(e.target.value)}/>
                 </div>
                 <div className="e-info">
                     <span className="u-text">Last-name</span>
-                    <input defaultValue= {edata.l_name} className='e-lname'  type = "text" pattern = "^[a-zA-Z]*$" required placeholder='นามสกุล (ภาษาอังกฤษ)' onChange = {e => setELname(e.target.value)}/>
+                    <input defaultValue= {edata.l_name} className='e-lname'  type = "text" required placeholder='นามสกุล' onChange = {e => setELname(e.target.value)}/>
                 </div>
                 <div className="e-info">
                     <span className="u-text">Email address</span>

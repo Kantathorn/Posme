@@ -28,7 +28,7 @@ function NavbarUser() {
   };
   return (
 <>
-        <Navbar bg="warning" variant="dark">
+        <Navbar bg="warning" variant="dark" sticky="top">
           <Container>
             <Navbar.Brand href="/store/users">
               <div className='backIcon'>
