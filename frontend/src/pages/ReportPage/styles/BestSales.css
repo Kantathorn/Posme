@@ -1,0 +1,43 @@
+.color-best{
+    background-color: #242e38;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bestsellerimg2{
+    margin-top: 50px;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 50px;
+}
+.sel-month{
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+.sort-Amount{
+    margin-left: 300px;
+}
+.sort-Revenue{
+    margin-left: 100px;
+}
+.sort-font{
+    color: white;
+}
+.sort{
+    display: flex;
+    justify-content: center;
+    font-size:xx-large
+}
+
+.list-item{
+    margin-bottom: 20px;
+}
+.list-item h1{
+    font-size: 3.5vh;
+    display: flex;
+    margin: 10px 0 0 10px;
+}
+.fill_empty{
+    padding-bottom: 100%;
+}

@@ -1,0 +1,42 @@
+.color-sales{
+    background-color: #242e38;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sel-month{
+    color: #EAC43D;
+    margin-top: 50px;
+}
+
+.card_net-worth{
+    color: #EAC43D;
+    background-color :#242e38;
+    margin-top: 30px;
+    padding: 5% 30% 100% 30%;
+}
+
+.salesimg2{
+    margin-top: 100px;
+    padding-top: 20px;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 50px;
+}
+
+.submit-button {
+    transition-duration: 0.4s;
+    margin-bottom: 100%;
+  }
+
+.submit-button:active {
+    background-color: #EAC43D;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+  
+.submit-button:hover {
+    background-color: #EAC43D;
+    color: white;
+  }

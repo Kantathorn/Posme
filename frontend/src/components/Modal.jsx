@@ -28,16 +28,16 @@ function Modal(props) {
         }),
       });
       const data = await response.text();
-      console.log(data);
+    //   console.log(data);
       setErrtext(response.status);
-      console.log(errtext);
+    //   console.log(errtext);
       if (response.ok) {
         // window.location.reload(false);
         // props.closeModal(false);
       }
       else {
         setErrAdd(true);
-        console.log(errAdd);
+        // console.log(errAdd);
         setErrorMessage("รายการสินค้าซ้ำกับรายการที่มีอยู่แล้ว")
         setAlertColor("error")
       }
@@ -53,7 +53,7 @@ function Modal(props) {
       credentials: "include",
     });
     const alltype = await response2.json();
-    console.log(alltype);
+    // console.log(alltype);
     setArrayType(alltype);
     props.setEditArrayType(alltype);
     DeleteInputValue();
