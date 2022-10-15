@@ -37,11 +37,11 @@ function Navhome() {
         credentials: 'include',
       });
       const userInfo = await userData.json();
-      // console.log(userInfo);
+      //console.log(userInfo);
       setStoreData(userInfo)
     }
     fetchData();
-    // console.log(storeData.store_name)
+    //console.log(storeData.store_name)
   },[])
   
   return (

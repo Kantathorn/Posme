@@ -1,25 +1,53 @@
 import React from "react";
 import styles from "./styles/Register.module.css";
 import { useNavigate, Link } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import logo from "../image/logoLarge.png";
 import Backdrop from "../components/BackdropRegister";
 
 const Register = function (props) {
+  const navigate = useNavigate();	
   const [wrongRegister, setWrongRegister] = useState(false);
-  const navigate = useNavigate();
-  const fnameref = useRef();
-  const lnameref = useRef();
-  const storenameref = useRef();
-  const addressref = useRef();
-  const emailref = useRef();
+  const fnameref = useRef();	
+  const lnameref = useRef();	
+  const storenameref = useRef();	
+  const addressref = useRef();	
+  const emailref = useRef();	
   const ppref = useRef();
-  const usernameref = useRef();
-  const passwordref = useRef();
-  const taxref = useRef();
+  const taxref = useRef();	
+  const usernameref = useRef();	
+  const cpasswordref = useRef();	
+  const passwordref = useRef();	
+  const [showErrorMessage, setShowErrorMessage] = useState(false);	
+  const [cPasswordClass, setCPasswordClass] = useState("form-control");	
+  const [isCPasswordDirty, setIsCPasswordDirty] = useState(false);
 
   const closeOverlay = function () {
     setWrongRegister(false);
+  };
+
+  useEffect(() => {	
+    if (isCPasswordDirty) {	
+      if (passwordref.current.value === cpasswordref.current.value) {	
+        setShowErrorMessage(false);	
+        setCPasswordClass("form-control is-valid");	
+      } else {	
+        setShowErrorMessage(true);	
+        setCPasswordClass("form-control is-invalid");	
+      }	
+    }	
+  }, [isCPasswordDirty]);	
+  const checkPasswords = (e) => {	
+    setIsCPasswordDirty(true);	
+    if (isCPasswordDirty) {	
+      if (passwordref.current.value === cpasswordref.current.value) {	
+        setShowErrorMessage(false);	
+        setCPasswordClass("form-control is-valid");	
+      } else {	
+        setShowErrorMessage(true);	
+        setCPasswordClass("form-control is-invalid");	
+      }	
+    }	
   };
 
   const submitHandler = async function (e) {
@@ -34,33 +62,37 @@ const Register = function (props) {
     const username_input = usernameref.current.value;
     const password_input = passwordref.current.value;
     const tax_input = taxref.current.value;
+    const cpassword_input = cpasswordref.current.value;
 
     try {
-      const response = await fetch("https://posme.fun:2096/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: username_input,
-          password: password_input,
-          store_name: storename_input,
-          address: address_input,
-          f_name: firstname_input,
-          l_name: lastname_input,
-          email: email_input,
-          tax_id: tax_input,
-          promptpay_number: pp_input,
-        }),
-      });
-      const data = await response.json();
-      console.log(data);
-      if (response.ok) {
-        navigate("/login");
-      }
-      else {
-        setWrongRegister(true);
-      }
+      if (cpassword_input === password_input) {
+        const response = await fetch("https://posme.fun:2096/auth/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            username: username_input,
+            password: password_input,
+            store_name: storename_input,
+            address: address_input,
+            f_name: firstname_input,
+            l_name: lastname_input,
+            email: email_input,
+            tax_id: tax_input,
+            promptpay_number: pp_input,
+          }),
+        });
+        const data = await response.json();
+        console.log(data);
+        if (response.ok) {
+          navigate("/login");
+        }
+        else {
+          setWrongRegister(true);
+        }
+      }  
     } catch (err) {
       console.log("ERR");
     }
@@ -133,7 +165,7 @@ const Register = function (props) {
             <input
               className={styles.input2}
               id="email"
-              type="text"
+              type="email"
               placeholder="email"
               ref={emailref}
             ></input>
@@ -187,6 +219,7 @@ const Register = function (props) {
               id="password"
               type="password"
               placeholder="password"
+              ref={passwordref}
             ></input>
           </div>
 
@@ -199,17 +232,15 @@ const Register = function (props) {
               id="confirmpassword"
               type="password"
               placeholder="confirm password"
-              ref={passwordref}
+              ref={cpasswordref}
+              onChange={checkPasswords}
             ></input>
           </div>
-
-          {/* <p><label  className='label' for="bussinessinfo">ที่อยู่:</label></p>
-        <textarea className='input1' id="bussinessinfo" name="w3review" rows="4" cols="50"></textarea> */}
-          {/* <input className='input2'  type="text" placeholder='email' ></input>
-        <input className='input2'  type="text" placeholder='promtpay number' ></input>
-        <input className='input2'  type="text" placeholder='username' ></input>
-        <input className='input2' type="text" placeholder='password'></input>
-        <input className='input2' type="text" placeholder='confirm password'></input> */}
+          {showErrorMessage && isCPasswordDirty ? (	
+            <div> Passwords did not match </div>	
+          ) : (	
+            ""	
+          )}
             <button className={`${styles.block} ${styles.register_btn}`}>ลงทะเบียน</button>
         </form>
         {wrongRegister && <Backdrop close={closeOverlay} />}
