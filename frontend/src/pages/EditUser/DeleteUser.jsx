@@ -15,6 +15,7 @@ function DeleteUser() {
 
   const handlesubmit = () =>{
     axios.delete("https://posme.fun:2096/auth/user",{withCredentials : true})
+    localStorage.removeItem('isLoggedIn')
   }
 
   return (
