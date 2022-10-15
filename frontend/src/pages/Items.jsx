@@ -25,7 +25,7 @@ function Items() {
           credentials: "include",
         });
         const alldata = await response1.json();
-        console.log(alldata);
+        // console.log(alldata);
         setArrayItem(alldata);
     }
     GetAllItem();
@@ -35,7 +35,7 @@ function Items() {
         credentials: "include",
       });
       const alltype = await response2.json();
-      console.log(alltype);
+      // console.log(alltype);
       setArrayType(alltype);
     }
     GetAllType();

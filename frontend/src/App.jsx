@@ -14,6 +14,8 @@ import EditPassword from './pages/EditUser/EditPassword'
 import EditPP from './pages/EditUser/EditPP'
 import DeleteUser from './pages/EditUser/DeleteUser'
 import AddItem from './pages/Item/AddItem';
+import Sales from './pages/ReportPage/Sales'
+import BestSales from './pages/ReportPage/BestSales'
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
           <Route path='/store/users/edit_promptpay' element={<EditPP/>}/>
           <Route path='/store/users/delete_profile' element={<DeleteUser/>}/>
           <Route path='/store/items/additem' element={<AddItem/>}/>
+          <Route path='/store/reports/sales' element={<Sales/>} />
+          <Route path='/store/reports/best_seller' element={<BestSales/>} />
         </Routes>
       </Browser>
   );
