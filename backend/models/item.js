@@ -4,12 +4,13 @@ const Schema = mongoose.Schema
 
 // Item Schema
 const ItemSchema = new Schema({
-	barcode: {type: Number, required:true},
-	name: {type: String, required:true},
-	price: {type: Number, required:true},
-	description: {type: String},
+	barcode: 		{type: String, required:true},
+	name: 			{type: String, required:true},
+	price: 			{type: Number, required:true},
+	description: 	{type: String},
 	//ref
-	type: {type: Schema.Types.ObjectId, ref:'ItemType'}
+	type_id: 		{type: Schema.Types.ObjectId, ref:'ItemType', default: null},
+	user_id: 		{type: Schema.Types.ObjectId, ref:'User', required:true}
 })
 
 

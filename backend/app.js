@@ -16,14 +16,18 @@ const User = require('./models/user')
 const Item = require('./models/item')
 const ItemType = require('./models/item_type')
 const Bill = require('./models/bill')
-const Quantity = require('./models/quantity')
 
 
 // import routes
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const itemsRouter = require('./routes/items');
+
+const typesRouter = require('./routes/types');
+const billsRouter = require('./routes/bills');
+
 const cashierRouter = require('./routes/cashier');
+
 
 
 
@@ -47,7 +51,9 @@ const sessionConfig = {
   secret: 'cattishly-hunter-exorcist-vanquish',
   saveUninitialized: false,
   resave: false,
-  cookie: { httpOnly: false }
+  cookie: { 
+    httpOnly: false,
+   }
 }
 
 app.use(session(sessionConfig));
@@ -62,13 +68,25 @@ passport.deserializeUser(User.deserializeUser());
 
 
 app.use(express.json())
-app.use(cors())
+app.use(cors(
+  {origin: [
+    'http://localhost:3000',
+    'https://posme.fun:8443',
+    'https://posme.fun:2087',
+    'https://posme.fun:2053',
+    'https://192.168.68.112:3000',
+  ],
+  credentials: true
+}
+))
 
 
 
 app.use('/', indexRouter)
 app.use('/auth', authRouter)
 app.use('/items', itemsRouter)
+app.use('/types', typesRouter)
+app.use('/bills', billsRouter)
 app.use('/cashier', cashierRouter);
 
 
