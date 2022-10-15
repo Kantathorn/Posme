@@ -43,7 +43,7 @@ function Users() {
             <span> เปลี่ยนเบอร์ที่ผูกพร้อมเพย์ </span>
           </div>
         </Link>
-        <Link to='/'>
+        <Link to='/store/users/delete_profile'>
           <div className='delete-box'>
             <img src={delLogo}
             alt="delete acc" 
