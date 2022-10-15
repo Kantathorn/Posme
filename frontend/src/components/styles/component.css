@@ -97,3 +97,10 @@
         opacity:0;
       }
     }
+
+    .pagename {
+      color: #242e38;
+      font-weight: 550;
+      font-size: 18pt;
+      font-weight: 500;
+    }

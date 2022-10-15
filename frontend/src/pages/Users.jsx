@@ -3,7 +3,7 @@ import '../App.css'
 
 function Users() {
   return (
-    <div class="user">Users</div>
+    <div className="user">Users</div>
   )
 }
 

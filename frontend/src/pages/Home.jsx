@@ -2,13 +2,16 @@ import React from 'react'
 import {Navigate} from 'react-router-dom'
 // import MediaQuery from 'react-responsive'
 import Navhome from '../components/Navbarhome'
-import './Home.style.css'
-
+import './styles/Home.style.css'
+import cashierButton from '../image/cashierButton.png'
+import itemButton from '../image/itemButton.png'
+import reportButton from '../image/reportButton.png'
+import usersButton from '../image/usersButton.png'
 
 function Home() {
   const status = localStorage.getItem('isLoggedIn');
   if (!status) {
-    return <Navigate to="/login"/>
+    return <Navigate to="/"/>
   }
   return (
     <>
@@ -19,7 +22,7 @@ function Home() {
               <a className='buttonMenu' href='/store/cashier'>
                 <img
                   alt=""
-                  src="https://media.discordapp.net/attachments/1015206753857720341/1016270782952914974/cashier.png"
+                  src={cashierButton}
                   width="150"
                   height="150"
                   className="d-inline-block align-top"
@@ -28,7 +31,7 @@ function Home() {
               <a className='buttonMenu' href='/store/items'>
                 <img
                   alt=""
-                  src="https://media.discordapp.net/attachments/1015206753857720341/1016278305139335168/item.png"
+                  src={itemButton}
                   width="150"
                   height="150"
                   className="d-inline-block align-top "
@@ -39,7 +42,7 @@ function Home() {
               <a className='buttonMenu' href='/store/cashier'>
                 <img
                   alt=""
-                  src="https://media.discordapp.net/attachments/1015206753857720341/1016281419707846778/report.png"
+                  src={reportButton}
                   width="150"
                   height="150"
                   className="d-inline-block align-top"
@@ -48,7 +51,7 @@ function Home() {
               <a className='buttonMenu' href='/store/items'>
                 <img
                   alt=""
-                  src="https://media.discordapp.net/attachments/1015206753857720341/1016282697892646932/users.png"
+                  src={usersButton}
                   width="150"
                   height="150"
                   className="d-inline-block align-top"
