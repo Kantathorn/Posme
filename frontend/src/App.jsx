@@ -13,6 +13,7 @@ import EditProfile from './pages/EditUser/EditProfile'
 import EditPassword from './pages/EditUser/EditPassword'
 import EditPP from './pages/EditUser/EditPP'
 import DeleteUser from './pages/EditUser/DeleteUser'
+import AddItem from './pages/Item/AddItem';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path='/store/users/edit_password' element={<EditPassword/>}/>
           <Route path='/store/users/edit_promptpay' element={<EditPP/>}/>
           <Route path='/store/users/delete_profile' element={<DeleteUser/>}/>
+          <Route path='/store/items/additem' element={<AddItem/>}/>
         </Routes>
       </Browser>
   );

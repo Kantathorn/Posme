@@ -7,7 +7,7 @@ import backIcon from '../image/backIcon.png'
 import { useNavigate } from "react-router-dom";
 
 function NavbarUser() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const submitHandler = async function (e) {
     e.preventDefault();
       
