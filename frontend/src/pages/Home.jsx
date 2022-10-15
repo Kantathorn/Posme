@@ -39,7 +39,7 @@ function Home() {
               </a>
             </div>
             <div className='Lower'>
-              <a className='buttonMenu' href='/store/cashier'>
+              <a className='buttonMenu' href='/store/reports'>
                 <img
                   alt=""
                   src={reportButton}
@@ -48,7 +48,7 @@ function Home() {
                   className="d-inline-block align-top"
                 />
               </a>
-              <a className='buttonMenu' href='/store/items'>
+              <a className='buttonMenu' href='/store/users'>
                 <img
                   alt=""
                   src={usersButton}
