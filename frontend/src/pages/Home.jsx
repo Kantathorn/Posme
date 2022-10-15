@@ -1,5 +1,5 @@
 import React from 'react'
-import {Navigate} from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 // import MediaQuery from 'react-responsive'
 import Navhome from '../components/Navbarhome'
 import './styles/Home.style.css'
