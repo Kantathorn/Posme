@@ -27,7 +27,7 @@ function Users() {
             </div>
           </div>
         </Link>
-        <Link to='/'>
+        <Link to='/store/users/edit_password'>
           <div className='psswd-box'>
             <img src={passwordLogo}
                  alt="edit password" 

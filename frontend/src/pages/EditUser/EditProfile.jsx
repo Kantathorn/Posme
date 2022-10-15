@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react'
-import Navbar from '../../components/NavbarUser'
+import Navbar from '../../components/NavbarUserContent'
 import './styles/EditProfile.css'
 import axios from 'axios'
 import { Button,Form } from 'react-bootstrap'

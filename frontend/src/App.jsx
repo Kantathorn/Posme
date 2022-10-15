@@ -10,6 +10,7 @@ import Login from './pages/Login'
 import Title from './components/title'
 import Register from './pages/Register'
 import EditProfile from './pages/EditUser/EditProfile'
+import EditPassword from './pages/EditUser/EditPassword'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/store/reports" element={<Reports />} />
           <Route path="/store/users" element={<Users />} />
           <Route path="/store/users/edit_profile" element={<EditProfile />} />
+          <Route path='/store/users/edit_password' element={<EditPassword/>}/>
         </Routes>
       </Browser>
   );

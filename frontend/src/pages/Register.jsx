@@ -199,39 +199,41 @@ const Register = function (props) {
 
           <div>
             <label className={styles.label} for="username">
-              username:{" "}
+              ชื่อบัญชีผู้ใช้:{" "}
             </label>
             <input
               className={styles.input2}
               id="username"
               type="text"
-              placeholder="user name"
+              placeholder="username"
               ref={usernameref}
             ></input>
           </div>
 
           <div>
             <label className={styles.label} for="password">
-              password:{" "}
+              รหัสผ่าน:{" "}
             </label>
             <input
               className={styles.input2}
               id="password"
               type="password"
-              placeholder="password"
+              placeholder="Password อย่างน้อย 8 ตัวอักษร"
+              pattern=".{8,}"
               ref={passwordref}
             ></input>
           </div>
 
           <div>
             <label className={styles.label} for="confirmpassword">
-              confirm password:{" "}
+              ยืนยันรหัสผ่าน:{" "}
             </label>
             <input
               className={styles.input2}
               id="confirmpassword"
               type="password"
-              placeholder="confirm password"
+              placeholder="Confirm Password"
+              pattern=".{8,}"
               ref={cpasswordref}
               onChange={checkPasswords}
             ></input>
