@@ -4,6 +4,7 @@ import Navbar from '../../components/NavbarUserContent'
 import axios from 'axios'
 import { Snackbar, Alert } from "@mui/material"
 import './styles/EditPassword.css'
+import logo from '../../image/logo_editpass.png'
 
 function EditPassword() {
     const [oldpass,setOldPass] = useState("")
@@ -57,8 +58,7 @@ function EditPassword() {
         <Navbar/>
         <div className='password-page'>
             <div className='lock-photo'>
-                <img src = "https://cdn.discordapp.com/attachments/1015206753857720341/1019079193738358794/2932273771606062170-128.png"
-                alt = " " className='lock-photo'/>
+                <img src = {logo} alt = "logo" className='lock-photo'/>
             </div>
             <Form onSubmit = {handlesubmit}>
                 <span className="ps-text">Current password</span>

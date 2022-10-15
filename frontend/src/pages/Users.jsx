@@ -35,7 +35,7 @@ function Users() {
             <span className='psswd-text'> เปลี่ยนรหัสผ่าน </span>
           </div>
         </Link>
-        <Link to="/">
+        <Link to="/store/users/edit_promptpay">
           <div className='pay-box'>
             <img src={ppLogo}
                  alt="edit pp" 

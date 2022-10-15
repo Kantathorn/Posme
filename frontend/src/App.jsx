@@ -11,6 +11,7 @@ import Title from './components/title'
 import Register from './pages/Register'
 import EditProfile from './pages/EditUser/EditProfile'
 import EditPassword from './pages/EditUser/EditPassword'
+import EditPP from './pages/EditUser/EditPP'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/store/users" element={<Users />} />
           <Route path="/store/users/edit_profile" element={<EditProfile />} />
           <Route path='/store/users/edit_password' element={<EditPassword/>}/>
+          <Route path='/store/users/edit_promptpay' element={<EditPP/>}/>
         </Routes>
       </Browser>
   );

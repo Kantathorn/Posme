@@ -1,0 +1,51 @@
+.payment-page{
+    text-align: center;
+    font-size: 55px;
+}
+
+.photo-payment{
+    background-color:antiquewhite;
+    border-radius: 50;
+    height: 300px;
+    width: 310px;
+    border-radius: 100%;
+    margin-top: 100px;
+    margin-left: 368px;
+    margin-bottom: 50px;
+}
+
+.new-number{
+    background-color:antiquewhite;
+    width:800px;
+    height: 100px;
+    margin-top: 50px;
+    /* margin-left: 120px; */
+    border-radius: 100px;
+    justify-content: center;
+    text-align: center;
+}
+
+.save-number{
+    background-color: #2a5c99;
+    margin-top: 100px;
+    height: 100px;
+    width: 550px;
+    /* margin-left: 240px; */
+    border-radius: 100px;
+    color: aliceblue;
+    text-align: center;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: 50px;
+}
+
+.pay-logo{
+    margin-top:50px;
+    height: 200px;
+}
+
+.p-text{
+    color: white;
+}
