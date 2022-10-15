@@ -9,6 +9,7 @@ import Reports from './pages/Report'
 import Login from './pages/Login'
 import Title from './components/title'
 import Register from './pages/Register'
+import EditProfile from './pages/EditUser/EditProfile'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/store/items" element={<Items />} />
           <Route path="/store/reports" element={<Reports />} />
           <Route path="/store/users" element={<Users />} />
+          <Route path="/store/users/edit_profile" element={<EditProfile />} />
         </Routes>
       </Browser>
   );

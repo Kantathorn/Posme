@@ -30,7 +30,7 @@ function Navitem() {
     <>
         <Navbar bg="warning" variant="dark">
           <Container>
-            <Navbar.Brand href="javascript:history.back()">
+            <Navbar.Brand href="/store/home">
               <div className='backIcon'>
                 <img
                   alt="backIcon"

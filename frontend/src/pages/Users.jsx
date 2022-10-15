@@ -17,7 +17,7 @@ function Users() {
     <div>
       <Navbar/>
       <div background>
-        <Link to='/'>
+        <Link to='/store/users/edit_profile'>
           <div className='bg-editbox'>
             <div className='edit-box'>
               <img src={profileLogo}
