@@ -6,9 +6,9 @@ import './styles/component.css'
 import backIcon from '../image/backIcon.png'
 import { useNavigate } from "react-router-dom";
 
-function Navcashier() {
-  const navigate = useNavigate();
-  const submitHandler = async function (e) {
+function NavbarReport() {
+    const navigate = useNavigate();
+    const submitHandler = async function (e) {
     e.preventDefault();
   
     try {
@@ -26,7 +26,7 @@ function Navcashier() {
       console.log("Not Login");
     }
   };
-return (
+  return (
 <>
     <Navbar bg="warning" variant="dark">
       <Container>
@@ -42,7 +42,7 @@ return (
           </div>
         </Navbar.Brand>
         <div className='pagename'>
-            Cashier
+            Sales Report
         </div>
         <Navbar.Brand>
           <div className='logout'>
@@ -57,6 +57,7 @@ return (
     </Navbar>
   
 </>
-);
+  )
 }
-export default Navcashier;
+
+export default NavbarReport

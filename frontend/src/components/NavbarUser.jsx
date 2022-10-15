@@ -6,8 +6,8 @@ import './styles/component.css'
 import backIcon from '../image/backIcon.png'
 import { useNavigate } from "react-router-dom";
 
-function Navitem() {
-  const navigate = useNavigate();
+function NavbarUser() {
+    const navigate = useNavigate();
   const submitHandler = async function (e) {
     e.preventDefault();
       
@@ -27,7 +27,7 @@ function Navitem() {
     }
   };
   return (
-    <>
+<>
         <Navbar bg="warning" variant="dark">
           <Container>
             <Navbar.Brand href="/store/home">
@@ -42,7 +42,7 @@ function Navitem() {
               </div>
             </Navbar.Brand>
             <div className='pagename'>
-                Items
+                Users
             </div>
             <Navbar.Brand>
               <div className='logout'>
@@ -56,7 +56,7 @@ function Navitem() {
           </Container>
         </Navbar>
     </>
-  );
+  )
 }
 
-export default Navitem;
+export default NavbarUser
