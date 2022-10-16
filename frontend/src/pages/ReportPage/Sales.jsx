@@ -31,7 +31,7 @@ const Salespage=()=> {
         <div>
             <Navbar/>
             <div className='color-sales'>
-              <img src = {logo} alt = "sales" className='salesimg2' width='35%'></img>
+              <img src = {logo} alt = "sales" className='salesimg2' width='250'></img>
                 <div className='sel-month' >
                   เดือน: <input className='picker' type='month' onChange={getMonth}/>
                 </div>
