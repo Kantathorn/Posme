@@ -1,4 +1,5 @@
 import React, {useState,useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
 import Navbar from '../../components/NavbarUserContent'
 import axios from 'axios'
 import { Button,Form } from 'react-bootstrap'
@@ -6,16 +7,18 @@ import './styles/EditPP.css'
 import logo from '../../image/promptpay.png'
 
 function EditPP() {
+  const navigate = useNavigate();	
   const [paynumber,setPayNumber] = useState()
   const [pdata,setPdata] = useState("")
 
-  const handlesubmit = () => {
+  const handlesubmit = async function(e) {
+    e.preventDefault();
     const promtnum = {
-
       "promptpay_number": paynumber
     }
     console.log(promtnum)
     axios.put("https://posme.fun:2096/auth/edit",promtnum,{withCredentials : true})
+    navigate("/store/users")
   }
 
 
