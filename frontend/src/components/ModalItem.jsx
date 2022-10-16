@@ -5,6 +5,7 @@ import { useRef } from 'react';
 import ModalEdit from './ModalEdit';
 import "./styles/modalitem.css"
 
+
 function ModalItem(props) {
   const {closeModal,itemID,setArrayItem} = props;
   const [arrayData,setArrayData] = useState([]);
@@ -75,7 +76,7 @@ function ModalItem(props) {
             </div>
             <div className="modal_detail">
               <p className="item_label">ราคาต่อชิ้น :</p> 
-              <p className="item_data">{arrayData.price}฿</p>
+              <p className="item_data">{arrayData.price}  บาท</p>
             </div>
             <div className="modal_detail">
               <p className="item_label">รายละเอียดสินค้า :</p> 

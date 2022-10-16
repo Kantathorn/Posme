@@ -99,13 +99,13 @@ const AddItem = () => {
               className='additem_input'
               id='barcode_num'
               type='tel'
-              placeholder='Barcode Number'
+              placeholder='EAN (13 หลัก)'
               ref={barnum}
               required
               pattern = "[0-9]{13}"
               defaultValue={scanBarNum}
             ></input>
-
+            {" * "}
             <div type='button' className='scanner_btn'
               onClick={() => {
                 setCamModal(true);
@@ -123,6 +123,7 @@ const AddItem = () => {
               ref={itemname}
               required
               ></input>
+              {" * "}
           </div>
           <div>
             <label>ราคาสินค้าต่อชิ้น : </label>
@@ -135,7 +136,7 @@ const AddItem = () => {
               placeholder='ราคา'
               ref={itemprice}
               ></input>
-              <label>฿</label>
+              <label>บาท{" * "}</label>
           </div>
           <div>
             <label>รายละเอียดสินค้า : </label>

@@ -28,7 +28,7 @@ function NavbarItemContent() {
     };
     return (
         <>
-            <Navbar bg="warning" variant="dark">
+            <Navbar bg="warning" variant="dark" sticky="top">
                 <Container>
                     <Navbar.Brand href="/store/items">
                         <div className='backIcon'>

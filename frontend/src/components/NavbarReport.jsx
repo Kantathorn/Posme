@@ -28,7 +28,7 @@ function NavbarReport() {
   };
   return (
 <>
-    <Navbar bg="warning" variant="dark">
+    <Navbar bg="warning" variant="dark" sticky="top">
       <Container>
         <Navbar.Brand href="/store/home">
           <div className='backIcon'>
