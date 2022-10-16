@@ -3,10 +3,10 @@ import Navbar from '../../components/NavbarUserContent'
 import axios from 'axios'
 import { Button,Form } from 'react-bootstrap'
 import './styles/EditPP.css'
-import logo from '../../image/logo_editpp.png'
+import logo from '../../image/promptpay.png'
 
 function EditPP() {
-    const [paynumber,setPayNumber] = useState()
+  const [paynumber,setPayNumber] = useState()
   const [pdata,setPdata] = useState("")
 
   const handlesubmit = () => {
@@ -33,7 +33,7 @@ function EditPP() {
         <Navbar/>
         <div className='payment-page'>
             <div className='photo-payment'>
-                <img src ={logo} alt = "logo" className='pay-logo'/>
+                <img src ={logo} alt = "logo" className='pay-logo' width='50%'/>
             </div>
             <div>
                 <span className="p-text">

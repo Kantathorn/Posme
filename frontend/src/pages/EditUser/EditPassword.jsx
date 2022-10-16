@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { Form } from 'react-bootstrap'
+// import { useNavigate } from 'react-router-dom'
 import Navbar from '../../components/NavbarUserContent'
 import axios from 'axios'
 import { Snackbar, Alert } from "@mui/material"
@@ -7,6 +8,7 @@ import './styles/EditPassword.css'
 import logo from '../../image/logo_editpass.png'
 
 function EditPassword() {
+    // const navigate = useNavigate();	
     const [oldpass,setOldPass] = useState("")
     const [newpass,setNewPass] = useState("")
     const [confirmpass,setConfirmPass] = useState("")
@@ -39,12 +41,13 @@ function EditPassword() {
        "old_password" : oldpass,
        "new_password" : newpass
       }
-      console.log(psswd)
-    axios.put("https://posme.fun:2096/auth/password", psswd, {withCredentials: true})
-    .then((response) => {
+      // console.log(psswd)
+      axios.put("https://posme.fun:2096/auth/password", psswd, {withCredentials: true})
+      .then((response) => {
       if (response.status == 200) {
         setErrorMessage("เปลี่ยนรหัสผ่านแล้ว")
         setAlertColor("success")
+        // navigate("/store/users")
       }
     })
     .catch((error) => {
@@ -58,7 +61,7 @@ function EditPassword() {
         <Navbar/>
         <div className='password-page'>
             <div className='lock-photo'>
-                <img src = {logo} alt = "logo" className='lock-photo'/>
+                <img src = {logo} alt = "logo" className='lock-photo' width='25%'/>
             </div>
             <Form onSubmit = {handlesubmit}>
                 <span className="ps-text">Current password</span>
@@ -71,7 +74,7 @@ function EditPassword() {
                     <input className='new-password' required type = {type_new} pattern=".{8,}" placeholder = "อย่างน้อย 8 ตัวอักษร" onChange = {e=> setNewPass(e.target.value)}/>
                     <div  style={{ background:"tranparent" }}className = "newpass-bott" onClick={handletoggle_newpass}>Show password</div>
                 </div>
-                <input type = "submit" value = "SAVE" className='save-password' />
+                <input type = "submit" value = "ยืนยัน" className='save-password' />
             </Form>
             {
                 errorMessage && 
