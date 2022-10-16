@@ -2,13 +2,13 @@
     /* background-color: white; */
     font-size: 28px;
     text-align: center;
-    height: 230px;
-    width: 400px;
-    margin-top: 80px;
+    height: 15vh;
+    width: 25vh;
+    margin-top: 50px;
     left :100px;
     /* margin-bottom: 100px; */
     border :5px solid #eac43d;
-    border-radius: 80px;
+    border-radius: 40px;
     /* margin-left: 20%; */
     font-weight: 100px;
 }
@@ -20,19 +20,20 @@
 
 .edit-box span{
     color: white;
+    font-size: 20px;
 }
 
 .psswd-box{
     /* background-color: white; */
     font-size: 28px;
     text-align: center;
-    height: 230px;
-    width: 400px;
+    height: 15vh;
+    width: 25vh;
     margin-top: 35px;
     left :100px;
     /* margin-bottom: 100px; */
     border :5px solid #eac43d;
-    border-radius: 80px;
+    border-radius: 40px;
     /* margin-left: 235px; */
 }
 
@@ -45,18 +46,19 @@
 
 .psswd-box span{
     color: white;
+    font-size: 20px;
 }
 
 .pay-box{
     /* background-color: white; */
     font-size: 28px;
     text-align: center;
-    height: 230px;
-    width: 400px;
+    height: 15vh;
+    width: 25vh;
     margin-top: 35px;
     left :100px;
     border :5px solid #eac43d;
-    border-radius: 80px;
+    border-radius: 40px;
     /* margin-left: 235px; */
 }
 
@@ -70,25 +72,28 @@
 
 .pay-box span{
     color: white;
+    font-size: 20px;
 }
 
 .delete-box{
     /* background-color: white; */
     font-size: 28px;
     text-align: center;
-    height: 230px;
-    width: 400px;
+    height: 15vh;
+    width: 25vh;
     margin-top: 35px;
     left :100px;
     border :5px solid #eac43d;
-    border-radius: 80px;
+    border-radius: 40px;
     /* margin-left: 235px; */
-    margin-bottom: 200px;
+    /* margin-bottom: 200px; */
     
 }
 
 .delete-box span{
     color: white;
+    font-size: 20px;
+
 }
 
 .bin-photo{
@@ -101,4 +106,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.font{
+    text-decoration: none
 }

@@ -45,6 +45,15 @@
     top: 0;
 }
 
+.search_container_cart {
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+}
+
 .scanner_btn_Item {
     background-color: white;
     width: fit-content;

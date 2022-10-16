@@ -2,12 +2,13 @@
     background-color: #242e38;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    text-align: center;
 }
 
 .sel-month{
     color: #EAC43D;
     margin-top: 50px;
+    text-align: center;
 }
 
 .card_net-worth{
@@ -27,7 +28,7 @@
 
 .submit-button {
     transition-duration: 0.4s;
-    margin-bottom: 100%;
+    /* margin-bottom: 100%; */
   }
 
 .submit-button:active {
