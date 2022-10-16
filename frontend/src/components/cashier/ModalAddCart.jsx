@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import InputLabel from '@mui/material/InputLabel';
 import { Button } from 'react-bootstrap';
+import { Alert, Snackbar } from '@mui/material';
 
 
 function ModalAddCart(props)  {
@@ -20,6 +21,10 @@ function ModalAddCart(props)  {
 
     const [arrayItem, setArrayItem] = useState([]);
     const [arrayType, setArrayType] = useState([]);
+
+    const [errorMessage, setErrorMessage] = useState(null);
+    const [alertColor, setAlertColor] = useState("error");
+
 
     useEffect(() => {
         async function GetAllItem() {
@@ -58,7 +63,8 @@ function ModalAddCart(props)  {
 
                 closeModal(false);
             } else {
-                // 
+              setErrorMessage("มีสินค้านี้ในรายการชำระเงินอยู่แล้ว");
+              setAlertColor("error");
             }
     }
 
@@ -146,9 +152,12 @@ function ModalAddCart(props)  {
                   {eachItem.price.toFixed(2)} บาท
                 </Typography>
               </div> 
-            <Button onClick={(e) => addHandler(eachItem)}>
+              <div className="d-grid mt-sm-4 gap-2">
+              <Button onClick={(e) => addHandler(eachItem)}>
                 เพิ่ม
-            </Button>
+              </Button>
+              </div>
+            
             </CardContent>
           </Card>
                   
@@ -156,6 +165,16 @@ function ModalAddCart(props)  {
       </div>
         </div>
         </div>
+        {
+        errorMessage && 
+        <Snackbar  open={errorMessage} onClose={() => setErrorMessage(false)} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} autoHideDuration={5000} bodyStyle={{ height: 200, width: 200, flexGrow: 0 }}>
+          <Alert onClose={() => setErrorMessage(false)} severity={alertColor} sx={{ width: '100%' }}>
+            <div className="errormssg">
+            {errorMessage}
+            </div>
+          </Alert>
+        </Snackbar>
+      }
     </div>
   )
 }

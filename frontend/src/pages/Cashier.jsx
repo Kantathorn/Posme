@@ -98,31 +98,36 @@ function Cashier() {
       <Navcashier/>
 
       <div>
-
-				<div className="d-grid mt-sm-2 mb-sm-2 m-4">
-					<Button
-						type="button"
-						variant="primary"
-						onClick={() => {
-              if (!scanning) {
-                setScanning(!scanning)
-              }
-            } }>
-            <div ref={scannerRef} className="scanner-cart">
-                      {scanning ? <ScannerCart scannerRef={scannerRef} onDetected={(result) => CheckEAN(result)} /> : <i className="fas fa-barcode fa-5x"></i>}
+      <div className='position-sticky'>
+        <div className="d-grid mt-sm-2 mb-sm-2 m-4">
+            <Button
+              type="button"
+              variant="warning"
+              className="cam-space"
+              onClick={() => {
+                if (!scanning) {
+                  setScanning(!scanning)
+                }
+              } }>
+              <div ref={scannerRef} className="scanner-cart">
+                        {scanning ? <ScannerCart scannerRef={scannerRef} onDetected={(result) => CheckEAN(result)} /> : <i className="fas fa-barcode fa-5x"></i>}
+              </div>
+            </Button>
+              
             </div>
-					</Button>
-            
-				  </div>
-			<div className="d-grid mt-sm-2 mb-sm-2 m-4">
-				<Button
-					type="button"
-					onClick={() => {
-            setModalAddCart(true);
-          }}>
-					เพิ่มสินค้า
-				</Button>
-			</div>
+        <div className="d-grid mt-sm-2 mb-sm-4 m-4">
+          <Button
+            type="button"
+            size="lg"
+            variant="warning"
+            onClick={() => {
+              setModalAddCart(true);
+            }}>
+            เพิ่มสินค้า
+          </Button>
+        </div>
+      </div>
+				
 			<Row>
 				<Col>
 						<ListGroup>
@@ -217,14 +222,15 @@ function Cashier() {
 												{emptyCart && !choosePayment && <Button
 													type="button"
 													variant="primary"
+                          size="lg"
 													onClick={handleClick}
 												>
 													ชำระเงิน
 												</Button>}
 												{choosePayment && 
 												<div className="d-grid">
-													<Button className="mb-sm-2" onClick={() => setPaymentByCash(true)} type='button' variant="success" >ชำระด้วยเงินสด</Button>
-													<Button type='button' onClick={() => setModalPromptpay(true)} variant="primary">ชำระด้วยพร้อมเพย์</Button>
+													<Button className="mb-sm-2" onClick={() => setPaymentByCash(true)} type='button' variant="success" size="lg" >ชำระด้วยเงินสด</Button>
+													<Button type='button' onClick={() => setModalPromptpay(true)} variant="primary" size="lg" >ชำระด้วยพร้อมเพย์</Button>
 												</div>
 												}
 											</div>
