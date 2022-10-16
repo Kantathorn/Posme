@@ -17,7 +17,8 @@ import DeleteUser from './pages/EditUser/DeleteUser'
 import AddItem from './pages/Item/AddItem';
 import Sales from './pages/ReportPage/Sales'
 import BestSales from './pages/ReportPage/BestSales'
-import Receipt from './pages/ReportPage/PreviousReceipt'
+import PreviousReceipt from './pages/ReportPage/PreviousReceipt'
+import Receipt from './pages/ReportPage/Receipt'
 
 function App() {
   return (
@@ -38,7 +39,8 @@ function App() {
           <Route path='/store/items/additem' element={<AddItem/>}/>
           <Route path='/store/reports/sales' element={<Sales/>} />
           <Route path='/store/reports/best_seller' element={<BestSales/>} />
-          <Route path='/store/reports/receipt' element={<Receipt/>} />
+          <Route path='/store/reports/receipt' element={<PreviousReceipt/>} />
+          <Route path="/receipt/id/:id" element={<Receipt />} />
         </Routes>
       </Browser>
   );

@@ -1,11 +1,6 @@
-p {
-    margin-bottom: 0rem;
-  }
-  
   .section_prev_receipt {
     background-color: #242e38;
-    height: 100vh;
-    font-family: "Bai Jamjuree", sans-serif;
+    /* height: 100vh; */
     color: white;
     overflow: scroll;
   
@@ -16,36 +11,37 @@ p {
   }
   
   .container {
-    max-width: 120rem;
-    height: 90rem;
+    /* max-width: 120rem; */
+    /* height: 90rem; */
     /* width: 90rem; */
-    padding: 8.2rem 0;
+    /* padding: 8.2rem 0; */
+    margin-top: 5%;
   }
   
   .month_box {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1.6rem;
-    font-size: 2.4rem;
-    margin-bottom: 6.4rem;
+    gap: 2%;
+    font-size: 32px;
+    margin-bottom: 5%;
   }
   
   .all_receipt_box {
-    width: 70rem;
+    width: 100%;
   }
   
   .receipt_heading {
-    font-size: 2.4rem;
+    font-size: 32px;
   }
   
   .receipt_no {
-    font-size: 1.6rem;
-    margin-bottom: 1rem;
+    font-size: 32px;
+    margin-bottom: 2%;
   }
   
   .receipt_box {
-    font-size: 2rem;
+    font-size: 32px;
     background-color: white;
     color: black;
     padding: 1rem 1.6rem;

@@ -26,7 +26,7 @@ const Receipt = function (props) {
       setBill(data);
     };
     sendData();
-    setqrCode(`https://posme.fun:2087/bills/id/${id}`);
+    setqrCode(`https://posme.fun:8443/receipt/id/${id}`);
   }, [id]);
 
   const showItem = function () {
@@ -61,42 +61,32 @@ const Receipt = function (props) {
         location.state?.payment_method !== "cash" && (
           <div className={styles.main}>
             <p className={styles.header}>ใบเสร็จรับเงิน</p>
-            <div className={styles.toprightbox}>
-              <p>เลขที่ใบเสร็จ {bill.receipt_no} </p>
-              <p>
-                วันที่ {bill.date} {bill.time}
-              </p>
-            </div>
+            <p>เลขที่ใบเสร็จ {bill.receipt_no} </p>
+            <p>
+              วันที่ {bill.date} {bill.time}
+            </p>
             <br></br>
             <hr></hr>
-            <h1 className={styles.storeinfo}>CAFE DOT COM</h1>
+            <h1 className={styles.storeinfo}>ร้าน: {bill.user_id.store_name}</h1>
+            <h3 className={styles.storeinfo}>ที่อยู่: {bill.user_id.address}</h3>
+            {/* <h3 className={styles.storeinfo}>Faculty of Engineering</h3>
+            <h3 className={styles.storeinfo}>Kasersart University</h3> */}
             <h3 className={styles.storeinfo}>
-              Department of Computer Engineering
-            </h3>
-            <h3 className={styles.storeinfo}>Faculty of Engineering</h3>
-            <h3 className={styles.storeinfo}>Kasersart University</h3>
-            <h3 className={styles.storeinfo}>
-              TEL: {bill.user_id.promptpay_number}
-            </h3>
-            <h3 className={styles.storeinfo}>
-              หมายเลขประจำตัวผู้เสียภาษี {bill.user_id.tax_id}
+              หมายเลขประจำตัวผู้เสียภาษี: {bill.user_id.tax_id}
             </h3>
             <br></br>
             <hr></hr>
             <div className={styles.table}>
-              <h2>รายการสินค้า</h2>
-              <h2>ราคาต่อหน่วย(บาท)</h2>
-              <h2>จำนวน</h2>
-              <h2>จำนวนเงิน(บาท)</h2>
+              <h2 className={styles.tableHeader}>รายการสินค้า</h2>
+              <h2 className={styles.tableHeader}>ราคาต่อหน่วย(บาท)</h2>
+              <h2 className={styles.tableHeader}>จำนวน</h2>
+              <h2 className={styles.tableHeader}>จำนวนเงิน(บาท)</h2>
             </div>
             <hr></hr>
 
             {showItem()}
             {/* <p className={styles.total_price}>ราคารวม: {}บาท</p> */}
 
-            <br></br>
-            <br></br>
-            <br></br>
             <br></br>
             <br></br>
             <br></br>
@@ -188,6 +178,7 @@ const Receipt = function (props) {
               <div className={styles.summaryprice}>
                 <h3>ราคารวม(บาท):</h3>
                 <h3>{location.state?.total_amount}</h3>
+                <h3></h3>
               </div>
               <hr className={styles.summaryprice}></hr>
               <div className={styles.summaryprice}>
@@ -195,7 +186,7 @@ const Receipt = function (props) {
                 <h3>{location.state?.money - location.state?.total_amount}</h3>
               </div>
             </div>
-
+            
             <QRCode value={qrCode} size={150} />
           </div>
         </div>

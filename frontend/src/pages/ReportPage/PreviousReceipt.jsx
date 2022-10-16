@@ -26,19 +26,10 @@ const PreviousReceipt = function () {
     getAllBills();
   }, []);
 
-  // useEffect(() => {
-  //   console.log(receipt_no)
-  //   if (receipt_no) {
-  //     // navigate(`/bills/receipt_no=${receipt_no}`);
-  //     navigate(`/bills/id/${receipt_no}`);
-
-  //   }
-  // }, [navigate,receipt_no]);
-
   const gotoPost = function (id) {
-    console.log(id);
+    // console.log(id);
     // setSearchParams({receipt_no: id})
-    navigate(`/bills/id/${id}`);
+    navigate(`/receipt/id/${id}`);
   };
 
   const genAllBills = function (allBills) {
@@ -49,9 +40,9 @@ const PreviousReceipt = function () {
           className={styles.receipt_box}
           onClick={gotoPost.bind(this, bill._id)}
           >
-          <p className={styles.receipt_no}>หมายเลขใบเสร็จ: {bill._id}</p>
+          <p className={styles.receipt_no}>หมายเลขใบเสร็จ: {bill.receipt_no}</p>
           <div className={styles.receipt_info_box}>
-            <p className={styles.date}>วันที่: {bill.date}</p>
+            <p className={styles.date}>{bill.date}</p>
             <p className={styles.price}>{bill.cash}฿</p>
           </div>
         </li>
@@ -78,13 +69,13 @@ const PreviousReceipt = function () {
       <section className={styles.section_prev_receipt}>
         <div className={styles.container}>
           <div className={styles.month_box}>
-            <label htmlFor="month">Search by date:</label>
+            <label htmlFor="month">ค้นหาจากวันที่:</label>
             <form action="#" onChange={submitForm}>
               <input type="date" name="month" id="month" ref={dateRef} />
             </form>
           </div>
           <ul className={styles.all_receipt_box}>
-            <p className={styles.receipt_heading}>Receipt No.</p>
+            <p className={styles.receipt_heading}>รายการใบเสร็จ</p>
             {genAllBills(allBills)}
           </ul>
         </div>
