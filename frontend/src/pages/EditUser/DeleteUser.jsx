@@ -21,25 +21,25 @@ function DeleteUser() {
   return (
     <div>
         <Navbar/>
-        <div className='delete-page'>
-            <img src={logo} alt = " " className = 'delete-page-photo'/>
-            <div className='delete-text'>
-                <i> 
-                    ยืนยันที่จะลบบัญชีผู้ใช้ใช่หรือไม่?
-                </i>
-            </div>
-            <Link to = '/store/users'>
-                <div className='delete-backbutt'>
-                    <span>
-                        Back  
-                    </span> 
+        <div>
+            <div className='delete-page'>
+                <img src={logo} alt = " " className = 'delete-page-photo'/>
+                <div className='delete-text'>
+                    <i> 
+                        ยืนยันที่จะลบบัญชีผู้ใช้ใช่หรือไม่?
+                    </i>
                 </div>
-            </Link>
-            <Link to = '/'>
-                <Button onClick={handlesubmit} className='delete-deletebutt'>
-                    Delete
-                </Button>
-            </Link>
+                <Link to = '/store/users'>
+                    <Button className='delete-backbutt'>
+                        ย้อนกลับ
+                    </Button>
+                </Link>
+                <Link to = '/'>
+                    <Button onClick={handlesubmit} className='delete-deletebutt'>
+                        ลบบัญชี
+                    </Button>
+                </Link>
+            </div>
         </div>
     </div>
   )

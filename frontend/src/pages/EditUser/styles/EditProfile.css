@@ -24,30 +24,24 @@
 }
 
 .resume-page-logo{
-    height: 200px; 
-    margin-left:435px;
-    margin-top:50px;
-    margin-bottom: 25px;
-  
+    /* height: 200px;  */
+    /* margin-left:435px; */
+    margin-top: 5%;
+    /* margin-bottom: 3%; */
+}
+
+.e-info {
+    margin-top: 2%;
 }
 
 .save-editpage{
-    background-color: #eac43d;
-    border-radius: 80px;
-    height: 100px;
-    width:700px;
     text-align: center;
-    font-size: 55px;
-    color: white;
-    font-weight: 100%;
-    margin-left :0px;
-    margin-top:35px;
-    /* margin-bottom: 0; */
+    color: black;
+    font-size: 36px;
+    /* font-weight: 100%; */
+    margin-top:2%;
+    margin-bottom: 2%;
 }
-
-/* .e-info{
-    background-color: white;
-} */
 
 .e-username{
     height: 50px;
@@ -119,8 +113,9 @@
 
 .u-text{
     color: white;
-    font-size: 35px;
-    margin-left: 150px;
+    font-size: 28px;
+    margin-left: 17%;
+    /* margin-top: 5%; */
 }
 
 .fix-username{
@@ -133,14 +128,19 @@
 }
 
 .fix-u-text{
-    color: white;
-    font-size: 35px;
+    color: #eac43d;
     display: flex;
     justify-content: center;
-    font-size: 50px;
+    font-size: 35px;
     margin-bottom: 20px;
 }
 
 .hello{
     color: black;
+}
+
+.editpf{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
