@@ -9,10 +9,6 @@ import reportButton from '../image/reportButton.png'
 import usersButton from '../image/usersButton.png'
 
 function Home() {
-  const status = localStorage.getItem('isLoggedIn');
-  if (!status) {
-    return <Navigate to="/"/>
-  }
   return (
     <>
       <Navhome />

@@ -9,10 +9,6 @@ import ppLogo from '../image/promptpay.png'
 import delLogo from '../image/logo_deletacc.png'
 
 function Users() {
-  const status = localStorage.getItem('isLoggedIn');
-  if (!status) {
-    return <Navigate to="/"/>
-  }
   return (
     <div>
       <Navbar/>

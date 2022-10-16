@@ -87,10 +87,6 @@ function Items() {
           console.log(data);
           setArrayItem(data);
   }
-  const status = localStorage.getItem('isLoggedIn');
-  if (!status) {
-    return <Navigate to="/"/>
-  }
   return (
     <div>
       <Navbar/>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,16 +16,23 @@ function Navitem() {
         method: "POST",
       });
       const data = await response.json();
-      console.log(data);
-      if (localStorage.getItem('isLoggedIn')) {
-        localStorage.removeItem('isLoggedIn')
-        navigate("/login");
-      }
     }
     catch (err) {
        console.log("Not Login");
     }
   };
+  useEffect(() => {
+    const loginCheck = async () => {
+      const response = await fetch("https://posme.fun:2096/auth/user",{
+        method: "GET",
+        credentials: 'include',
+      });
+      if (!response.ok) {
+          navigate("/login")
+      }
+    }
+    loginCheck();
+  },[])
   return (
     <>
         <Navbar bg="warning" variant="dark" sticky="top">

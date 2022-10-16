@@ -35,19 +35,11 @@ function Login(props) {
         }),
       });
       const data = await response.json();
-      console.log(data);
-      localStorage.setItem("isLoggedIn", true);
       setStatusLogin(true);
     } catch (err) {
       setWrongLogin(true);
     }
   };
-
-  useEffect(() => {
-    if (localStorage.getItem("isLoggedIn")){
-       return navigate("/store/home");
-    }
-  },[localStorage.getItem("isLoggedIn")]);
 
   return (
     <div className={styles.main}>

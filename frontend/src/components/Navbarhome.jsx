@@ -19,11 +19,6 @@ function Navhome() {
         method: "POST",
       });
       const data = await response.json();
-      console.log(data);
-      if (localStorage.getItem('isLoggedIn')) {
-        localStorage.removeItem('isLoggedIn')
-        navigate("/login");
-      }
     }
     catch (err) {
       console.log("Not Login");
@@ -39,6 +34,9 @@ function Navhome() {
       const userInfo = await userData.json();
       //console.log(userInfo);
       setStoreData(userInfo)
+      if (!userData.ok) {
+        navigate("/login")
+      }
     }
     fetchData();
     //console.log(storeData.store_name)

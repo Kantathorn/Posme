@@ -1,6 +1,7 @@
 import './App.css';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Browser, Route, Routes } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import Home from './pages/Home'
 import Cashier from './pages/Cashier'
 import Users from './pages/Users'
