@@ -42,8 +42,8 @@ const PreviousReceipt = function () {
           >
           <p className={styles.receipt_no}>หมายเลขใบเสร็จ: {bill.receipt_no}</p>
           <div className={styles.receipt_info_box}>
-            <p className={styles.date}>{bill.date}</p>
-            <p className={styles.price}>{bill.cash}฿</p>
+            <p className={styles.date}>{bill.date} {bill.time} น.</p>
+            <p className={styles.price}>{bill.quantity.reduce((a, c) => a + c.quantity * c.price_each, 0)}฿</p>
           </div>
         </li>
       );
