@@ -1,47 +1,43 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import Navbar from '../components/NavbarReport'
-import Sales_logo from '../image/sales.png'
-import BestSales_logo from '../image/bestseller.png'
-import Receipt_logo from '../image/receipt.png'
+import Navbar from '../components/NavbarUser'
+import { Navigate,Link } from 'react-router-dom'
 import './styles/Report.css'
+import salesLogo from '../image/sales.png'
+import bestsalesLogo from '../image/bestseller.png'
+import ppLogo from '../image/receipt.png'
 
 function Reports() {
   return (
     <div>
       <Navbar/>
-      <div className='color'>
-        <div>
-            <button className = "sales">
-                <Link to="/store/reports/sales">
-                <img src = {Sales_logo} alt = "sales logo" className='salesimg'></img>
-                <div className='font-sales'>
-                    ยอดขาย
-                </div>
-                </Link>
-            </button>
-        </div>
-
-        <div>
-          <button className= 'best-seller'>
-              <Link to="/store/reports/best_seller">
-              <img src = {BestSales_logo} alt ="" className='bestsellerimg'></img>
-              <div className='font-bestseller'>
-                  สินค้าขายดี
-              </div>
-              </Link>
-          </button>
-        </div>
-        <div>   
-          <button className='receipt'>
-            <Link to="/store/reports/receipt">
-              <img src= {Receipt_logo} alt="" className='receiptimg'></img>
-              <div className='font-receipt'>
-                  ใบเสร็จ
-              </div>
-            </Link>
-          </button>
-        </div>
+      <div className='sales_button'>
+        <Link to='/store/reports/sales'>
+            <div className='sales-box'>
+              <img src={salesLogo}
+                   alt="Sales" 
+                   width="150"
+                   className="sales-logo"/>
+              <span> ยอดขาย </span>
+            </div>
+        </Link>
+        <Link to='/store/reports/best_seller'>
+          <div className='best-box'>
+            <img src={bestsalesLogo}
+                 alt="bestsales" 
+                 width='140'
+                 className = "best-photo2"/>
+            <span> สินค้าขายดีประจำเดือน </span>
+          </div>
+        </Link>
+        <Link to="/store/reports/receipt">
+          <div className='pay-box'>
+            <img src={ppLogo}
+                 alt="edit pp" 
+                 width='140'
+                 className='pay-logo2'/>
+            <span> ใบเสร็จย้อนหลัง </span>
+          </div>
+        </Link>
       </div>
     </div>
   )

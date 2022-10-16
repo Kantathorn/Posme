@@ -13,6 +13,7 @@ function Navcashier() {
   
     try {
       const response = await fetch("https://posme.fun:2096/auth/logout",{
+        credentials: 'include',
         method: "POST",
       });
       const data = await response.json();
@@ -20,18 +21,23 @@ function Navcashier() {
     catch (err) {
       console.log("Not Login");
     }
+    navigate("/")
   };
+
   useEffect(() => {
-    const loginCheck = async () => {
-      const response = await fetch("https://posme.fun:2096/auth/user",{
+    const fetchData = async () => {
+      const userData = await fetch("https://posme.fun:2096/auth/user",{
         method: "GET",
         credentials: 'include',
       });
-      if (!response.ok) {
-          navigate("/login")
+      const userInfo = await userData.json();
+      //console.log(userInfo);
+      if (!userData.ok) {
+        navigate("/login")
       }
     }
-    loginCheck();
+    fetchData();
+    //console.log(storeData.store_name)
   },[])
 return (
 <>

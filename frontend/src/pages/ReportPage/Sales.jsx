@@ -2,14 +2,14 @@ import React, {useState} from 'react'
 import { Card } from 'react-bootstrap';
 import Navbar from '../../components/NavbarReportContent'
 import './styles/Sales.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Popup from '../../components/SalesPopup'
 import logo from '../../image/sales.png'
 
 const Salespage=()=> {
     const [popUp,setPopUp] = useState(false);
     const [total,setTotal] = useState('');
-  
-      const getMonth = async function(e) {
+    const getMonth = async function(e) {
         const date = e.target.value
         const sendData = {
           'date': date
@@ -31,17 +31,14 @@ const Salespage=()=> {
         <div>
             <Navbar/>
             <div className='color-sales'>
-                <div>
-                    <img src = {logo} alt = "sales" className='salesimg2'></img>
+              <img src = {logo} alt = "sales" className='salesimg2' width='35%'></img>
                 <div className='sel-month' >
-                    เดือน: <input  type='month' onChange={getMonth}/>
+                  เดือน: <input className='picker' type='month' onChange={getMonth}/>
                 </div>
-                    <button variant="primary" type="submit" className='submit-button' onClick={() => {setPopUp(true)}}>
-                    ยืนยัน
-                    </button>
-                    {popUp && <Popup closePopUp={setPopUp}
-                    total={total.total}/>}
-                </div>  
+                <button variant="primary" type="submit" className='btn btn-warning selectBut' onClick={() => {setPopUp(true)}}>
+                  ยืนยัน
+                </button>
+                {popUp && <Popup closePopUp={setPopUp} total={total.total}/>}
             </div>
         </div>
     );

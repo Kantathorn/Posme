@@ -23,6 +23,7 @@ function Navhome() {
     catch (err) {
       console.log("Not Login");
     }
+    navigate("/")
   };
 
   useEffect(() => {

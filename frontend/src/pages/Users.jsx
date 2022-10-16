@@ -1,7 +1,6 @@
 import React from 'react'
 import Navbar from '../components/NavbarUser'
 import { Navigate,Link } from 'react-router-dom'
-import '../App.css'
 import './styles/user.css'
 import profileLogo from '../image/logo_editProfile.png'
 import passwordLogo from '../image/logo_editpass.png'

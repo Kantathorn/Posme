@@ -9,30 +9,36 @@ import { useNavigate } from "react-router-dom";
 function NavbarReport() {
     const navigate = useNavigate();
     const submitHandler = async function (e) {
-    e.preventDefault();
-  
-    try {
-      const response = await fetch("https://posme.fun:2096/auth/logout",{
-        method: "POST",
-      });
-      const data = await response.json();
-    }
-    catch (err) {
-      console.log("Not Login");
-    }
-  };
-  useEffect(() => {
-    const loginCheck = async () => {
-      const response = await fetch("https://posme.fun:2096/auth/user",{
-        method: "GET",
-        credentials: 'include',
-      });
-      if (!response.ok) {
-          navigate("/login")
+      e.preventDefault();
+    
+      try {
+        const response = await fetch("https://posme.fun:2096/auth/logout",{
+          credentials: 'include',
+          method: "POST",
+        });
+        const data = await response.json();
       }
-    }
-    loginCheck();
-  },[])
+      catch (err) {
+        console.log("Not Login");
+      }
+      navigate("/")
+    };
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        const userData = await fetch("https://posme.fun:2096/auth/user",{
+          method: "GET",
+          credentials: 'include',
+        });
+        const userInfo = await userData.json();
+        //console.log(userInfo);
+        if (!userData.ok) {
+          navigate("/login")
+        }
+      }
+      fetchData();
+      //console.log(storeData.store_name)
+    },[])
   
   return (
 <>

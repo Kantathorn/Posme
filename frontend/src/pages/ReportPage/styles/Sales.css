@@ -5,9 +5,14 @@
     align-items: center;
 }
 
+.selectBut {
+    font-size: 32px;
+}
+
 .sel-month{
     color: #EAC43D;
-    margin-top: 50px;
+    font-size: 32px;
+    /* margin-top: 5%; */
 }
 
 .card_net-worth{
@@ -18,10 +23,7 @@
 }
 
 .salesimg2{
-    margin-top: 100px;
-    padding-top: 20px;
-    width: 200px;
-    height: 200px;
+    margin-top: 10%;
     margin-bottom: 50px;
 }
 

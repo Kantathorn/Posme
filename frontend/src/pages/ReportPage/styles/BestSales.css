@@ -16,7 +16,7 @@
     margin-bottom: 50px;
 }
 .sort-Amount{
-    margin-left: 300px;
+    margin-left: 150px;
 }
 .sort-Revenue{
     margin-left: 100px;
@@ -27,16 +27,18 @@
 .sort{
     display: flex;
     justify-content: center;
-    font-size:xx-large
+    font-size: 26px;
 }
 
 .list-item{
-    margin-bottom: 20px;
+    margin-bottom: 1%;
+    margin-top: 2%;
 }
 .list-item h1{
     font-size: 3.5vh;
     display: flex;
     margin: 10px 0 0 10px;
+    width: 600px;
 }
 .fill_empty{
     padding-bottom: 100%;

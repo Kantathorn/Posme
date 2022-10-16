@@ -82,7 +82,6 @@ function Bestseller() {
     const handleClickAmount = async function() {
       sortAmount();
     }
-  
     const handleClickRevenue = async function() {
       sortRevenue();
     }
@@ -102,27 +101,27 @@ function Bestseller() {
                     <input type="month" onChange= {handleChange}/>
                 </div>
                 <div className="sort">
-                    <span className="sort-font">Sort by</span>
+                    <span className="sort-font">จัดเรียงโดย</span>
                     <button
                         className="sort-Amount"
                         onClick={handleClickAmount}
                         style={{ backgroundColor: buttonColor1 ? "#EAC43D" : "white" }}
                         >
-                        Amount
+                        จำนวน
                     </button>
                     <button
                         className="sort-Revenue"
                         onClick={handleClickRevenue}
                         style={{ backgroundColor: buttonColor2 ? "#EAC43D" : "white" }}
                         >
-                        Revenue
+                        ยอดขายรวม
                     </button>
                 </div>
                 {total.map((listItem) => (
                     <Card className="list-item">
-                    <h1>Item: {listItem.item_name}</h1>
-                    <h2>Amount: {listItem.amount}</h2>
-                    <h2>Revenue: {listItem.total_sales}</h2>
+                    <h1>สินค้า: {listItem.item_name}</h1>
+                    <h2>จำนวน: {listItem.amount} ชิ้น</h2>
+                    <h2>ยอดขายรวม: {listItem.total_sales} ฿</h2>
                     </Card>
                 ))}
                 {/* <div className="fill_empty">

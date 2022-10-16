@@ -1,66 +1,74 @@
-.color{
-    background-color: #242e38;
+.sales-box{
+    /* background-color: white; */
+    font-size: 28px;
+    text-align: center;
+    height: 230px;
+    width: 400px;
+    margin-top: 10%;
+    left :100px;
+    /* margin-bottom: 100px; */
+    border :5px solid #eac43d;
+    border-radius: 80px;
+    /* margin-left: 20%; */
+    font-weight: 100px;
+    color: white;
+}
+
+.sales-logo{
+    display: block;
+    margin: 10px auto 10px auto !important;
+}
+
+.best-box{
+    /* background-color: white; */
+    font-size: 28px;
+    text-align: center;
+    height: 230px;
+    width: 400px;
+    margin-top: 35px;
+    left :100px;
+    /* margin-bottom: 100px; */
+    border :5px solid #eac43d;
+    border-radius: 80px;
+    /* margin-left: 235px; */
+    color: white;
+}
+
+.best-photo2{
+    display: block;
+    /* height: 150px; */
+    margin: 10px auto 10px auto !important;
+}
+
+
+.psswd-box span{
+    color: white;
+}
+
+.pay-box{
+    /* background-color: white; */
+    font-size: 28px;
+    text-align: center;
+    height: 230px;
+    width: 400px;
+    margin-top: 35px;
+    margin-bottom: 20%;
+    left :100px;
+    border :5px solid #eac43d;
+    border-radius: 80px;
+    /* margin-left: 235px; */
+}
+
+.pay-logo2{
+    /* height: 150px; */
+    display: block;
+    /* margin-top: 10px !important; */
+    margin: 10px auto 10px auto !important;
+    /* margin: 10 auto; */
+}
+
+.sales_button {
     display: flex;
     flex-direction: column;
     align-items: center;
-} 
-
-.sales{
-    margin-top: 100px;
-    border-color: #EAC43D; 
-    border-radius: 15%; 
-}
-.salesimg{
-    /* padding-top: 20px; */
-    margin-top: 20px;
-    width: 200px;
-    height: 200px;
-}
-.font-sales{
-    color: black;
-    font-size: large;
-    margin-top: 25px;
-    margin-bottom: 25px;
-}
-
-.best-seller{
-    margin-top: 100px;
-    border-color: #EAC43D;
-    border-radius: 15%;  
-}
-.bestsellerimg{
-    width: 200px;
-    height: 200px;
-    padding-top: 10px;
-} 
-.font-bestseller{
-    color: black;
-    font-size: large;
-    margin-top: 25px;
-    margin-bottom: 25px;
-}
-
-.receipt{
-    margin-top: 100px;
-    margin-bottom: 100px;
-    border-color: #EAC43D;  
-    border-radius: 15%;
-}
-.receiptimg{
-    width: 200px;
-    height: 200px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-.font-receipt{
-    color: black;
-    font-size: large;
-    margin-top: 25px;
-    margin-bottom: 25px;
-}
-
-.state{
-    background-color: #242e38;
-    color: #242e38;
-    padding-bottom: 160px;
 }
