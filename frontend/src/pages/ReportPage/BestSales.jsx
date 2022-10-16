@@ -118,11 +118,20 @@ function Bestseller() {
                     </button>
                 </div>
                 {total.map((listItem) => (
-                    <Card className="list-item">
-                    <h1>สินค้า: {listItem.item_name}</h1>
-                    <h2>จำนวน: {listItem.amount} ชิ้น</h2>
-                    <h2>ยอดขายรวม: {listItem.total_sales} ฿</h2>
-                    </Card>
+                    // <Card className="list-item">
+                    // <p className="itemName">สินค้า: {listItem.item_name}</p>
+                    // <p className="itemDetail">จำนวน: {listItem.amount} ชิ้น</p>
+                    // <p className="itemDetail">ยอดขายรวม: {listItem.total_sales} ฿</p>
+                    // </Card>
+                    <ul className="all-box">
+                      <Card className="list-item">
+                        <p className="itemName">สินค้า: {listItem.item_name}</p>
+                        <div className="info_box">
+                          <p>จำนวน: {listItem.amount} ชิ้น</p>
+                          <p>ยอดขายรวม: {listItem.total_sales} ฿</p>
+                        </div>
+                      </Card>
+                    </ul>
                 ))}
                 {/* <div className="fill_empty">
                 x
