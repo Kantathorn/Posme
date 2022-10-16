@@ -79,7 +79,19 @@ router.get('/', async (req, res) => {
       res.json(result)
     }
     const bills = await Bill.find( {user_id: req.user._id} ).populate('user_id');
-    return res.json(bills);
+    const newBills = [];
+    for (let bill of bills) {
+      let year = bill.time.getFullYear(), month = bill.time.getMonth()+1, date = bill.time.getDate();
+      let hour = bill.time.getHours(), minute = bill.time.getMinutes();
+      let date_format = date + '/' + month + '/' + year;
+      let time = hour + ':' + minute;
+      let newBill = JSON.parse(JSON.stringify(bill));
+      newBill.date = date_format;
+      newBill.time = time
+      newBills.push(newBill);
+    }
+    return res.json(newBills);
+    // return res.json(bills);
 
   } catch (err) {
     res.status(400).json(err);
