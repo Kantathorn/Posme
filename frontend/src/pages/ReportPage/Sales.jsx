@@ -24,7 +24,7 @@ const Salespage=()=> {
         })
         const data = await response.json()
         setTotal(data)
-        console.log(data)
+        // console.log(data)
     }
   
     return (

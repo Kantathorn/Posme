@@ -18,16 +18,13 @@ const PreviousReceipt = function () {
         method: "GET",
         credentials: "include",
       });
-      // console.log(response)
       const data = await response.json();
-      console.log(data);
       setAllBills(data);
     };
     getAllBills();
   }, []);
 
   const gotoPost = function (id) {
-    // console.log(id);
     // setSearchParams({receipt_no: id})
     navigate(`/receipt/id/${id}`);
   };
@@ -53,7 +50,6 @@ const PreviousReceipt = function () {
   const submitForm = async function (e) {
     e.preventDefault();
     const date = dateRef.current.value;
-    // console.log(date)
     const response = await fetch(`https://posme.fun:2096/bills?date=${date}`, {
       method: "GET",
       credentials: "include",
@@ -62,7 +58,6 @@ const PreviousReceipt = function () {
     const data = await response.json();
     setAllBills(data);
   };
-  // console.log(allBills);
   return (
     <div>
       <Navbar/>

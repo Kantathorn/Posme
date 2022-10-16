@@ -63,7 +63,7 @@ const Receipt = function (props) {
             <p className={styles.header}>ใบเสร็จรับเงิน</p>
             <p>เลขที่ใบเสร็จ {bill.receipt_no} </p>
             <p>
-              วันที่ {bill.date} {bill.time}
+              วันที่ {bill.date} {bill.time} น.
             </p>
             <br></br>
             <hr></hr>
@@ -107,7 +107,7 @@ const Receipt = function (props) {
           <p className={styles.header}>ใบเสร็จรับเงิน</p>
           <p>เลขที่ใบเสร็จ {bill.receipt_no} </p>
           <p>
-            วันที่ {bill.date} {bill.time}
+            วันที่ {bill.date} {bill.time} น.
           </p>
           <br></br>
           <hr></hr>
@@ -150,7 +150,7 @@ const Receipt = function (props) {
                   <p className={styles.header}>ใบเสร็จรับเงิน</p>
                   <p>เลขที่ใบเสร็จ {bill.receipt_no} </p>
                   <p>
-                    วันที่ {bill.date} {bill.time}
+                    วันที่ {bill.date} {bill.time} น.
                   </p>
                   <br></br>
                   <hr></hr>

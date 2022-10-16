@@ -12,7 +12,7 @@ function ModalItem(props) {
   const [openModal, setOpenModal] = useState(false);
   const [editItemID, setEditItemID] = useState("");
 
-  console.log(arrayData.type_id);
+  // console.log(arrayData.type_id);
   if (arrayData.type_id === null) {
     arrayData.type_id = "none";
   }
@@ -24,7 +24,7 @@ function ModalItem(props) {
         credentials: "include",
       });
       const alldata = await response.json();
-      console.log(alldata);
+      // console.log(alldata);
       if (alldata.description === "" || alldata.description === undefined) {
         alldata.description = "ไม่มีข้อมูล";
       }

@@ -29,7 +29,6 @@ function Bestseller() {
         body: JSON.stringify(sendData),
       });
       const data = await response.json();
-      console.log(data);
       setTotal(data);
       setButtonColor2(true);
       setButtonColor1(false);
@@ -49,7 +48,6 @@ function Bestseller() {
         body: JSON.stringify(sendData),
       });
       const data1 = await response1.json();
-      console.log(data1);
       setTotal(data1);
       setButtonColor2(false);
       setButtonColor1(true);
@@ -57,9 +55,7 @@ function Bestseller() {
   
     const handleChange = async function(e) {
       const date = e.target.value;
-      console.log(date);
       setmonthYear(date);
-      console.log(monthYear);
       defaultdate = date;
       const sendData = {
         date: defaultdate,
@@ -75,7 +71,6 @@ function Bestseller() {
       });
       setButtonColor2(true);
       const data = await response.json();
-      console.log(data);
       setTotal(data);
     }
   
