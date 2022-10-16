@@ -17,7 +17,7 @@ import DeleteUser from './pages/EditUser/DeleteUser'
 import AddItem from './pages/Item/AddItem';
 import Sales from './pages/ReportPage/Sales'
 import BestSales from './pages/ReportPage/BestSales'
-import Receipt from './pages/ReportPage/Receipt'
+import Receipt from './pages/ReportPage/PreviousReceipt'
 
 function App() {
   return (

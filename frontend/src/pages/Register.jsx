@@ -98,6 +98,22 @@ const Register = function (props) {
     }
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const userData = await fetch("https://posme.fun:2096/auth/user",{
+        method: "GET",
+        credentials: 'include',
+      });
+      const userInfo = await userData.json();
+      //console.log(userInfo);
+      if (userData.ok) {
+        navigate("/store/home")
+      }
+    }
+    fetchData();
+    //console.log(storeData.store_name)
+  },[])
+
   return (
     <div className={styles.main}>
       <div className={styles.center}>

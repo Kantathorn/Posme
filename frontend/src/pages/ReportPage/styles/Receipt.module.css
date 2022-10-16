@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap%27");
+body {
+  font-family: "Bai Jamjuree", sans-serif;
+}
+
+.main {
+  /* max-width: 130rem; */
+  margin: 0 auto;
+  padding: 3.2rem 10.8rem;
+  background-color: #242e38;
+  font-size: 1.2rem;
+  color: white;
+  height: 100vh;
+  font-family: "Bai Jamjuree", sans-serif;
+  overflow: scroll;
+}
+.header {
+  font-size: 4rem;
+  margin-left: 1rem;
+  font-family: "Bai Jamjuree", sans-serif;
+}
+
+.toprightbox {
+  font-size: 2rem;
+  font-family: "Bai Jamjuree", sans-serif;
+  margin-left: 100rem;
+  margin-top: -5rem;
+}
+
+.storeinfo {
+  text-align: center;
+}
+
+.table {
+  display: flex;
+  justify-content: space-between;
+}
+
+.merchname {
+  width: 10rem;
+}
+
+.summaryprice {
+  text-align: right;
+  display: flex;
+  justify-content: space-between;
+  width: 25rem;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.total_price {
+  margin-top: 2.4rem;
+  font-size: 2.4rem;
+  text-align: right;
+}
