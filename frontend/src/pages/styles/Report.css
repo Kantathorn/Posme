@@ -6,15 +6,18 @@
 } 
 
 .sales{
-    margin-top: 100px;
+    margin-top: 50px;
     border-color: #EAC43D; 
-    border-radius: 15%; 
+    width: 20vh;
+    height: 20vh;
+    border-radius: 15%;
+
 }
 .salesimg{
     /* padding-top: 20px; */
     margin-top: 20px;
-    width: 200px;
-    height: 200px;
+    width: 10vh;
+    height: 10vh;
 }
 .font-sales{
     color: black;
@@ -24,13 +27,15 @@
 }
 
 .best-seller{
-    margin-top: 100px;
+    margin-top: 50px;
     border-color: #EAC43D;
+    width: 20vh;
+    height: 20vh;
     border-radius: 15%;  
 }
 .bestsellerimg{
-    width: 200px;
-    height: 200px;
+    width: 9.5vh;
+    height: 10vh;
     padding-top: 10px;
 } 
 .font-bestseller{
@@ -41,14 +46,16 @@
 }
 
 .receipt{
-    margin-top: 100px;
-    margin-bottom: 100px;
-    border-color: #EAC43D;  
+    margin-top: 50px;
+    /* margin-bottom: 100px; */
+    border-color: #EAC43D; 
+    width: 20vh;
+    height: 20vh; 
     border-radius: 15%;
 }
 .receiptimg{
-    width: 200px;
-    height: 200px;
+    width: 8.5vh;
+    height: 10vh;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -63,4 +70,8 @@
     background-color: #242e38;
     color: #242e38;
     padding-bottom: 160px;
+}
+
+.font{
+    text-decoration: none
 }

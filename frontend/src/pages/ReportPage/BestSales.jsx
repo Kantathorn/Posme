@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 import Navbar from '../../components/NavbarReportContent'
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import Calendar from "react-calendar";
 import DatePicker from '../../components/DateRangePicker'
 import './styles/BestSales.css'
@@ -103,20 +103,20 @@ function Bestseller() {
                 </div>
                 <div className="sort">
                     <span className="sort-font">Sort by</span>
-                    <button
+                    <Button
                         className="sort-Amount"
                         onClick={handleClickAmount}
                         style={{ backgroundColor: buttonColor1 ? "#EAC43D" : "white" }}
                         >
                         Amount
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                         className="sort-Revenue"
                         onClick={handleClickRevenue}
                         style={{ backgroundColor: buttonColor2 ? "#EAC43D" : "white" }}
                         >
                         Revenue
-                    </button>
+                    </Button>
                 </div>
                 {total.map((listItem) => (
                     <Card className="list-item">

@@ -1,0 +1,10 @@
+.scanner-cart canvas{
+    position: absolute;
+    left : 0px;
+    top: 0px;
+}
+
+.cam-space {
+    height: 320px !important;
+    width: 800px !important;
+}

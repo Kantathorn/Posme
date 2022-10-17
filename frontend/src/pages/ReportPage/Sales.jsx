@@ -4,6 +4,7 @@ import Navbar from '../../components/NavbarReportContent'
 import './styles/Sales.css'
 import Popup from '../../components/SalesPopup'
 import logo from '../../image/sales.png'
+import Button from 'react-bootstrap/Button'
 
 const Salespage=()=> {
     const [popUp,setPopUp] = useState(false);
@@ -34,11 +35,11 @@ const Salespage=()=> {
                 <div>
                     <img src = {logo} alt = "sales" className='salesimg2'></img>
                 <div className='sel-month' >
-                    เดือน: <input  type='month' onChange={getMonth}/>
+                    <h4>เดือน : <input  type='month' onChange={getMonth}/></h4>
                 </div>
-                    <button variant="primary" type="submit" className='submit-button' onClick={() => {setPopUp(true)}}>
+                    <Button variant="primary" type="submit" className='submit-button' onClick={() => {setPopUp(true)}}>
                     ยืนยัน
-                    </button>
+                    </Button>
                     {popUp && <Popup closePopUp={setPopUp}
                     total={total.total}/>}
                 </div>  

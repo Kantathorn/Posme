@@ -17,40 +17,40 @@ function Users() {
     <div>
       <Navbar/>
       <div className='user_button'>
-        <Link to='/store/users/edit_profile'>
+        <Link to='/store/users/edit_profile' className='font'>
           <div className='bg-editbox'>
             <div className='edit-box'>
               <img src={profileLogo}
                    alt="Edit Profile" 
-                   width="140"
+                   width="80"
                    className="resume-logo"/>
               <span> แก้ไขข้อมูลส่วนตัว </span>
             </div>
           </div>
         </Link>
-        <Link to='/store/users/edit_password'>
+        <Link to='/store/users/edit_password' className='font'>
           <div className='psswd-box'>
             <img src={passwordLogo}
                  alt="edit password" 
-                 width='140'
+                 width='80'
                  className = "lock-photo2"/>
             <span className='psswd-text'> เปลี่ยนรหัสผ่าน </span>
           </div>
         </Link>
-        <Link to="/store/users/edit_promptpay">
+        <Link to="/store/users/edit_promptpay" className='font'>
           <div className='pay-box'>
             <img src={ppLogo}
                  alt="edit pp" 
-                 width='140'
+                 width='80'
                  className='pay-logo2'/>
             <span> เปลี่ยนเบอร์ที่ผูกพร้อมเพย์ </span>
           </div>
         </Link>
-        <Link to='/store/users/delete_profile'>
+        <Link to='/store/users/delete_profile' className='font'>
           <div className='delete-box'>
             <img src={delLogo}
             alt="delete acc" 
-            width='140'
+            width='80'
             className='bin-photo'/>
             <span> ลบบัญชีถาวร </span>
           </div>
