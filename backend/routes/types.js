@@ -70,7 +70,7 @@ router.delete('/:type_id', (req, res, next) => {
 		if (err) {
 			res.status(400).json(err)
 		}
-		ItemType.updateMany({'type_id': type_id}, {'type_id': null}, (err, data) => {
+		Item.updateMany({'type_id': type_id}, {'type_id': null}, (err, data) => {
 			if (err) {
 				return res.status(400).json(err)
 			}

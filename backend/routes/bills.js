@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const { isLoggedIn } = require('./auth');
-router.use(isLoggedIn);
+// router.use(isLoggedIn);
 
 const Bill = require('../models/bill');
 const Item = require('../models/item')
@@ -10,8 +10,11 @@ const ItemType = require('../models/item_type')
 const User = require('../models/user')
 
 
+const zeroPad = (num, places) => String(num).padStart(places, '0')
+
+
 // save bill
-router.post('/', async (req, res) => {
+router.post('/', isLoggedIn, async (req, res) => {
   function receipt_generate(num, digit) {
     num = num.toString();
     while (num.length < digit) num = '0' + num;
@@ -47,7 +50,7 @@ router.post('/', async (req, res) => {
       });
   
       await bill.save();
-      return res.json({ message: 'successfully save bill', bill_id: bill._id });
+      return res.json({ message: 'successfully save bill', bill_id: bill._id, payment_method: payment_method });
     } catch (err) {
       return res.status(400).json(err);
     }
@@ -55,13 +58,50 @@ router.post('/', async (req, res) => {
 
 
 // get bill
-router.get('/', async (req, res) => {
+// router.get('/', async (req, res) => {
+//   try {
+//     let { receipt_no, date } = req.query;
+
+//     if (receipt_no) {
+//       const bill = await Bill.findOne({ 'receipt_no': receipt_no }).populate('user_id');
+//       return res.json(bill);
+//     } else if (date) {
+//       date = new Date(date);
+//       const bills = await Bill.find({user_id: req.user._id}).populate('user_id');
+//       const result = bills.filter(bill => {
+//         const { time } = bill;
+//         return time.getFullYear() === date.getFullYear() && time.getMonth()+1 === date.getMonth()+1 && time.getDate() === date.getDate()
+//       });
+//       return res.json(result)
+//     }
+//     const bills = await Bill.find( {user_id: req.user._id} ).populate('user_id');
+//     return res.json(bills);
+
+//   } catch (err) {
+//     return res.status(400).json(err);
+//   }
+// });
+
+
+// (new) get bill by 'date' or 'receipt_no'
+router.get('/', isLoggedIn, async (req, res) => {
   try {
     let { receipt_no, date } = req.query;
 
     if (receipt_no) {
-      const bill = await Bill.findOne({ 'receipt_no': receipt_no }).populate('user_id');
-      return res.json(bill);
+      const bills = await Bill.find({ receipt_no: { "$regex": receipt_no, "$options": "i" }, user_id: req.user._id});
+      const newBills = [];
+      for (let bill of bills) {
+        let year = bill.time.getFullYear(), month = bill.time.getMonth()+1, date = bill.time.getDate();
+        let hour = bill.time.getHours(), minute = bill.time.getMinutes();
+        let date_format = date + '/' + month + '/' + year;
+        let time = zeroPad(hour, 2)  + ':' + zeroPad(minute, 2);
+        let newBill = JSON.parse(JSON.stringify(bill));
+        newBill.date = date_format;
+        newBill.time = time
+        newBills.push(newBill);
+      }
+      return res.json(newBills);
     } else if (date) {
       date = new Date(date);
       const bills = await Bill.find({user_id: req.user._id}).populate('user_id');
@@ -69,10 +109,32 @@ router.get('/', async (req, res) => {
         const { time } = bill;
         return time.getFullYear() === date.getFullYear() && time.getMonth()+1 === date.getMonth()+1 && time.getDate() === date.getDate()
       });
-      return res.json(result)
+      const newBills = [];
+      for (let bill of result) {
+        let year = bill.time.getFullYear(), month = bill.time.getMonth()+1, date = bill.time.getDate();
+        let hour = bill.time.getHours(), minute = bill.time.getMinutes();
+        let date_format = date + '/' + month + '/' + year;
+        let time = zeroPad(hour, 2)  + ':' + zeroPad(minute, 2);
+        let newBill = JSON.parse(JSON.stringify(bill));
+        newBill.date = date_format;
+        newBill.time = time
+        newBills.push(newBill);
+      }
+      return res.json(newBills)
     }
     const bills = await Bill.find( {user_id: req.user._id} ).populate('user_id');
-    return res.json(bills);
+    const newBills = [];
+    for (let bill of bills) {
+      let year = bill.time.getFullYear(), month = bill.time.getMonth()+1, date = bill.time.getDate();
+      let hour = bill.time.getHours(), minute = bill.time.getMinutes();
+      let date_format = date + '/' + month + '/' + year;
+      let time = zeroPad(hour, 2)  + ':' + zeroPad(minute, 2);
+      let newBill = JSON.parse(JSON.stringify(bill));
+      newBill.date = date_format;
+      newBill.time = time
+      newBills.push(newBill);
+    }
+    return res.json(newBills);
 
   } catch (err) {
     return res.status(400).json(err);
@@ -80,8 +142,29 @@ router.get('/', async (req, res) => {
 });
 
 
+// get bill by id (no auth)
+router.get('/id/:bill_id', async (req, res) => {
+  try {
+    bill_id = req.params['bill_id']
+    const bill = await Bill.findOne({'_id': bill_id}).populate('user_id')
+
+    let year = bill.time.getFullYear(), month = bill.time.getMonth()+1, date = bill.time.getDate();
+    let hour = bill.time.getHours(), minute = bill.time.getMinutes();
+    let date_format = date + '/' + month + '/' + year;
+    let time = zeroPad(hour, 2)  + ':' + zeroPad(minute, 2);
+    let newBill = JSON.parse(JSON.stringify(bill));
+    newBill.date = date_format;
+    newBill.time = time
+    return res.json(newBill)
+
+  } catch (err) {
+    return res.status(400).json(err)
+  }
+})
+
+
 // ยอดขาย
-router.post('/total', async (req, res) => {
+router.post('/total', isLoggedIn, async (req, res) => {
   try {
     const { date } = req.body;
     let month = Number(date.slice(5, 7))
@@ -107,7 +190,7 @@ router.post('/total', async (req, res) => {
 
 
 // best selling item
-router.post('/bestselling', async (req, res) => {
+router.post('/bestselling', isLoggedIn, async (req, res) => {
   try {
 
     const { sort, date } = req.body

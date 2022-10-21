@@ -70,6 +70,7 @@ app.use(cors(
     'https://posme.fun:8443',
     'https://posme.fun:2087',
     'https://posme.fun:2053',
+    'https://posme.fun:2083',
     'https://192.168.68.112:3000',
   ],
   credentials: true

@@ -113,7 +113,7 @@ router.put('/password', isLoggedIn, (req, res, next) => {
 
 // delete account
 router.delete('/user', isLoggedIn, (req, res, next) => {
-	User.findOneAndUpdate({'_id': req.user._id}, {username: "deactivate_" + req.user.username}, (err, suc) => {
+	User.findOneAndUpdate({'_id': req.user._id}, {username: "deactivate_" + req.user.username + Math.floor((Math.random() * 100) + 1)}, (err, suc) => {
 		if (err) {
 			return res.status(400).json(err)
 		}

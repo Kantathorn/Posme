@@ -108,7 +108,16 @@ router.put('/:item_id', (req, res, next) => {
 			return res.status(400).json(err)
 		}
 		if (result) {
-			return res.status(409).json({'message': 'barcode of this item is already exists'})
+			if (item_id == result._id) {
+				Item.findOneAndUpdate({'_id': item_id, 'user_id': req.user._id}, item, (err, suc) => {
+					if (err) {
+						return res.status(400).json(err)
+					}
+					return res.end()
+				})
+			} else {
+				return res.status(409).json({'message': 'barcode of this item is already exists'})
+			}
 		} else {
 			Item.findOneAndUpdate({'_id': item_id, 'user_id': req.user._id}, item, (err, suc) => {
 			    if (err) {
@@ -132,7 +141,7 @@ router.post('/filter', (req, res, next) => {
 		keyword = ""
 	}
 
-	if (type_id == undefined) {
+	if (type_id == undefined || type_id == null) {
 		Item.find(
 			{
 				$or:[
