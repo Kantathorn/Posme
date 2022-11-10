@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 import Navbar from '../../components/NavbarReportContent'
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import Calendar from "react-calendar";
 import DatePicker from '../../components/DateRangePicker'
 import './styles/BestSales.css'

@@ -2,6 +2,7 @@ import {React,useState} from 'react'
 import './styles/SalesPopup.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../image/sales.png'
+import { Button } from 'react-bootstrap'
 
 function Popup (Props) {
   const { closePopUp, total } = Props
@@ -10,12 +11,15 @@ function Popup (Props) {
     <div className='popupval'>
       <div onClick={() => setShowModal(true)}></div>
       <h1 className='value-total'>
-        <button className='closeButton btn btn-danger' onClick={() => closePopUp(false)}>
-            Close
-        </button>
-        <img src={logo} alt="logo" className='popup-img'/>
-          NET WORTH: {total} Baht
-      </h1>
+
+      <Button className='closeButton'
+          onClick={() => closePopUp(false)}>
+          ปิด
+      </Button>
+          <img src={logo} alt="logo" className='popup-img'/>
+            <h1>ยอดขายรวม</h1>
+            <h1>{total} บาท</h1>
+        </h1>
     </div>
   )
 }

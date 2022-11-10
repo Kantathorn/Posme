@@ -2,7 +2,7 @@
     background-color: #242e38;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    text-align: center;
 }
 
 .selectBut {
@@ -29,7 +29,7 @@
 
 .submit-button {
     transition-duration: 0.4s;
-    margin-bottom: 100%;
+    /* margin-bottom: 100%; */
   }
 
 .submit-button:active {

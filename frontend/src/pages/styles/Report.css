@@ -59,6 +59,68 @@
     /* margin-left: 235px; */
 }
 
+.color{
+    background-color: #242e38;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} 
+
+.sales{
+    margin-top: 50px;
+    border-color: #EAC43D; 
+    width: 20vh;
+    height: 20vh;
+    border-radius: 15%;
+
+}
+.salesimg{
+    /* padding-top: 20px; */
+    margin-top: 20px;
+    width: 10vh;
+    height: 10vh;
+}
+.font-sales{
+    color: black;
+    font-size: large;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.best-seller{
+    margin-top: 50px;
+    border-color: #EAC43D;
+    width: 20vh;
+    height: 20vh;
+    border-radius: 15%;  
+}
+.bestsellerimg{
+    width: 9.5vh;
+    height: 10vh;
+    padding-top: 10px;
+} 
+.font-bestseller{
+    color: black;
+    font-size: large;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.receipt{
+    margin-top: 50px;
+    /* margin-bottom: 100px; */
+    border-color: #EAC43D; 
+    width: 20vh;
+    height: 20vh; 
+    border-radius: 15%;
+}
+.receiptimg{
+    width: 8.5vh;
+    height: 10vh;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 .pay-logo2{
     /* height: 150px; */
     display: block;
@@ -71,4 +133,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.state{
+    background-color: #242e38;
+    color: #242e38;
+    padding-bottom: 160px;
+}
+
+.font{
+    text-decoration: none
 }

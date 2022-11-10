@@ -5,6 +5,7 @@ import './styles/Sales.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Popup from '../../components/SalesPopup'
 import logo from '../../image/sales.png'
+import Button from 'react-bootstrap/Button'
 
 const Salespage=()=> {
     const [popUp,setPopUp] = useState(false);

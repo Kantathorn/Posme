@@ -20,6 +20,8 @@
 }
 .sort-Revenue{
     margin-left: 100px;
+    color: black;
+
 }
 .sort-font{
     color: white;
@@ -40,10 +42,11 @@
     list-style: none;
     margin-top: 2.4rem;
 }
+
 .list-item h1{
     font-size: 28px;
     display: flex;
-    margin: 10px 0 0 10px;
+    /* margin: 10px 0 0 10px; */
 }
 .fill_empty{
     padding-bottom: 100%;
