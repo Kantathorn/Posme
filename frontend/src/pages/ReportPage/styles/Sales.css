@@ -2,7 +2,7 @@
     background-color: #242e38;
     display: flex;
     flex-direction: column;
-    text-align: center;
+    align-items: center;
 }
 
 .selectBut {
@@ -10,7 +10,7 @@
 }
 
 .sel-month{
-    color: #EAC43D;
+    color: white;
     font-size: 32px;
     /* margin-top: 5%; */
 }

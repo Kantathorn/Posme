@@ -4,29 +4,41 @@ import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import check from '../../image/checked.png'
-
+import styles from "./modalFinish.module.css";
 
 function ModalAddCart(props)  {
-    const {closeModal,closeFinishModal, bill_id} = props;
-    console.log(bill_id);
+    const {closeModal, closeFinishModal, bill_id, setCartItems, setShowSum, setChoosePayment} = props;
+    // console.log(bill_id);
     
+  useEffect(() => {
+    setCartItems([])
+  })
 
   return (
     <div className='background'>
-        <div className="modal_container3">
-            <button className='close_btn' onClick={() => {closeFinishModal(false);}}>
+        <div className="modal_container4">
+            {/* <button className='close_btn' onClick={() => {closeFinishModal(false);}}>
               <h1>x</h1>
-            </button>
-            <img src={check} alt='check' />
-            <button
-              type="button"
-              onClick={(e) => {
-                e.preventDefault();
-                window.location.href='https://posme.fun:8443/receipt/id/' + bill_id;
+            </button> */}
+      
+            <div className={styles.finish_text}>
+              <h3>ชำระเงินเสร็จสิ้น</h3>
+            </div>
+            <img className={styles.finish_img} src={check} alt='check' />
+            <div>
+              <Button
+                type="button"
+                className={styles.button_1}
+                onClick={(e) => {
+                  e.preventDefault();
+                  closeModal(false);
+                  window.open('https://posme.fun:8443/receipt/id/' + bill_id, "_blank");
+                  // window.location.href='https://posme.fun:8443/receipt/id/' + bill_id;
                 }}
-            >แสดงใบเสร็จ</button>
-            <button onClick={() => {closeFinishModal(false);
-                                    closeModal(false);}}>เสร็จสิ้น</button>
+                >แสดงใบเสร็จ</Button>
+              <Button onClick={() => {closeFinishModal(false);
+                                      closeModal(false) ; setShowSum(true); setChoosePayment(false)}}>เสร็จสิ้น</Button>
+            </div>
             {/* <button onClick={closeFinishModal(false)}>เสร็จสิ้น</button> */}
 
         </div>

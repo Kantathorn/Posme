@@ -169,8 +169,8 @@ const AddItem = () => {
           </div> */}
           <input type="submit" value="บันทึก" className='add_item_btn'></input>
         </form>
-        <div className='btn_container'>
-      </div>
+        
+    </div>
 
           {/* {openModal && <Modal 
             closeModal={setOpenModal}
@@ -183,7 +183,7 @@ const AddItem = () => {
             setScanBarNum={setScanBarNum}
             barnum={barnum}
             />} 
-        </div>
+        
 
       {
         errorMessage && 

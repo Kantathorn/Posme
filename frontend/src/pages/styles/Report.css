@@ -68,10 +68,11 @@
 
 .sales{
     margin-top: 50px;
-    border-color: #EAC43D; 
+    border :5px solid #eac43d;
+    border-radius: 40px;
     width: 20vh;
     height: 20vh;
-    border-radius: 15%;
+    background-color: #242e38;
 
 }
 .salesimg{
@@ -81,18 +82,19 @@
     height: 10vh;
 }
 .font-sales{
-    color: black;
-    font-size: large;
+    color: white;
+    font-size: 28px;
     margin-top: 25px;
     margin-bottom: 25px;
 }
 
 .best-seller{
     margin-top: 50px;
-    border-color: #EAC43D;
+    border :5px solid #eac43d;
+    background-color: #242e38;
+    border-radius: 40px;
     width: 20vh;
     height: 20vh;
-    border-radius: 15%;  
 }
 .bestsellerimg{
     width: 9.5vh;
@@ -100,8 +102,8 @@
     padding-top: 10px;
 } 
 .font-bestseller{
-    color: black;
-    font-size: large;
+    color: white;
+    font-size: 28px;
     margin-top: 25px;
     margin-bottom: 25px;
 }
@@ -109,11 +111,20 @@
 .receipt{
     margin-top: 50px;
     /* margin-bottom: 100px; */
-    border-color: #EAC43D; 
     width: 20vh;
     height: 20vh; 
-    border-radius: 15%;
+    border :5px solid #eac43d;
+    background-color: #242e38;
+    border-radius: 40px;
 }
+
+.font-receipt{
+    color: white;
+    font-size: 28px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
 .receiptimg{
     width: 8.5vh;
     height: 10vh;

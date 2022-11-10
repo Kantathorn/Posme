@@ -5,6 +5,7 @@ import Calendar from "react-calendar";
 import DatePicker from '../../components/DateRangePicker'
 import './styles/BestSales.css'
 import logo from '../../image/bestseller.png'
+import { Snackbar, Alert } from "@mui/material"
 
 function Bestseller() {
     const [total, setTotal] = useState([]);
@@ -12,6 +13,9 @@ function Bestseller() {
     const [monthYear, setmonthYear] = useState("");
     const [buttonColor1, setButtonColor1] = useState(false);
     const [buttonColor2, setButtonColor2] = useState(false);
+    const [firstTimeClick, setFirstTimeClick] = useState(true);
+    const [errorMessage, setErrorMessage] = useState(null);
+    const [alertColor, setAlertColor] = useState("error");
     let defaultdate = null;
   
   
@@ -35,6 +39,7 @@ function Bestseller() {
     }
   
     async function sortAmount() {
+      setFirstTimeClick(false)
       const sendData = {
         date: monthYear,
         sort: "amount",
@@ -54,6 +59,7 @@ function Bestseller() {
     }
   
     const handleChange = async function(e) {
+      setFirstTimeClick(false)
       const date = e.target.value;
       setmonthYear(date);
       defaultdate = date;
@@ -76,10 +82,22 @@ function Bestseller() {
     }
   
     const handleClickAmount = async function() {
-      sortAmount();
+      if (firstTimeClick) {
+        setErrorMessage("โปรดเลือกวันที่")
+        setAlertColor("error")
+      }
+      else {
+        sortAmount();
+      }
     }
     const handleClickRevenue = async function() {
-      sortRevenue();
+      if (firstTimeClick) {
+        setErrorMessage("โปรดเลือกวันที่")
+        setAlertColor("error")
+      }
+      else {
+        sortRevenue();
+      }
     }
   
     return (
@@ -133,7 +151,20 @@ function Bestseller() {
                 x
                 </div> */}
             </div>
+            {
+              errorMessage && 
+              <Snackbar  open={errorMessage} onClose={() => setErrorMessage(false)} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} autoHideDuration={5000} bodyStyle={{ height: 200, width: 200, flexGrow: 0 }}>
+                <Alert onClose={() => setErrorMessage(false)} severity={alertColor} sx={{ width: '100%' }}>
+                  <div className="errormssg">
+                  {errorMessage}
+                  </div>
+                </Alert>
+              </Snackbar>
+            }
+
         </div>
+
+
     );
     }
   

@@ -6,5 +6,6 @@
 
 .cam-space {
     height: 320px !important;
-    width: 800px !important;
+    width: 812px !important;
+    /* margin-left: 5vh; */
 }

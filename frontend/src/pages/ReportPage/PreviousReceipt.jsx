@@ -26,7 +26,8 @@ const PreviousReceipt = function () {
 
   const gotoPost = function (id) {
     // setSearchParams({receipt_no: id})
-    navigate(`/receipt/id/${id}`);
+    // navigate(`/receipt/id/${id}`);
+    window.open('https://posme.fun:8443/receipt/id/' + id, "_blank");
   };
 
   const genAllBills = function (allBills) {

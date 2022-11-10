@@ -106,7 +106,7 @@ function ModalAddCart(props)  {
     <div className='background'>
         <div className="modal_container3">
             <button className='close_btn' onClick={() => {closeModal(false); setShowSum(true); setChoosePayment(false)}}>
-              <h1>x</h1>
+              <img className='close_add_btn_img' src={require('../../image/logo_err.png')} alt="close" />
             </button>
             <div>
       <div className="mid">

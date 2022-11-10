@@ -15,6 +15,11 @@
     background-color: rgba(0, 0, 0, 0.8);
 }
 
+.type_item {
+    display: flex;
+    flex-direction: row;
+}
+
 .close_add_btn {
     all : inherit;
     border: none;
@@ -42,6 +47,12 @@
     background-color: white;
     height: 30px;
     margin-top: 5px;
+    padding-right: 0px;
+}
+
+.edit_type_label {
+    margin-top: 7px;
+    margin-right: 5px;
 }
 
 .btn_img {

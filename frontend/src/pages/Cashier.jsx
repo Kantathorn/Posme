@@ -104,9 +104,10 @@ function Cashier() {
 
       <div>
       <div className='position-sticky'>
-        <div className="d-grid mt-sm-2 mb-sm-2 m-4">
+        <div className="d-grid mt-sm-2 mb-sm-2 m-1">
             <Button
               type="button"
+							size="lg"
               variant="warning"
               className="cam-space"
               onClick={() => {
@@ -119,8 +120,8 @@ function Cashier() {
               </div>
             </Button>
               
-            </div>
-        <div className="d-grid mt-sm-2 mb-sm-4 m-4">
+        </div>
+        <div className="d-grid mt-sm-2 mb-sm-2 m-1">
           <Button
             type="button"
             size="lg"
@@ -258,6 +259,7 @@ function Cashier() {
         	cartItems={cartItems}
 	  		totalAmount={cartItems.reduce((a, c) => a + c.price * c.quantity,0)}
 	  		closeModal={setPaymentByCash}
+			  setCartItems={setCartItems}
 			  setChoosePayment={setChoosePayment}
 			  setShowSum={setShowSum}
 			/>}
@@ -265,6 +267,7 @@ function Cashier() {
 			cartItems={cartItems}
 	  		totalAmount={cartItems.reduce((a, c) => a + c.price * c.quantity,0)}
 	  		closeModal={setModalPromptpay}
+			  setCartItems={setCartItems}
 			  setChoosePayment={setChoosePayment}
 			  setShowSum={setShowSum}
 			/>}

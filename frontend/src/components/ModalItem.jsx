@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import ModalEdit from './ModalEdit';
 import "./styles/modalitem.css"
+import Table from 'react-bootstrap/Table';
 
 
 function ModalItem(props) {
@@ -66,7 +67,7 @@ function ModalItem(props) {
             <div className="title">
                 <h1>{arrayData.name}</h1>
             </div>
-            <div className="modal_detail">
+            {/* <div className="modal_detail">
               <p className="item_label">หมายเลขบาร์โค้ด :</p> 
               <p className="item_data">{arrayData.barcode}</p>
             </div>
@@ -85,7 +86,31 @@ function ModalItem(props) {
             <div className="modal_detail">
               <p className="item_label">ประเภทสินค้า :</p> 
               <p className="item_data">{arrayData.type_id}</p>
-            </div>
+            </div> */}
+            <Table striped bordered hover>
+              <tbody>
+                <tr>
+                  <td><b>หมายเลขบาร์โค้ด</b></td>
+                  <td>{arrayData.barcode}</td>
+                </tr>
+                <tr>
+                  <td><b>ชื่อสินค้า</b></td>
+                  <td>{arrayData.name}</td>
+                </tr>
+                <tr>
+                  <td><b>ราคาต่อชิ้น</b></td>
+                  <td>{arrayData.price} บาท</td>
+                </tr>
+                <tr>
+                  <td><b>รายละเอียดสินค้า</b></td>
+                  <td>{arrayData.description}</td>
+                </tr>
+                <tr>
+                  <td><b>ประเภทสินค้า</b></td>
+                  <td>{arrayData.type_id}</td>
+                </tr>
+              </tbody>
+            </Table>   
             <div className='btn_container'>
               <button className='edit_btn' onClick={() => {setOpenModal(true);}}>
                 แก้ไขรายละเอียดสินค้า

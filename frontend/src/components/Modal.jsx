@@ -8,8 +8,13 @@ import { Snackbar, Alert } from "@mui/material"
 function Modal(props) {
   const typeitem = useRef();
   const [arrayType,setArrayType] = useState([]);
+  const [editType, setEditType] = useState(null);
   const [errAdd, setErrAdd] = useState(false);
   const [errtext, setErrtext] = useState();
+
+  const newType = useRef();
+
+
 
   const [errorMessage, setErrorMessage] = useState(null)
   const [alertColor, setAlertColor] = useState("error")
@@ -71,7 +76,38 @@ function Modal(props) {
     GetAllType();
   }
 
+  async function updateType(typeold,typenew) {
+    console.log(typeold);
+    console.log(typenew);
+    if (typeold == typenew || typenew == "") {
+      setEditType(null);
+    }
+    else {
 
+      const response3 = await fetch("https://posme.fun:2096/types/edit/"+typeold+"/"+typenew, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          
+        }),
+      });
+      if (response3.ok) {
+        setEditType(null);
+        GetAllType();
+      } else {
+        setErrorMessage("ประเภทสินค้าซ้ำกับประเภทที่มีอยู่")
+        setAlertColor("error")
+      }
+    }
+  }
+    
+
+
+  console.log(editType);
+  console.log(editType==null);
 
   return (
     <div className='background'>
@@ -84,13 +120,37 @@ function Modal(props) {
             <div className="title">
                 <h1>ประเภทสินค้า</h1>
             </div>
-            {React.Children.toArray(arrayType.map(eachType =>
-            <div className='type'>
-              <p className="type_name">{eachType.type_name}</p>
-              <button className="btn_del" onClick={() => DeleteType(eachType._id)}>
-                <img className='btn_img' src={require('../image/logo_deletacc.png')} alt='Delete' />
-              </button>
-            </div>
+            {React.Children.toArray(arrayType.map((eachType, i) => {
+              if (i != editType || editType == null) {
+                return <div className='type'>
+                  <div className='type_item'>
+                    <p className="type_name">{eachType.type_name}</p>
+                    <button className="btn_del" onClick={() => DeleteType(eachType._id)}>
+                      <img className='btn_img' src={require('../image/logo_deletacc.png')} alt='Delete' />
+                    </button>
+                    <button className="btn_del" onClick={() => setEditType(i)}>
+                      <img className='btn_img' src={require('../image/pencil.png')} alt='Edit' />
+                    </button>
+                  </div> 
+                </div>
+              }
+              else {
+                return <div className='type'>
+                  <div className="type_item">
+                    <label className='edit_type_label'>แก้ไข : </label>
+                    <input className="type_name" ref={newType} placeholder={eachType.type_name} defaultValue={eachType.type_name}/>
+                    <button className="btn_del" onClick={() => updateType(eachType.type_name,newType.current.value)}>
+                        <img className='btn_img' src={require('../image/checked.png')} alt='Edit' />
+                      </button>
+                  </div> 
+                </div> 
+              }
+            }
+            
+              
+              
+              
+              
               ))}
             <form action='#' onSubmit={submitHandler}>
               <div className="add_type">
@@ -104,8 +164,7 @@ function Modal(props) {
                     >
                   </input>
                   <div className="submit">
-                    <button className='submit_btn' onClick={() => 
-                                                              GetAllType}>
+                    <button className='submit_btn' onClick={() => GetAllType}>
                       <img className='submit_btn_img' src={require('../image/plus_green.png')} alt="add type" />
                     </button>
                   </div>
