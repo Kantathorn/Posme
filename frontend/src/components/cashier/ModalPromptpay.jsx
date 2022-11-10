@@ -17,7 +17,11 @@ function ModalPromptpay(props)  {
       const [finishModal, setFinishModal] = useState(false);
       const navigate = useNavigate();
       // const [showQR, setShowQR] = useState(false);
+
+      
       useEffect(() => {
+        setShowSum(false)
+
         const getData = async function () {
           const response = await fetch("https://posme.fun:2096/auth/user", {
             method: "GET",

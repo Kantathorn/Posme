@@ -1,5 +1,4 @@
 .edit-box{
-    font-size: 28px;
     text-align: center;
     height: 15vh;
     width: 25vh;
@@ -12,16 +11,15 @@
 
 .resume-logo{
     display: block;
-    margin: 10px auto 10px auto !important;
+    margin: 30px auto 10px auto !important;
 }
 
 .edit-box span{
     color: white;
-    font-size: 20px;
+    font-size: 28px;
 }
 
 .pp-box{
-    font-size: 28px;
     text-align: center;
     height: 15vh;
     width: 25vh;
@@ -34,11 +32,10 @@
 
 .pp-box span{
     color: white;
-    font-size: 20px;
+    font-size: 28px;
 }
 
 .psswd-box{
-    font-size: 28px;
     text-align: center;
     height: 15vh;
     width: 25vh;
@@ -50,16 +47,15 @@
 
 .lock-photo2{
     display: block;
-    margin: 10px auto 10px auto !important;
+    margin: 30px auto 10px auto !important;
 }
 
 .psswd-box span{
     color: white;
-    font-size: 20px;
+    font-size: 28px;
 }
 
 .pay-box{
-    font-size: 28px;
     text-align: center;
     height: 15vh;
     width: 25vh;
@@ -71,16 +67,15 @@
 
 .pay-logo2{
     display: block;
-    margin: 10px auto 10px auto !important;
+    margin: 30px auto 10px auto !important;
 }
 
 .pay-box span{
     color: white;
-    font-size: 20px;
+    font-size: 28px;
 }
 
 .delete-box{
-    font-size: 28px;
     text-align: center;
     height: 15vh;
     width: 25vh;
@@ -92,12 +87,12 @@
 
 .delete-box span{
     color: white;
-    font-size: 20px;
+    font-size: 28px;
 }
 
 .bin-photo{
     display:block;
-    margin: 10px auto 10px auto !important;
+    margin: 30px auto 10px auto !important;
 }
 
 .user_button {

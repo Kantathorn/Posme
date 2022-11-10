@@ -6,7 +6,8 @@ import ModalFinish from './ModalFinish';
 
 const ModalCash = function (props) {
   const {totalAmount, cartItems, closeModal, setShowSum, setChoosePayment} = props;
-  const [money, setMoney] = useState(false);
+  const [change, setChange] = useState(false);
+  const [invalidMoney, setInvalidMoney] = useState(false);
   const [billData, setBillData] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
   const [finishModal, setFinishModal] = useState(false);
@@ -22,7 +23,15 @@ const ModalCash = function (props) {
 
 
   const getMoney = function () {
-    setMoney(moneyref.current.value);
+    console.log(invalidMoney)
+    setChange(moneyref.current.value - totalAmount);
+    if (change < 0) {
+      setInvalidMoney(false)
+    }
+    else {
+      setInvalidMoney(true)
+    }
+    console.log(invalidMoney)
   };
 
 
@@ -106,7 +115,7 @@ const ModalCash = function (props) {
 
               <div className={styles.textbox2}>
                 <p className={styles.text}>เงินทอน</p>
-                {money && <p>{money - totalAmount}฿</p>}
+                {invalidMoney && <p>{change}฿</p>}
                 {/* {money && <p>{money - props.cash}฿</p>} */}
 
               </div>

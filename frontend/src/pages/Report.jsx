@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../components/NavbarUser'
+import Navbar from '../components/NavbarReport'
 import { Navigate,Link } from 'react-router-dom'
 import './styles/Report.css'
 import Sales_logo from '../image/sales.png'

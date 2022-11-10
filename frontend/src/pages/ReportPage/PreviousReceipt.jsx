@@ -30,7 +30,7 @@ const PreviousReceipt = function () {
   };
 
   const genAllBills = function (allBills) {
-    return allBills.map((bill) => {
+    return allBills.slice(0).reverse().map((bill) => {
       return (
         <li
           key={bill._id}
