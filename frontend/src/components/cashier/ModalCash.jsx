@@ -1,11 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styles from "./modalcash.css";
 import { useNavigate } from "react-router-dom";
 import { Snackbar, Alert } from "@mui/material";
 import ModalFinish from './ModalFinish';
 
 const ModalCash = function (props) {
-  const {totalAmount, cartItems, closeModal} = props;
+  const {totalAmount, cartItems, closeModal, setShowSum, setChoosePayment} = props;
   const [money, setMoney] = useState(false);
   const [billData, setBillData] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -15,13 +15,20 @@ const ModalCash = function (props) {
   const [alertColor, setAlertColor] = useState("error");
   console.log(totalAmount);
 
+
+  useEffect(() => {
+    setShowSum(false)
+  },[])
+
+
   const getMoney = function () {
     setMoney(moneyref.current.value);
   };
 
+
+
   const genBill = async function (e) {
     e.preventDefault();
-    
     
     let quan = []
     for (let i of cartItems) {
@@ -63,14 +70,14 @@ const ModalCash = function (props) {
       };
     }
       
-
+    
   
   
   return (
     <div className="background">
       <div className="modal_container">
 
-      <button className='close_btn' onClick={() => {closeModal(false);}}>X</button>
+      <button className='close_btn' onClick={() => {closeModal(false); setShowSum(true); setChoosePayment(false)}}>X</button>
         <div className={styles.main}>
           <div className={styles.center}>
             <form>

@@ -19,7 +19,7 @@ const Backdrop = function (props) {
         <p className={styles.text}>ชื่อผู้ใช้มีอยู่ในระบบแล้วหรือใส่ข้อมูลไม่ครบถ้วน</p>
         <p className={styles.text}>กรุณาลองใหม่อีกครั้ง</p>
         <Link to="/Register" onClick={props.close}>
-          <button type="button" class="btn btn-outline-danger btn-lg">Close</button>
+          <button type="button" className="btn btn-outline-danger btn-lg">Close</button>
         </Link>
       </div>
     </div>

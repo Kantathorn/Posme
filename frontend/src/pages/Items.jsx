@@ -131,11 +131,11 @@ function Items() {
             <label className='filter_label'>ประเภท : </label>
             <select className='select_type' ref={filType} onChange={handleChange}>
               <option value="0">ทั้งหมด</option>
-              {arrayType.map(eachtype => 
+              {React.Children.toArray(arrayType.map(eachtype => 
               <option value={eachtype.index}>
                 {eachtype.type_name}
               </option>
-              )}
+              ))}
             </select>
             <button className='add_item_type_btn'
                 onClick={() => {
@@ -145,7 +145,7 @@ function Items() {
             </button>
           </div>
         </div>
-          {arrayItem.map(eachItem => 
+          {React.Children.toArray(arrayItem.map(eachItem => 
             <Card sx={{ m:0.25, minWidth: 250 }}>
             <CardContent>
               <div className='item_detail' onClick={() => {
@@ -167,7 +167,7 @@ function Items() {
             </CardContent>
           </Card>
                   
-            )}
+            ))}
             {openModal && <ModalItem closeModal={setOpenModal} itemID={itemID} setArrayItem={setArrayItem}/>}
       </div>
       <Link to={'/store/items/additem'}>

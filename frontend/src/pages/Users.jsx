@@ -33,7 +33,7 @@ function Users() {
           </div>
         </Link>
         <Link to="/store/users/edit_promptpay" className='font'>
-          <div className='pay-box'>
+          <div className='pp-box'>
             <img src={ppLogo}
                  alt="edit pp" 
                  width='80'

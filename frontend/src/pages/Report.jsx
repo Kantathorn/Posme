@@ -2,9 +2,9 @@ import React from 'react'
 import Navbar from '../components/NavbarUser'
 import { Navigate,Link } from 'react-router-dom'
 import './styles/Report.css'
-import salesLogo from '../image/sales.png'
-import bestsalesLogo from '../image/bestseller.png'
-import ppLogo from '../image/receipt.png'
+import Sales_logo from '../image/sales.png'
+import BestSales_logo from '../image/bestseller.png'
+import Receipt_logo from '../image/receipt.png'
 
 function Reports() {
   return (

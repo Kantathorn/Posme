@@ -22,6 +22,11 @@ function Cashier() {
   const [emptyCart, setEmptyCart] = useState(false);
   const [scanning, setScanning] = useState(false);
 
+
+  //summaryCard
+  const [showSum, setShowSum] = useState(true);
+
+
   const [results, setResults] = useState("");
 
   //modal
@@ -191,7 +196,7 @@ function Cashier() {
 				<div className="d-grid mt-sm-2 fixed-bottom">
 					<Row>
 						<Col>
-							<Card>
+							{ showSum && <Card>
 								<Card.Body>
 									<ListGroup variant="flush">
 										<ListGroup.Item>
@@ -237,7 +242,7 @@ function Cashier() {
 										</ListGroup.Item>
 									</ListGroup>
 								</Card.Body>
-							</Card>
+							</Card>}
 						</Col>
 					</Row>
 				</div>
@@ -246,16 +251,22 @@ function Cashier() {
             closeModal={setModalAddCart}
             cartItems={cartItems}
             setCartItems={setCartItems}
+			setChoosePayment={setChoosePayment}
+			setShowSum={setShowSum}
       />} 
 	  {paymentByCash && <ModalCash
-        cartItems={cartItems}
+        	cartItems={cartItems}
 	  		totalAmount={cartItems.reduce((a, c) => a + c.price * c.quantity,0)}
 	  		closeModal={setPaymentByCash}
+			  setChoosePayment={setChoosePayment}
+			  setShowSum={setShowSum}
 			/>}
     {modalPromptpay && <ModalPromptpay
 			cartItems={cartItems}
 	  		totalAmount={cartItems.reduce((a, c) => a + c.price * c.quantity,0)}
 	  		closeModal={setModalPromptpay}
+			  setChoosePayment={setChoosePayment}
+			  setShowSum={setShowSum}
 			/>}
 		</div>
     </>

@@ -30,7 +30,7 @@ const Receipt = function (props) {
   }, [id]);
 
   const showItem = function () {
-    return bill.quantity.map((item) => {
+    return React.Children.toArray(bill.quantity.map((item) => {
       return (
         <div className={styles.table}>
           <h4 className={styles.merchname}>{item.item_name}</h4>
@@ -39,7 +39,7 @@ const Receipt = function (props) {
           <h4>{item.price_each * item.quantity}</h4>
         </div>
       );
-    });
+    }));
   };
 
   const check = function () {

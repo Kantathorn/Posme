@@ -60,7 +60,7 @@ return (
         <Navbar.Brand>
           <div className='logout'>
             <a>
-              <button onClick={submitHandler} type='button' class="btn btn-danger">
+              <button onClick={submitHandler} type='button' className="btn btn-danger">
                 logout
               </button>{' '}
             </a>

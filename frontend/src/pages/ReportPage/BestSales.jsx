@@ -70,6 +70,7 @@ function Bestseller() {
         body: JSON.stringify(sendData),
       });
       setButtonColor2(true);
+      setButtonColor1(false);
       const data = await response.json();
       setTotal(data);
     }
@@ -112,7 +113,7 @@ function Bestseller() {
                         ยอดขายรวม
                     </button>
                 </div>
-                {total.map((listItem) => (
+                {total.map(listItem => 
                     // <Card className="list-item">
                     // <p className="itemName">สินค้า: {listItem.item_name}</p>
                     // <p className="itemDetail">จำนวน: {listItem.amount} ชิ้น</p>
@@ -127,7 +128,7 @@ function Bestseller() {
                         </div>
                       </Card>
                     </ul>
-                ))}
+                )}
                 {/* <div className="fill_empty">
                 x
                 </div> */}

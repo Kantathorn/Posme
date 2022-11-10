@@ -9,7 +9,7 @@ const generatePayload = require("promptpay-qr");
 
 
 function ModalPromptpay(props)  {
-      const {closeModal, totalAmount, cartItems, setCartItems} = props;
+      const {closeModal, totalAmount, cartItems, setCartItems, setShowSum, setChoosePayment} = props;
       const [phoneNumber, setPhoneNumber] = useState("0987654321");
       const [amount, setAmount] = useState(788);
       const [qrCode, setqrCode] = useState("sample");
@@ -72,7 +72,7 @@ function ModalPromptpay(props)  {
   return (
     <div className='background'>
         <div className="modal_container3">
-            <button className='close_btn' onClick={() => {closeModal(false);}}>
+            <button className='close_btn' onClick={() => {closeModal(false); setShowSum(true); setChoosePayment(false)}}>
               <h1>x</h1>
             </button>
             <div>

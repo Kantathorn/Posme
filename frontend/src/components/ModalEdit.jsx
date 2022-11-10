@@ -192,9 +192,9 @@ function ModalEdit(props) {
                     <label>ประเภทสินค้า : </label>
                     <select ref={selecttype} className='editinput' onChange={handleChange}>
                         <option value="0">{arrayData.type_id}</option>
-                        {arrayType.map(eachtype =>
+                        {React.Children.toArray(arrayType.map(eachtype =>
                             <option value={eachtype.index}>{eachtype.type_name}</option>
-                        )}
+                        ))}
                     </select>
                 </div>
                 <div>

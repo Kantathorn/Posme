@@ -14,7 +14,7 @@ import { Alert, Snackbar } from '@mui/material';
 
 
 function ModalAddCart(props)  {
-    const {closeModal, cartItems, setCartItems} = props;
+    const {closeModal, cartItems, setCartItems, setShowSum, setChoosePayment} = props;
 
     const barnum = useRef();
     const filType = useRef();
@@ -27,6 +27,7 @@ function ModalAddCart(props)  {
 
 
     useEffect(() => {
+        setShowSum(false)
         async function GetAllItem() {
           const response1 = await fetch("https://posme.fun:2096/items", {
               method: "GET",
@@ -60,11 +61,17 @@ function ModalAddCart(props)  {
 
             if (cartItems.every( vendor => vendor['_id'] !== new_in_cart._id )) {
                 setCartItems(prev => [...prev, new_in_cart]);
-
-                closeModal(false);
+                closeModal(false)
+                setShowSum(true)
+                setChoosePayment(false)
             } else {
-              setErrorMessage("มีสินค้านี้ในรายการชำระเงินอยู่แล้ว");
-              setAlertColor("error");
+              let foundIndex = cartItems.findIndex(x => x._id == item._id);
+              cartItems[foundIndex].quantity = cartItems[foundIndex].quantity + 1;
+              closeModal(false)
+              setShowSum(true)
+              setChoosePayment(false)
+              // setErrorMessage("มีสินค้านี้ในรายการชำระเงินอยู่แล้ว");
+              // setAlertColor("error");
             }
     }
 
@@ -98,7 +105,7 @@ function ModalAddCart(props)  {
   return (
     <div className='background'>
         <div className="modal_container3">
-            <button className='close_btn' onClick={() => {closeModal(false);}}>
+            <button className='close_btn' onClick={() => {closeModal(false); setShowSum(true); setChoosePayment(false)}}>
               <h1>x</h1>
             </button>
             <div>
@@ -130,15 +137,16 @@ function ModalAddCart(props)  {
             <label><span></span>ประเภท &emsp;</label>
             <select className='select_type' ref={filType} onChange={handleChange}>
               <option value="0">ทั้งหมด</option>
-              {arrayType.map(eachtype => 
+              {React.Children.toArray(arrayType.map(eachtype => 
               <option value={eachtype.index}>
                 {eachtype.type_name}
               </option>
-              )}
+              ))}
             </select>
           </div>
         </div>
-          {arrayItem.map(eachItem => 
+          {React.Children.toArray(arrayItem.map(eachItem => 
+          
             <Card sx={{ m:0.25, minWidth: 250 }}>
             <CardContent>
               <div className='item_detail'>
@@ -161,7 +169,7 @@ function ModalAddCart(props)  {
             </CardContent>
           </Card>
                   
-            )}
+            ))}
       </div>
         </div>
         </div>

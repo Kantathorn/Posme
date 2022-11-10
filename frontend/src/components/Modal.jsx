@@ -84,14 +84,14 @@ function Modal(props) {
             <div className="title">
                 <h1>ประเภทสินค้า</h1>
             </div>
-            {arrayType.map(eachType =>
+            {React.Children.toArray(arrayType.map(eachType =>
             <div className='type'>
               <p className="type_name">{eachType.type_name}</p>
               <button className="btn_del" onClick={() => DeleteType(eachType._id)}>
                 <img className='btn_img' src={require('../image/logo_deletacc.png')} alt='Delete' />
               </button>
             </div>
-              )}
+              ))}
             <form action='#' onSubmit={submitHandler}>
               <div className="add_type">
                   <input 
