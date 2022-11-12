@@ -46,10 +46,10 @@ const Receipt = function (props) {
           <h4>{item.quantity}</h4>
           <h4>{item.price_each * item.quantity}</h4> */}
           <div className="row">
-            <div className="col"><p className="text-left fs-5 lh-1">{item.item_name}</p></div>
-            <div className="col"><p className="text-center fs-5 lh-1">{item.price_each}</p></div>
+            <div className="col"><p className="text-left fs-5 lh-sm">{item.item_name}</p></div>
+            <div className="col"><p className="text-center fs-5 lh-1">{item.price_each.toFixed(2)}</p></div>
             <div className="col"><p className="text-center fs-5 lh-1">{item.quantity}</p></div>
-            <div className="col"><p className="text-center fs-5 lh-1">{item.price_each * item.quantity}</p></div>
+            <div className="col"><p className="text-center fs-5 lh-1">{(item.price_each * item.quantity).toFixed(2)}</p></div>
           </div>
         </div>
       );
@@ -134,7 +134,7 @@ const Receipt = function (props) {
                 <hr className={styles.s9}></hr>
               </div>
               <div className="row">
-                <div className="col"><p className="text-left fs-5 lh-1">ชำระโดย &ensp; {bill.payment_method}</p></div>
+                <div className="col"><p className="text-left fs-5 lh-1">ชำระโดย{bill.payment_method}</p></div>
                 <div className="col"><p className="text-center fs-5 lh-1">รับมา &ensp; {bill.cash.toFixed(2)} &ensp; บาท</p></div>
                 <div className="col"><p className="text-end fs-5 lh-1">เงินทอน &ensp; {(bill.cash-bill.quantity.reduce((a, c) => a + c.quantity * c.price_each, 0)).toFixed(2)} &ensp; บาท</p></div>
               </div>

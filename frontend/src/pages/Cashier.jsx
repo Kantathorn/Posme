@@ -141,7 +141,7 @@ function Cashier() {
 						<ListGroup>
 							{cartItems.map((item) => (
 								<ListGroup.Item key={item._id}>
-									<Row className="align-items-center">
+									<Row className="align-items-center item-group">
 										<Col md={4}>
 											{item.name}
 										</Col>
