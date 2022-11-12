@@ -81,7 +81,7 @@ const Receipt = function (props) {
               </div>
               <div className="col-8">
                 <p className="text-center fs-5 fw-bold lh-1">{bill.user_id.store_name}</p>
-                <p className="text-center fs-5 lh-1">{bill.user_id.address}</p>
+                <p className="text-center fs-5 lh-sm">{bill.user_id.address}</p>
                 <p className="text-center fs-5 lh-1">
                   หมายเลขประจำตัวผู้เสียภาษี {bill.user_id.tax_id}
                 </p>
