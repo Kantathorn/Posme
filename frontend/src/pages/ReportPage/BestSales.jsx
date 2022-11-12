@@ -99,6 +99,13 @@ function Bestseller() {
         sortRevenue();
       }
     }
+
+    let currentDate = new Date();
+    let cDay = currentDate.getDate();
+    let cMonth = currentDate.getMonth() + 1;
+    let cYear = currentDate.getFullYear();
+    let CurrentMonth = cYear + "-" + cMonth;
+    console.log(CurrentMonth);
   
     return (
         <div>
@@ -112,7 +119,7 @@ function Bestseller() {
                         />
                 </div>
                 <div className="sel-month">
-                    <input type="month" onChange= {handleChange}/>
+                    <input type="month" max={CurrentMonth} onChange= {handleChange}/>
                 </div>
                 <div className="sort">
                     <span className="sort-font">จัดเรียงโดย</span>

@@ -37,6 +37,14 @@ const Salespage=()=> {
     //     // console.log(data)
     // }
 
+    let currentDate = new Date();
+    let cDay = currentDate.getDate();
+    let cMonth = currentDate.getMonth() + 1;
+    let cYear = currentDate.getFullYear();
+    let CurrentMonth = cYear + "-" + cMonth;
+    console.log(CurrentMonth);
+
+
 
     const getMonth = async function() {
       if (monthPick == true) {
@@ -73,7 +81,7 @@ const Salespage=()=> {
               <img src = {logo} alt = "sales" className='salesimg2' width='250'></img>
                 <div className='sel-month' >
                   {/* เดือน : <input className='picker' type='month' ref={pickDate} onChange={getMonth}/> */}
-                  เดือน : <input className='picker' type='month' ref={pickDate} onChange={() => {setMonthPick(true)}}/>
+                  เดือน : <input className='picker' type='month' max={CurrentMonth} ref={pickDate} onChange={() => {setMonthPick(true)}}/>
                 </div>
                 {/* <button variant="primary" type="submit" className='btn btn-warning selectBut' onClick={() => {setPopUp(true)}}> */}
                 <button variant="primary" type="submit" className='btn btn-warning selectBut' onClick={getMonth}>

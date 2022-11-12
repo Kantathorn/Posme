@@ -61,6 +61,9 @@ const ModalCash = function (props) {
       setErrorMessage("จำนวนเงินไม่ถูกต้อง");
       setAlertColor("error");
       console.log("XXXXXXXX");
+    } else if (isNaN(+moneyref.current.value)) {
+      setErrorMessage("จำนวนเงินไม่ถูกต้อง");
+      setAlertColor("error");
     }
     else {
       const response = await fetch("https://posme.fun:2096/bills", {
@@ -69,7 +72,7 @@ const ModalCash = function (props) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          payment_method: "cash",
+          payment_method: "เงินสด",
           cash: moneyref.current.value,
           quantity: quan, // เอารูปแบบ array นี้มาใส่
         }),
@@ -140,7 +143,9 @@ const ModalCash = function (props) {
               <input
                 className={styles.input3}
                 id="inputcash"
-                type="text"
+                type='number'
+                step="0.25"
+                min = "0.00"
                 inputMode="decimal"
                 placeholder="ใส่จำนวนเงิน"
                 ref={moneyref}
@@ -156,47 +161,46 @@ const ModalCash = function (props) {
                   <h4>{totalAmount}</h4>
                   <h4>บาท</h4>
                 </div>
-                {invalidMoney 
-                  && <div className={styles.spc_btw}>
-                      <h4>เงินทอน</h4> 
-                      <h4>{moneyref.current.value - totalAmount}</h4> 
-                      <h4>บาท</h4> 
-                    </div>}
-                {invalidMoney 
-                  && <div className={styles.table}>
-                    <Table striped bordered hover>
-                              <thead>
-                                <tr>
-                                  <th>เหรียญ / ธนบัตร (บาท)</th>
-                                  <th>จำนวน (เหรียญ / ใบ)</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {change.map((each, i) => 
-                                  {
-                                    if (each > 0) {
-                                      return <tr>
-                                        <td>{coins[i]}</td>
-                                        <td>{each}</td>
-                                      </tr>
-                                    }
-                                  }  
-                                )}
-                              </tbody>
-                          </Table>                
-                    </div>}
+                {invalidMoney && 
+                <div className={styles.spc_btw}>
+                  <h4><b>เงินทอน</b></h4> 
+                  <h4><b>{moneyref.current.value - totalAmount}</b></h4> 
+                  <h4><b>บาท</b></h4> 
+                </div>}
+                {invalidMoney && 
+                <div className={styles.table}>
+                  <Table striped bordered hover size="sm">
+                    <thead>
+                      <tr>
+                        <th>เหรียญ / ธนบัตร (บาท)</th>
+                        <th>จำนวน (เหรียญ / ใบ)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {change.map((each, i) => 
+                        {
+                          if (each > 0) {
+                            return <tr>
+                              <td>{coins[i]}</td>
+                              <td>{each}</td>
+                            </tr>
+                          }
+                        }  
+                      )}
+                    </tbody>
+                  </Table>                
+                </div>}
                 {/* {money && <p>{money - props.cash}฿</p>} */}
-
               </div>
 
               <div className={styles.buttom}>
                 {/* <input type="button" className={styles.button} onClick={getBill} value="แสดงใบเสร็จ"/> */}
                 <Button
 									type="button"
-									variant="primary"
+									variant="success"
                   size="lg"
                   onClick={genBill}>
-                ยืนยัน
+                ยืนยันการชำระเงิน
                 </Button>
                 {/* <input type="button" className={styles.button} onClick={genBill} value="ยืนยัน"/> */}
               </div>

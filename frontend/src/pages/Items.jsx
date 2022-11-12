@@ -15,6 +15,8 @@ import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import InputLabel from '@mui/material/InputLabel';
+
+import Button from 'react-bootstrap/Button';
 // import InputLabel from '@mui/material/InputLabel';
 // import MenuItem from '@mui/material/MenuItem';
 // import FormControl from '@mui/material/FormControl';
@@ -92,32 +94,33 @@ function Items() {
       <Navbar/>
       <div className="mid">
         <div className="search_container">
-        <div style={{display:' inline-block'}}>
-          <Paper
-            component="form"
-            sx={{ p: '2px 4px', m: 2, display: 'flex', alignItems: 'center', width: 400 }}
-          >
-            <div style={{display: 'inline'}}>
-            <IconButton sx={{ p: '10px' }} aria-label="search">
-                <SearchIcon />
-            </IconButton>
-              <InputBase
-                sx={{ml: 0.5, mr: 4, flex: 1, p: 1 }}
-                placeholder="ค้นหา ชื่อ / บาร์โค้ด"
-                inputRef={barnum}
-                onChange={handleChange}
-              />
-            {/* <Divider sx={{ height: 1, m: 0.2}} orientation="vertical" /> */}
-              <IconButton color="primary" sx={{ p: '10px' }} aria-label="scan-barcode" onClick={() => {
-                      setCamModal(true);
-                    }}>
-                  <img className='scanner_btn_img' src={require('../image/barcode-scanner.png')}/>
-              </IconButton>   
-          </div>  
-          
-             
-          </Paper>
-        </div>
+          <div >
+            <div  >
+              <Paper
+                component="form"
+                sx={{ p: '2px 4px', m: 2, display: 'flex', alignItems: 'center', width: 400 }}
+              >
+                <div style={{display: 'inline'}}>
+                <IconButton sx={{ p: '10px' }} aria-label="search">
+                    <SearchIcon />
+                </IconButton>
+                  <InputBase
+                    sx={{ml: 0.5, mr: 4, flex: 1, p: 1 }}
+                    placeholder="ค้นหา ชื่อ / บาร์โค้ด"
+                    inputRef={barnum}
+                    onChange={handleChange}
+                  />
+                {/* <Divider sx={{ height: 1, m: 0.2}} orientation="vertical" /> */}
+                  <IconButton color="primary" sx={{ p: '10px' }} aria-label="scan-barcode" onClick={() => {
+                          setCamModal(true);
+                        }}>
+                      <img className='scanner_btn_img' src={require('../image/barcode-scanner.png')}/>
+                  </IconButton>   
+              </div>  
+              
+                
+              </Paper>
+            </div>
 
           {/* <input className='search' ref={barnum} type="text" placeholder="Search..." onChange={handleChange}/>
           <button className='scanner_btn_Item'  
@@ -127,45 +130,69 @@ function Items() {
                 <img className='scanner_btn_img' src={require('../image/barcode-scanner.png')}/>
           </button> */}
           
-          <div style={{width: '100%'}}>
-            <label className='filter_label'>ประเภท : </label>
-            <select className='select_type' ref={filType} onChange={handleChange}>
-              <option value="0">ทั้งหมด</option>
-              {React.Children.toArray(arrayType.map(eachtype => 
-              <option value={eachtype.index}>
-                {eachtype.type_name}
-              </option>
-              ))}
-            </select>
-            <button className='add_item_type_btn'
-                onClick={() => {
-                  setOpenModalType(true);
-                }}>
-                    จัดการประเภทสินค้า
-            </button>
+          <div className='container mb-4' style={{width: '100%'}}>
+            <div className="row ">
+              <div className='col-2'>
+                <label className='filter_label'> ประเภท </label>
+              </div>
+              <div className='col-8'>
+                <select className='form-select' ref={filType} onChange={handleChange}>
+                  <option value="0">ทั้งหมด</option>
+                  {React.Children.toArray(arrayType.map(eachtype => 
+                  <option value={eachtype.index}>
+                    {eachtype.type_name}
+                  </option>
+                  ))}
+                </select>
+              </div>
+              <div className='col-2'>
+                <Button
+                  variant="light"
+                  onClick={() => {
+                    setOpenModalType(true);
+                  }}>
+                      🖊️
+                </Button>
+              </div>
+            </div>         
           </div>
+          </div>
+        
         </div>
           {React.Children.toArray(arrayItem.map(eachItem => 
-            <Card sx={{ m:0.25, minWidth: 250 }}>
-            <CardContent>
-              <div className='item_detail' onClick={() => {
-                      window.scrollTo(0,0);
-                      PassName(eachItem._id);
-                      setOpenModal(true);
-                    }}>
-                <Typography sx={{ fontSize: 20, mb: 2 }} color="text.secondary" gutterBottom>
-                  {eachItem.barcode}
-                </Typography>
-                <Typography variant="h4" component="div">
-                  {eachItem.name}
-                </Typography>
-                <Typography sx={{ fontSize: 20, mt: 2 }} color="text.secondary">
-                  {eachItem.price.toFixed(2)} บาท
-                </Typography>
-              </div> 
-
-            </CardContent>
-          </Card>
+            <div className="container-sm">
+              <div className="mb-1">
+                <Card>
+                    <CardContent>
+                      <div className='containter' onClick={() => {
+                              window.scrollTo(0,0);
+                              PassName(eachItem._id);
+                              setOpenModal(true);
+                            }}>
+                              <div className='row'>
+                                <div className='col-4'>
+                                  <Typography color="text.secondary">
+                                  {eachItem.barcode}
+                                  </Typography>
+                                </div>
+                                <div className="col-6">
+                                  <Typography component="div">
+                                    {eachItem.name}
+                                  </Typography>
+                                </div>
+                                <div className='col-2'>
+                                  <Typography color="text.secondary">
+                                  {eachItem.price.toFixed(2)} บาท
+                                  </Typography>
+                                </div>                             
+                              </div>
+                      </div> 
+                    </CardContent>
+                  </Card>
+              </div>
+                
+            </div>
+            
                   
             ))}
             {openModal && <ModalItem closeModal={setOpenModal} itemID={itemID} setArrayItem={setArrayItem}/>}

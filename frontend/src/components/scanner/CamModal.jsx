@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Scanner from './Scanner';
 import Result from './Result';
 import './styles/cammodal.css'
+import Button from 'react-bootstrap/Button';
+
 
 function CamModal(props)  {
     const {closeModal, setScanBarNum,barnum,setArrayItem} = props;
@@ -52,7 +54,9 @@ function CamModal(props)  {
             <img className='close_btn_img' src={require('../../image/logo_err.png')} alt="close" />
         </button>
                 <div>
-                    <button onClick={() => setScanning(!scanning) }>{scanning ? 'Stop Camera' : 'Start Camera'}</button>
+                    <div className='d-grid gap-2 col-6 mx-auto'>
+                        <Button variant="warning" onClick={() => setScanning(!scanning) }>{scanning ? 'Stop Camera' : 'Start Camera'}</Button>
+                    </div>
                     <h1>{results}</h1>
                     {/* <ul className="results">
                         {results.map((result) => (result.codeResult && <Result key={result.codeResult.code} result={result} />))}

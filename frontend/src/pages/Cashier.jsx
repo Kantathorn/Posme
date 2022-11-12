@@ -82,6 +82,7 @@ function Cashier() {
         price: item.price,
         quantity: 1
       }
+	  sleep((Math.random() * (750 - 100) + 100))
       if (cartItems.every( vendor => vendor['_id'] !== new_in_cart._id )) {
         setCartItems(prev => [...prev, new_in_cart]);
       }
@@ -103,7 +104,7 @@ function Cashier() {
       <Navcashier/>
 
       <div>
-      <div className='position-sticky'>
+      <div className='position-sticky cashier-body'>
         <div className="d-grid mt-sm-2 mb-sm-2 m-1">
             <Button
               type="button"
@@ -124,6 +125,7 @@ function Cashier() {
         <div className="d-grid mt-sm-2 mb-sm-2 m-1">
           <Button
             type="button"
+			className="add-button"
             size="lg"
             variant="warning"
             onClick={() => {
@@ -219,7 +221,7 @@ function Cashier() {
 																c.quantity,
 														0
 													)}{' '}
-													฿
+													บาท
 												</h3>
 											</div>
 										</ListGroup.Item>

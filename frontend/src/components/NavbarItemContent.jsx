@@ -55,7 +55,7 @@ function NavbarItemContent() {
                         </div>
                     </Navbar.Brand>
                     <div className='pagename'>
-                        Users
+                        Items
                     </div>
                     <Navbar.Brand>
                         <div className='logout'>

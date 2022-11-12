@@ -170,10 +170,10 @@ function ModalEdit(props) {
                 <img className='close_btn_img' src={require('../image/logo_err.png')} alt="close" />
             </button>
             <form action='#' onSubmit={submitHandler}>
-                <h1>แก้ไขรายละเอียดสินค้า</h1>
+                <h3>แก้ไขรายละเอียดสินค้า</h3>
                 <div className='edit_detail'>
                     <label>หมายเลขบาร์โค้ด : </label>
-                    <input id="barcode_num" ref={barnum} required className='editinput' placeholder='หมายเลขบาร์โค้ด' type="number" defaultValue={arrayData.barcode}></input>
+                    <input id="barcode_num" ref={barnum} required pattern="[0-9]{13}" className='editinput' placeholder='หมายเลขบาร์โค้ด' type="tel" defaultValue={arrayData.barcode}></input>
                 </div>
                 <div className='edit_detail'>
                     <label>ชื่อสินค้า : </label>
@@ -188,7 +188,7 @@ function ModalEdit(props) {
                     <label>รายละเอียดสินค้า : </label>
                     <input id='item_desc' ref={itemdes} className='editinput' placeholder='รายละเอียดสินค้า' type="text" defaultValue={arrayData.description}></input>
                 </div>
-                <div className='edit_detail'>
+                {/* <div className='edit_detail'>
                     <label>ประเภทสินค้า : </label>
                     <select ref={selecttype} className='editinput' onChange={handleChange}>
                         <option value="0">{arrayData.type_id}</option>
@@ -196,10 +196,25 @@ function ModalEdit(props) {
                             <option value={eachtype.index}>{eachtype.type_name}</option>
                         ))}
                     </select>
+                </div> */}
+                <div class="row g-3 align-items-center mb-3">
+                  <div class="col-auto">
+                    <label class="col-form-label">ประเภทสินค้า :</label>
+                  </div>
+                  <div class="col-auto">
+                    <select ref={selecttype} className='form-select' onChange={handleChange}>
+                      <option value="0">{arrayData.type_id}</option>
+                      {React.Children.toArray(arrayType.map(eachtype => 
+                        <option value={eachtype.index}>{eachtype.type_name}</option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
-                <div>
-                    <input type='submit' className='accept_edit_btn' value="ยืนยันการแก้ไข" />
-                    <input type='button' className='delete_item_btn' onClick={DeleteItem} value="ลบสินค้า"/>
+                <div class="d-grid gap-4 d-md-flex mb-3 mt-3">
+                    {/* <input type='submit' className='accept_edit_btn' value="ยืนยันการแก้ไข" />
+                    <input type='button' className='delete_item_btn' onClick={DeleteItem} value="ลบสินค้า"/> */}
+                    <button type="submit" class="btn btn-success">ยืนยันการแก้ไข</button>
+                    <button type="button" class="btn btn-danger" onClick={DeleteItem}>ลบสินค้า</button>
                 </div>
             </form>
         </div>

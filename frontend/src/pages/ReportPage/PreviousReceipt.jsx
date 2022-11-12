@@ -59,6 +59,14 @@ const PreviousReceipt = function () {
     const data = await response.json();
     setAllBills(data);
   };
+
+  let currentDate = new Date();
+  let cDay = currentDate.getDate();
+  let cMonth = currentDate.getMonth() + 1;
+  let cYear = currentDate.getFullYear();
+  let CurrentDate = cYear + "-" + cMonth + "-" + cDay;
+  console.log(CurrentDate);
+
   return (
     <div>
       <Navbar/>
@@ -67,7 +75,7 @@ const PreviousReceipt = function () {
           <div className={styles.month_box}>
             <label htmlFor="month">ค้นหาจากวันที่:</label>
             <form action="#" onChange={submitForm}>
-              <input type="date" name="month" id="month" ref={dateRef} />
+              <input type="date" name="month" max={CurrentDate} id="month" ref={dateRef} />
             </form>
           </div>
           <ul className={styles.all_receipt_box}>

@@ -1,16 +1,9 @@
 .additem_container {
     background-color: white;
-    margin-left: 287px;
-    margin-right: auto;
     margin-top: 20px;
     border-radius: 10px;
     width: 450px;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
 }
 
 .additem_input {

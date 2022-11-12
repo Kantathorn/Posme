@@ -111,7 +111,7 @@ function Modal(props) {
 
   return (
     <div className='background'>
-        <div className="modal_container">
+        <div className="modal_container d-flex flex-column">
             <button className='close_add_btn' onClick={() => {
                   props.closeModal(false);
                   }}>

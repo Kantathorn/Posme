@@ -59,7 +59,7 @@ function ModalPromptpay(props)  {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            payment_method: "promptpay",
+            payment_method: "พร้อมเพย์",
             cash: totalAmount,
             quantity: quan, // เอารูปแบบ array นี้มาใส่
           }),
@@ -100,10 +100,10 @@ function ModalPromptpay(props)  {
           <div>
               <Button
                 type="button"
-                variant="primary"
+                variant="success"
                 size="lg"
                 onClick={genBill}>
-              ชำระเงินเรียบร้อย
+              ยืนยันการชำระเงิน
               </Button>
           </div>
         </div>

@@ -89,7 +89,8 @@ const AddItem = () => {
     <>
       <Navitem />
         {/* <form action='#'> */}
-      <div className="additem_container">
+        <div className="d-flex justify-content-center">
+          <div className="additem_container">
         <h1 className='Add_title'>เพิ่มรายการสินค้า</h1>
         <form onSubmit={submitHandler}>
 
@@ -149,9 +150,9 @@ const AddItem = () => {
               ></input>
           </div>
 
-          <div className='item_type'>
+          {/* <div className='item_type'>
             <label className='type_label'>ประเภทสินค้า : </label>
-            <select onChange={handleChange}>
+            <select className='form-select' onChange={handleChange}>
               <option value="0">none</option>
               {React.Children.toArray(arrayType.map(eachtype => 
               <option value={eachtype.index}>
@@ -159,6 +160,22 @@ const AddItem = () => {
               </option>
               ))}
             </select>
+          </div> */}
+
+          <div class="row g-3 align-items-center mb-3">
+            <div class="col-auto">
+              <label class="col-form-label">ประเภทสินค้า :</label>
+            </div>
+            <div class="col-auto">
+              <select className='form-select' onChange={handleChange}>
+                <option value="0">none</option>
+                {React.Children.toArray(arrayType.map(eachtype => 
+                <option value={eachtype.index}>
+                  {eachtype.type_name}
+                </option>
+                ))}
+              </select>
+            </div>
           </div>
           
           {/* <div type="button" className='add_item_type_btn'
@@ -167,10 +184,12 @@ const AddItem = () => {
             }}>
                 จัดการประเภทสินค้า
           </div> */}
-          <input type="submit" value="บันทึก" className='add_item_btn'></input>
+          {/* <input type="submit" value="บันทึก" className='add_item_btn'></input> */}
+          <button type="submit" class="btn btn-success mb-3">บันทึก</button>
         </form>
-        
-    </div>
+    </div>     
+        </div>
+      
 
           {/* {openModal && <Modal 
             closeModal={setOpenModal}

@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 1rem;
+    /* gap: 1rem; */
 }
 
 .search {
@@ -40,6 +40,7 @@
     background-color: #242E38;
     justify-content: center;
     align-items: center;
+    /* width: 100%; */
     position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 0;

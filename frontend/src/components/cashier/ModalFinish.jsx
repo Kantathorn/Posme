@@ -6,10 +6,14 @@ import { Link } from 'react-router-dom';
 import check from '../../image/checked.png'
 import styles from "./modalFinish.module.css";
 
-function ModalAddCart(props)  {
+function ModalFinish(props)  {
     const {closeModal, closeFinishModal, bill_id, setCartItems, setShowSum, setChoosePayment} = props;
     // console.log(bill_id);
     
+  useEffect(() => {
+    // closeModal(false)
+  }, [])
+
   useEffect(() => {
     setCartItems([])
   })
@@ -22,12 +26,14 @@ function ModalAddCart(props)  {
             </button> */}
       
             <div className={styles.finish_text}>
-              <h3>ชำระเงินเสร็จสิ้น</h3>
+              <h3>ชำระเงินเรียบร้อย</h3>
             </div>
             <img className={styles.finish_img} src={check} alt='check' />
             <div>
               <Button
                 type="button"
+                size="lg"
+                variant="outline-primary"
                 className={styles.button_1}
                 onClick={(e) => {
                   e.preventDefault();
@@ -36,7 +42,7 @@ function ModalAddCart(props)  {
                   // window.location.href='https://posme.fun:8443/receipt/id/' + bill_id;
                 }}
                 >แสดงใบเสร็จ</Button>
-              <Button onClick={() => {closeFinishModal(false);
+              <Button size="lg" onClick={() => {closeFinishModal(false);
                                       closeModal(false) ; setShowSum(true); setChoosePayment(false)}}>เสร็จสิ้น</Button>
             </div>
             {/* <button onClick={closeFinishModal(false)}>เสร็จสิ้น</button> */}
@@ -46,4 +52,4 @@ function ModalAddCart(props)  {
   )
 }
 
-export default ModalAddCart
+export default ModalFinish

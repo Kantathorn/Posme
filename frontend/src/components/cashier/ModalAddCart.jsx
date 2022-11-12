@@ -10,7 +10,10 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import InputLabel from '@mui/material/InputLabel';
 import { Button } from 'react-bootstrap';
-import { Alert, Snackbar } from '@mui/material';
+import { Alert, FormControl, Input, Snackbar } from '@mui/material';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import Box from '@mui/material/Box';
 
 
 function ModalAddCart(props)  {
@@ -104,77 +107,83 @@ function ModalAddCart(props)  {
 
   return (
     <div className='background'>
-        <div className="modal_container3">
-            <button className='close_btn' onClick={() => {closeModal(false); setShowSum(true); setChoosePayment(false)}}>
-              <img className='close_add_btn_img' src={require('../../image/logo_err.png')} alt="close" />
-            </button>
-            <div>
-      <div className="mid">
-        <div className="search_container_cart">
-        <div style={{display:' inline-block'}}>
-          <Paper
-            component="form"
-            sx={{ p: '2px 4px', m: 2, display: 'flex', alignItems: 'center', width: 400 }}
-          >
-            <div style={{display: 'inline'}}>
-            <IconButton sx={{ p: '10px' }} aria-label="search">
-                <SearchIcon />
-            </IconButton>
-              <InputBase
-                sx={{ml: 0.5, mr: 4, flex: 1, p: 1 }}
-                placeholder="ค้นหา ชื่อ / บาร์โค้ด"
-                inputRef={barnum}
-                onChange={handleChange}
-              />
-            {/* <Divider sx={{ height: 1, m: 0.2}} orientation="vertical" /> */}
-        
-          </div>  
-             
-          </Paper>
-        </div>
-
-          <div style={{width: '100%', display: 'center'}}>
-            <label><span></span>ประเภท &emsp;</label>
-            <select className='select_type' ref={filType} onChange={handleChange}>
-              <option value="0">ทั้งหมด</option>
-              {React.Children.toArray(arrayType.map(eachtype => 
-              <option value={eachtype.index}>
-                {eachtype.type_name}
-              </option>
-              ))}
-            </select>
-          </div>
-        </div>
-          {React.Children.toArray(arrayItem.map(eachItem => 
-          
-            <Card sx={{ m:0.25, minWidth: 250 }}>
-            <CardContent>
-              <div className='item_detail'>
-                <Typography sx={{ fontSize: 20, mb: 1 }} color="text.secondary" gutterBottom>
-                  {eachItem.barcode}
-                </Typography>
-                <Typography variant="h4" component="div">
-                  {eachItem.name}
-                </Typography>
-                <Typography sx={{ fontSize: 20, mt: 1 }} color="text.secondary">
-                  {eachItem.price.toFixed(2)} บาท
-                </Typography>
-              </div> 
-              <div className="d-grid mt-sm-4 gap-2">
-              <Button onClick={(e) => addHandler(eachItem)}>
-                เพิ่ม
-              </Button>
+      <div className="modal_container3">
+      <div>
+        <button className='close_btn' onClick={() => {closeModal(false); setShowSum(true); setChoosePayment(false)}}>
+          <img className='close_add_btn_img' src={require('../../image/logo_err.png')} alt="close" />
+        </button>
+        <div className="mid">
+          <div className="search_container_cart">
+            <div style={{display:' inline-block'}}>
+              <TextField
+              sx={{ m: 1.5, display: 'flex', alignItems: 'center', width: 420 }}
+              fullWidth
+              id="search-box" 
+              label="ค้นหา ชื่อ / บาร์โค้ด" 
+              variant="outlined" 
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              }}
+              inputRef={barnum}
+              onChange={handleChange}/>
+            </div>
+            <div className="container">
+              <div className="row align-items-center mb-3">
+                <div className='col-md-auto'>
+                  ประเภท
+                </div>
+                <div className='col'>
+                  <select className='form-select' ref={filType} onChange={handleChange}>
+                    <option value="0">ทั้งหมด</option>
+                      {React.Children.toArray(arrayType.map(eachtype => 
+                        <option value={eachtype.index}>
+                          {eachtype.type_name}
+                        </option>
+                    ))}
+                  </select>
+                </div>
               </div>
-            
-            </CardContent>
-          </Card>
-                  
-            ))}
+            </div>
+          </div>
+          {React.Children.toArray(arrayItem.map(eachItem => 
+            <Card sx={{ minWidth: 200 }} variant="outlined">
+              <CardContent>
+                <div className="item_detail">
+                  <div className="row">
+                    <div className='col'>
+                      <Typography sx={{ fontSize: 16}} color="text.secondary" gutterBottom>
+                        {eachItem.barcode}
+                      </Typography>
+                    </div>
+                    <div className='col'>
+                      <Typography variant="h9" component="div">
+                        {eachItem.name}
+                      </Typography>
+                    </div>
+                    <div className='col'>
+                      <Typography sx={{ fontSize: 16}} color="text.secondary">
+                        {eachItem.price.toFixed(2)} ฿
+                      </Typography>
+                    </div> 
+                    <div className="col">
+                      <Button size="lg" variant="success" onClick={(e) => addHandler(eachItem)}>
+                        เพิ่ม
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
-        </div>
-        </div>
-        {
-        errorMessage && 
+      </div>
+    {
+      errorMessage && 
         <Snackbar  open={errorMessage} onClose={() => setErrorMessage(false)} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} autoHideDuration={5000} bodyStyle={{ height: 200, width: 200, flexGrow: 0 }}>
           <Alert onClose={() => setErrorMessage(false)} severity={alertColor} sx={{ width: '100%' }}>
             <div className="errormssg">
@@ -182,7 +191,7 @@ function ModalAddCart(props)  {
             </div>
           </Alert>
         </Snackbar>
-      }
+    }
     </div>
   )
 }

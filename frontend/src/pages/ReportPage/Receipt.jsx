@@ -11,6 +11,7 @@ const Receipt = function (props) {
   const location = useLocation();
   const [bill, setBill] = useState(false);
   const [qrCode, setqrCode] = useState("sample");
+  const [printBtn, setPrintBtn] = useState(true);
   const [total, setTotal] = useState(0);
   const id = params.id;
 
@@ -29,14 +30,27 @@ const Receipt = function (props) {
     setqrCode(`https://posme.fun:8443/receipt/id/${id}`);
   }, [id]);
 
+  const handlePrint = async () => {
+    await setPrintBtn(false)
+    await window.print()
+    // setTimeout(function () { setPrintBtn(true) }, 100)
+    return false
+  }
+
   const showItem = function () {
     return React.Children.toArray(bill.quantity.map((item) => {
       return (
-        <div className={styles.table}>
-          <h4 className={styles.merchname}>{item.item_name}</h4>
+        <div>
+          {/* <h4 className={styles.merchname}>{item.item_name}</h4>
           <h4>{item.price_each}</h4>
           <h4>{item.quantity}</h4>
-          <h4>{item.price_each * item.quantity}</h4>
+          <h4>{item.price_each * item.quantity}</h4> */}
+          <div className="row">
+            <div className="col"><p className="text-left fs-5 lh-1">{item.item_name}</p></div>
+            <div className="col"><p className="text-center fs-5 lh-1">{item.price_each}</p></div>
+            <div className="col"><p className="text-center fs-5 lh-1">{item.quantity}</p></div>
+            <div className="col"><p className="text-center fs-5 lh-1">{item.price_each * item.quantity}</p></div>
+          </div>
         </div>
       );
     }));
@@ -60,135 +74,215 @@ const Receipt = function (props) {
         location.state?.payment_method !== "QR" &&
         location.state?.payment_method !== "cash" && (
           <div className={styles.main}>
-            <p className={styles.header}>ใบเสร็จรับเงิน</p>
-            <p>เลขที่ใบเสร็จ {bill.receipt_no} </p>
-            <p>
-              วันที่ {bill.date} {bill.time} น.
-            </p>
-            <br></br>
-            <hr></hr>
-            <h1 className={styles.storeinfo}>ร้าน: {bill.user_id.store_name}</h1>
-            <h3 className={styles.storeinfo}>ที่อยู่: {bill.user_id.address}</h3>
-            {/* <h3 className={styles.storeinfo}>Faculty of Engineering</h3>
-            <h3 className={styles.storeinfo}>Kasersart University</h3> */}
-            <h3 className={styles.storeinfo}>
-              หมายเลขประจำตัวผู้เสียภาษี: {bill.user_id.tax_id}
-            </h3>
-            <br></br>
-            <hr></hr>
-            <div className={styles.table}>
-              <h2 className={styles.tableHeader}>รายการสินค้า</h2>
-              <h2 className={styles.tableHeader}>ราคาต่อหน่วย(บาท)</h2>
-              <h2 className={styles.tableHeader}>จำนวน</h2>
-              <h2 className={styles.tableHeader}>จำนวนเงิน(บาท)</h2>
+            <div className="row">
+              <div className="col-2">
+                { printBtn && <button className="btn btn-primary" onClick={handlePrint}>Print
+                </button> } 
+              </div>
+              <div className="col-8">
+                <p className="text-center fs-5 fw-bold lh-1">{bill.user_id.store_name}</p>
+                <p className="text-center fs-5 lh-1">{bill.user_id.address}</p>
+                <p className="text-center fs-5 lh-1">
+                  หมายเลขประจำตัวผู้เสียภาษี {bill.user_id.tax_id}
+                </p>
+              </div>
+              <div className="col-2 text-end">
+                <QRCode value={qrCode} size={100} />
+                {/* <sub style={{'wordBreak': 'break-all'}}>{window.location.href}</sub> */}
+              </div>
             </div>
             <hr></hr>
-
+            <div>
+              <p className="text-center fs-4 fw-bold lh-base">ใบเสร็จรับเงิน/ใบกำกับภาษีแบบย่อ</p>
+              <div className="row">
+                <div className="col">
+                  <p className="text-left fs-5 lh-1">เลขที่ใบเสร็จ {bill.receipt_no}</p>
+                </div>
+                <div className="col">
+                  <p className="text-end fs-5 lh-1">วันที่ {bill.date} {bill.time} น.</p>
+                </div>
+                <hr></hr>
+              </div>
+            </div>
+            <div>
+              <div className="row">
+                <div className="col"><p className="text-center fs-5 lh-1">รายการสินค้า</p></div>
+                <div className="col"><p className="text-center fs-5 lh-1">หน่วยละ (บาท)</p></div>
+                <div className="col"><p className="text-center fs-5 lh-1">จำนวน</p></div>
+                <div className="col"><p className="text-center fs-5 lh-1">รวมเงิน (บาท)</p></div>
+                <hr></hr>
+              </div>
+            </div>
             {showItem()}
-            {/* <p className={styles.total_price}>ราคารวม: {}บาท</p> */}
-
-            <div className={styles.total}>
-              <h2 className={styles.totalPrice}>ราคาสุทธิ์: {bill.quantity.reduce((a, c) => a + c.quantity * c.price_each, 0)} บาท</h2>
-              <h2 className={styles.totalPrice}>รับมา: {bill.cash} บาท</h2>
-              <h2 className={styles.totalPrice}>เงินทอน: {bill.cash-bill.quantity.reduce((a, c) => a + c.quantity * c.price_each, 0)} บาท</h2>
-              <h2 className={styles.totalPrice}>วิธีการชำระเงิน: {bill.payment_method}</h2>
+            <hr></hr>
+            <div>
+              <div className="row">
+                <div className="col"><p className="text-left fs-5 lh-1">จำนวนรวม &ensp; {bill.quantity.reduce((a, c) => a + c.quantity, 0)} &ensp; ชิ้น</p></div>
+              </div>
+              <div className="row">
+                <div className="col"><p className="text-left fs-5 lh-1">ราคาไม่รวมภาษีมูลค่าเพิ่ม</p></div>
+                <div className="col"><p className="text-end fs-5 lh-1">{(bill.quantity.reduce((a, c) => Math.round(a + c.quantity * c.price_each), 0) * (100 / 107)).toFixed(2)} &ensp; บาท</p></div>
+              </div>
+              <div className="row">
+                <div className="col"><p className="text-left fs-5 lh-1">ภาษีมูลค่าเพิ่ม 7%</p></div>
+                <div className="col"><p className="text-end fs-5 lh-1">{(bill.quantity.reduce((a, c) => Math.round(a + c.quantity * c.price_each ), 0) * (7 / 107)).toFixed(2)} &ensp; บาท</p></div>
+                <hr></hr>
+              </div>
+              <div className="row">
+                <div className="col"><p className="text-left fs-5 lh-1">รวมทั้งสิ้น</p></div>
+                <div className="col"><p className="text-end fs-5 lh-1">{bill.quantity.reduce((a, c) => a + c.quantity * c.price_each, 0).toFixed(2)} &ensp; บาท</p></div>
+                <hr className={styles.s9}></hr>
+              </div>
+              <div className="row">
+                <div className="col"><p className="text-left fs-5 lh-1">ชำระโดย &ensp; {bill.payment_method}</p></div>
+                <div className="col"><p className="text-center fs-5 lh-1">รับมา &ensp; {bill.cash.toFixed(2)} &ensp; บาท</p></div>
+                <div className="col"><p className="text-end fs-5 lh-1">เงินทอน &ensp; {(bill.cash-bill.quantity.reduce((a, c) => a + c.quantity * c.price_each, 0)).toFixed(2)} &ensp; บาท</p></div>
+              </div>
+              {/* <p className="text-right fs-5 lh-1">ราคาไม่รวมภาษีมูลค่าเพิ่ม &ensp; {bill.quantity.reduce((a, c) => a + c.quantity * c.price_each * 0.93, 0)} บาท</p>
+              <p className="text-right fs-5 lh-1">ภาษีมูลค่าเพิ่ม 7% &ensp; {bill.quantity.reduce((a, c) => a + c.quantity * c.price_each * 0.07, 0)} บาท</p>
+              <p className="text-right fs-5 lh-1">รวมทั้งสิ้น &ensp; {bill.quantity.reduce((a, c) => a + c.quantity * c.price_each, 0)} บาท</p>
+              <h2 className={styles.totalPrice}>รับมา &ensp; {bill.cash} บาท</h2>
+              <h2 className={styles.totalPrice}>เงินทอน &ensp; {bill.cash-bill.quantity.reduce((a, c) => a + c.quantity * c.price_each, 0)} บาท</h2>
+              <hr className={styles.s9}></hr>
+              <h2 className={styles.totalPrice}>ชำระโดย &ensp; {bill.payment_method}</h2> */}
             </div>
             <br></br>
-            <br></br>
-            <br></br>
-
             <div className={styles.box}>
-              <QRCode value={qrCode} size={150} />
+              {/* <QRCode value={qrCode} size={150} /> */}
+              <p className="text-center fs-5 lh-lg">.</p>
+              <p className="text-center fs-5 lh-lg mt-2">ขอบคุณที่ใช้บริการ</p>
             </div>
           </div>
         )}
-      {bill && location.state?.payment_method === "cash" && (
+      {/* {bill && location.state?.payment_method === "cash" && (
         <div className={styles.main}>
-          <p className={styles.header}>ใบเสร็จรับเงิน</p>
-          <p>เลขที่ใบเสร็จ {bill.receipt_no} </p>
-          <p>
-            วันที่ {bill.date} {bill.time} น.
-          </p>
-          <br></br>
-          <hr></hr>
-          <h1 className={styles.storeinfo}>ร้าน: {bill.user_id.store_name}</h1>
-          <h3 className={styles.storeinfo}>ที่อยู่: {bill.user_id.address}</h3>
-          <h3 className={styles.storeinfo}>
-            หมายเลขประจำตัวผู้เสียภาษี: {bill.user_id.tax_id}
-          </h3>
-          <br></br>
-          <hr></hr>
-          <div className={styles.table}>
-            <h2 className={styles.tableHeader}>รายการสินค้า</h2>
-            <h2 className={styles.tableHeader}>ราคาต่อหน่วย(บาท)</h2>
-            <h2 className={styles.tableHeader}>จำนวน</h2>
-            <h2 className={styles.tableHeader}>จำนวนเงิน(บาท)</h2>
+          <div>
+            <p className="text-center fs-5 fw-bold lh-1">{bill.user_id.store_name}</p>
+            <p className="text-center fs-5 lh-1">{bill.user_id.address}</p>
+            <p className="text-center fs-5 lh-1">
+              หมายเลขประจำตัวผู้เสียภาษี {bill.user_id.tax_id}
+            </p>
           </div>
           <hr></hr>
-      
-                  {showItem()}
-                  {/* <p className={styles.total_price}>ราคารวม: {}บาท</p> */}
-      
-                  <div className={styles.total}>
-                    <h2 className={styles.totalPrice}>ราคาสุทธิ์: {bill.quantity.reduce((a, c) => a + c.quantity * c.price_each, 0)} บาท</h2>
-                    <h2 className={styles.totalPrice}>รับมา: {bill.cash} บาท</h2>
-                    <h2 className={styles.totalPrice}>เงินทอน: {bill.cash-bill.quantity.reduce((a, c) => a + c.quantity * c.price_each, 0)} บาท</h2>
-                    <h2 className={styles.totalPrice}>วิธีการชำระเงิน: {bill.payment_method}</h2>
-                  </div>
-                  <br></br>
-                  <br></br>
-                  <br></br>
-      
-                  <div className={styles.box}>
-                    <QRCode value={qrCode} size={150} />
-                  </div>
-                </div>
+          <div>
+            <p className="text-center fs-4 fw-bold lh-base">ใบเสร็จรับเงิน/ใบกำกับภาษีแบบย่อ</p>
+            <div className="row">
+              <div className="col">
+                <p className="text-left fs-5 lh-1">เลขที่ใบเสร็จ {bill.receipt_no}</p>
+              </div>
+              <div className="col">
+                <p className="text-end fs-5 lh-1">วันที่ {bill.date} {bill.time} น.</p>
+              </div>
+              <hr></hr>
+            </div>
+          </div>
+          <div>
+            <div className="row">
+              <div className="col"><p className="text-center fs-5 lh-1">รายการสินค้า</p></div>
+              <div className="col"><p className="text-center fs-5 lh-1">หน่วยละ (บาท)</p></div>
+              <div className="col"><p className="text-center fs-5 lh-1">จำนวน</p></div>
+              <div className="col"><p className="text-center fs-5 lh-1">รวมเงิน (บาท)</p></div>
+              <hr></hr>
+            </div>
+          </div>
+          {showItem()}
+          <hr></hr>
+          <div>
+            <div className="row">
+              <div className="col"><p className="text-left fs-5 lh-1">จำนวนรวม &ensp; {bill.quantity.reduce((a, c) => a + c.quantity, 0)} &ensp; ชิ้น</p></div>
+            </div>
+            <div className="row">
+              <div className="col"><p className="text-left fs-5 lh-1">ราคาไม่รวมภาษีมูลค่าเพิ่ม</p></div>
+              <div className="col"><p className="text-end fs-5 lh-1">{bill.quantity.reduce((a, c) => Math.round(a + c.quantity * c.price_each * (93/100)), 0)} &ensp; บาท</p></div>
+            </div>
+            <div className="row">
+              <div className="col"><p className="text-left fs-5 lh-1">ภาษีมูลค่าเพิ่ม 7%</p></div>
+              <div className="col"><p className="text-end fs-5 lh-1">{bill.quantity.reduce((a, c) => Math.round(a + c.quantity * c.price_each * (7/100)), 0)} &ensp; บาท</p></div>
+              <hr></hr>
+            </div>
+            <div className="row">
+              <div className="col"><p className="text-left fs-5 lh-1">รวมทั้งสิ้น</p></div>
+              <div className="col"><p className="text-end fs-5 lh-1">{bill.quantity.reduce((a, c) => a + c.quantity * c.price_each, 0)} &ensp; บาท</p></div>
+              <hr className={styles.s9}></hr>
+            </div>
+            <div className="row">
+              <div className="col"><p className="text-left fs-5 lh-1">ชำระโดย &ensp; {bill.payment_method}</p></div>
+              <div className="col"><p className="text-center fs-5 lh-1">รับมา &ensp; {bill.cash} &ensp; บาท</p></div>
+              <div className="col"><p className="text-end fs-5 lh-1">เงินทอน &ensp; {bill.cash-bill.quantity.reduce((a, c) => a + c.quantity * c.price_each, 0)} &ensp; บาท</p></div>
+            </div>
+          </div>
+          <br></br>
+          <div className={styles.box}>
+            <QRCode value={qrCode} size={150} />
+            <p className="text-center fs-5 lh-lg">ขอบคุณที่ใช้บริการ</p>
+          </div>
+        </div>
       )}
 
       {bill && location.state?.payment_method === "QR" && (
-                  <div className={styles.main}>
-                  <p className={styles.header}>ใบเสร็จรับเงิน</p>
-                  <p>เลขที่ใบเสร็จ {bill.receipt_no} </p>
-                  <p>
-                    วันที่ {bill.date} {bill.time} น.
-                  </p>
-                  <br></br>
-                  <hr></hr>
-                  <h1 className={styles.storeinfo}>ร้าน: {bill.user_id.store_name}</h1>
-                  <h3 className={styles.storeinfo}>ที่อยู่: {bill.user_id.address}</h3>
-                  {/* <h3 className={styles.storeinfo}>Faculty of Engineering</h3>
-                  <h3 className={styles.storeinfo}>Kasersart University</h3> */}
-                  <h3 className={styles.storeinfo}>
-                    หมายเลขประจำตัวผู้เสียภาษี: {bill.user_id.tax_id}
-                  </h3>
-                  <br></br>
-                  <hr></hr>
-                  <div className={styles.table}>
-                    <h2 className={styles.tableHeader}>รายการสินค้า</h2>
-                    <h2 className={styles.tableHeader}>ราคาต่อหน่วย(บาท)</h2>
-                    <h2 className={styles.tableHeader}>จำนวน</h2>
-                    <h2 className={styles.tableHeader}>จำนวนเงิน(บาท)</h2>
-                  </div>
-                  <hr></hr>
-      
-                  {showItem()}
-                  {/* <p className={styles.total_price}>ราคารวม: {}บาท</p> */}
-      
-                  <div className={styles.total}>
-                    <h2 className={styles.totalPrice}>ราคาสุทธิ์: {bill.quantity.reduce((a, c) => a + c.quantity * c.price_each, 0)} บาท</h2>
-                    <h2 className={styles.totalPrice}>รับมา: {bill.cash} บาท</h2>
-                    <h2 className={styles.totalPrice}>เงินทอน: {bill.cash-bill.quantity.reduce((a, c) => a + c.quantity * c.price_each, 0)} บาท</h2>
-                    <h2 className={styles.totalPrice}>วิธีการชำระเงิน: {bill.payment_method}</h2>
-                  </div>
-                  <br></br>
-                  <br></br>
-                  <br></br>
-      
-                  <div className={styles.box}>
-                    <QRCode value={qrCode} size={150} />
-                  </div>
-                </div>
-      )}
+        <div className={styles.main}>
+          <div>
+            <p className="text-center fs-5 fw-bold lh-1">{bill.user_id.store_name}</p>
+            <p className="text-center fs-5 lh-1">{bill.user_id.address}</p>
+            <p className="text-center fs-5 lh-1">
+              หมายเลขประจำตัวผู้เสียภาษี {bill.user_id.tax_id}
+            </p>
+          </div>
+          <hr></hr>
+          <div>
+            <p className="text-center fs-4 fw-bold lh-base">ใบเสร็จรับเงิน/ใบกำกับภาษีแบบย่อ</p>
+            <div className="row">
+              <div className="col">
+                <p className="text-left fs-5 lh-1">เลขที่ใบเสร็จ {bill.receipt_no}</p>
+              </div>
+              <div className="col">
+                <p className="text-end fs-5 lh-1">วันที่ {bill.date} {bill.time} น.</p>
+              </div>
+              <hr></hr>
+            </div>
+          </div>
+          <div>
+            <div className="row">
+              <div className="col"><p className="text-center fs-5 lh-1">รายการสินค้า</p></div>
+              <div className="col"><p className="text-center fs-5 lh-1">หน่วยละ (บาท)</p></div>
+              <div className="col"><p className="text-center fs-5 lh-1">จำนวน</p></div>
+              <div className="col"><p className="text-center fs-5 lh-1">รวมเงิน (บาท)</p></div>
+              <hr></hr>
+            </div>
+          </div>
+          {showItem()}
+          <hr></hr>
+          <div>
+            <div className="row">
+              <div className="col"><p className="text-left fs-5 lh-1">จำนวนรวม &ensp; {bill.quantity.reduce((a, c) => a + c.quantity, 0)} &ensp; ชิ้น</p></div>
+            </div>
+            <div className="row">
+              <div className="col"><p className="text-left fs-5 lh-1">ราคาไม่รวมภาษีมูลค่าเพิ่ม</p></div>
+              <div className="col"><p className="text-end fs-5 lh-1">{bill.quantity.reduce((a, c) => Math.round(a + c.quantity * c.price_each * (93/100)), 0)} &ensp; บาท</p></div>
+            </div>
+            <div className="row">
+              <div className="col"><p className="text-left fs-5 lh-1">ภาษีมูลค่าเพิ่ม 7%</p></div>
+              <div className="col"><p className="text-end fs-5 lh-1">{bill.quantity.reduce((a, c) => Math.round(a + c.quantity * c.price_each * (7/100)), 0)} &ensp; บาท</p></div>
+              <hr></hr>
+            </div>
+            <div className="row">
+              <div className="col"><p className="text-left fs-5 lh-1">รวมทั้งสิ้น</p></div>
+              <div className="col"><p className="text-end fs-5 lh-1">{bill.quantity.reduce((a, c) => a + c.quantity * c.price_each, 0)} &ensp; บาท</p></div>
+              <hr className={styles.s9}></hr>
+            </div>
+            <div className="row">
+              <div className="col"><p className="text-left fs-5 lh-1">ชำระโดย &ensp; {bill.payment_method}</p></div>
+              <div className="col"><p className="text-center fs-5 lh-1">รับมา &ensp; {bill.cash} &ensp; บาท</p></div>
+              <div className="col"><p className="text-end fs-5 lh-1">เงินทอน &ensp; {bill.cash-bill.quantity.reduce((a, c) => a + c.quantity * c.price_each, 0)} &ensp; บาท</p></div>
+            </div>
+          </div>
+          <br></br>
+          <div className={styles.box}>
+            <QRCode value={qrCode} size={150} />
+            <p className="text-center fs-5 lh-lg">ขอบคุณที่ใช้บริการ</p>
+          </div>
+        </div>
+      )} */}
     </Fragment>
   );
 };
